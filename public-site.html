@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klinik Sehat - Kesehatan & Kecantikan Profesional</title>
+    <link rel="stylesheet" href="public-style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <div class="logo-icon">🏥</div>
+                <div class="logo-text">
+                    <span class="logo-main">Klinik Sehat</span>
+                    <span class="logo-sub">Kesehatan & Kecantikan</span>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Layanan</a></li>
+                <li><a href="#gallery">Galeri</a></li>
+                <li><a href="#footer">Kontak</a></li>
+                <li><a href="admin-site.html" class="admin-link">Admin</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>ALRA CARE</h1>
+                <p>Pusat Perawatan Luka Modern</p>
+                <p>Pusat Perawatan Kecantikan</p>
+                <p>Pusat Perawatan Sunat Modern</p>
+                <p>Pusat Perawatan Hipnoterapi</p>
+                <div class="hero-buttons">
+                    <button class="cta-button" onclick="scrollToServices()">Lihat Layanan</button>
+                    <button class="cta-button secondary" onclick="showBookingModal()">Booking Sekarang</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Layanan Kami</h2>
+            <p class="section-subtitle">Berbagai jenis perawatan profesional untuk kesehatan dan kecantikan Anda</p>
+            
+            <div class="services-grid">
+                <div class="service-card" onclick="showServiceDetail('perawatan1')">
+                    <div class="service-icon">🩺</div>
+                    <h3>Perawatan Luka Modern</h3>
+                    <div class="service-price">
+                        <span class="price">Rp 150.000 - 500.000</span>
+                    </div>
+                    <button class="service-btn">Detail Layanan</button>
+                </div>
+
+                <div class="service-card" onclick="showServiceDetail('perawatan2')">
+                    <div class="service-icon">✨</div>
+                    <h3>Perawatan Kecantikan</h3>
+                    <div class="service-price">
+                        <span class="price">Rp 100.000 - 250.000</span>
+                    </div>
+                    <button class="service-btn">Detail Layanan</button>
+                </div>
+
+                <div class="service-card" onclick="showServiceDetail('perawatan3')">
+                    <div class="service-icon">🔪</div>
+                    <h3>Sunat Modern</h3>
+                    <div class="service-price">
+                        <span class="price">Rp 200.000 - 750.000</span>
+                    </div>
+                    <button class="service-btn">Detail Layanan</button>
+                </div>
+
+                <div class="service-card" onclick="showServiceDetail('perawatan4')">
+                    <div class="service-icon">🧠</div>
+                    <h3>Hipnoterapi</h3>
+                    <div class="service-price">
+                        <span class="price">Rp 300.000 - 800.000</span>
+                    </div>
+                    <button class="service-btn">Detail Layanan</button>
+                </div>
+
+                <div class="service-card" onclick="showServiceDetail('perawatan5')">
+                    <div class="service-icon">💄</div>
+                    <h3>Produk Kecantikan</h3>
+                    <div class="service-price">
+                        <span class="price">Rp 300.000 - 800.000</span>
+                    </div>
+                    <button class="service-btn">Detail Layanan</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2>Galeri Klinik</h2>
+            <p class="section-subtitle">Lihat suasana dan fasilitas klinik kami</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-image">🏥</div>
+                    <p>Ruang Tunggu</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">💆</div>
+                    <p>Ruang Perawatan</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">✨</div>
+                    <p>Fasilitas Steril</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">👨‍⚕️</div>
+                    <p>Tim Medis</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Klinik Sehat</h3>
+                    <p>Layanan perawatan kesehatan dan kecantikan profesional dengan standar tinggi untuk kenyamanan dan kepuasan Anda.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Media Sosial</h4>
+                    <div class="social-links">
+                        <a href="#" title="Facebook">📘 Facebook</a>
+                        <a href="#" title="Instagram">📷 Instagram</a>
+                        <a href="#" title="Twitter">🐦 Twitter</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Kontak</h4>
+                    <p>📞 0812-3456-7890</p>
+                    <p>📧 info@kliniksehat.com</p>
+                    <p>📍 Jl. Kesehatan No. 123, Jakarta</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Klinik Sehat. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODALS -->
+    <!-- Service Details Modal -->
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="modalManager.closeAll()">&times;</span>
+            <div id="serviceModalContent"></div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <span id="notificationText"></span>
+    </div>
+
+        <!-- LOAD JAVASCRIPT FILES -->
+    <script src="data-manager.js"></script>
+    <script src="notification-manager.js"></script>
+    <script src="calendar-manager.js"></script>
+    <script src="public-script.js"></script>
+</body>
+</html>
