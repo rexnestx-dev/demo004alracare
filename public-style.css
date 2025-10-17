@@ -146,19 +146,15 @@ header {
     gap: 10px;
 }
 
-.logo-icon {
-    font-size: 2rem;
+.logo img {
+    height: 50px;
+    width: auto;
 }
 
-.logo-main {
-    display: block;
+.logo-text span {
     font-weight: bold;
     font-size: 1.2rem;
-}
-
-.logo-sub {
-    font-size: 0.8rem;
-    color: var(--text-light);
+    color: var(--text-dark);
 }
 
 .nav-menu {
@@ -216,10 +212,10 @@ header {
     margin-top: 80px;
 }
 
-.hero-content h1 {
-    font-size: 3rem;
+.hero-content img {
+    height: 100px;
+    width: auto;
     margin-bottom: 1.5rem;
-    color: var(--text-white);
 }
 
 .hero-content p {
@@ -331,22 +327,132 @@ footer {
     margin-bottom: 0.5rem;
 }
 
-.social-links {
+.footer-section img {
+    height: 60px;
+    width: auto;
+    margin-bottom: 1rem;
+}
+
+/* ===== SOCIAL MEDIA STYLES ===== */
+.social-media-section {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    margin-top: 1rem;
+    gap: 15px;
 }
 
-.social-links a {
-    color: #ccc;
-    text-decoration: none;
-    transition: var(--transition);
+.social-platform {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.social-links a:hover {
+.platform-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    font-weight: 600;
     color: var(--text-white);
+}
+
+.platform-title i {
+    font-size: 1.2rem;
+}
+
+.social-accounts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.social-account {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: var(--transition);
+    text-decoration: none;
+    color: #ccc;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-account:hover {
+    background: rgba(255, 255, 255, 0.1);
     transform: translateX(5px);
+    color: var(--text-white);
+}
+
+.account-icon {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 0.9rem;
+    color: white;
+}
+
+.account-info {
+    flex: 1;
+}
+
+.username {
+    font-weight: 500;
+    font-size: 0.85rem;
+}
+
+/* Warna platform untuk footer */
+.social-platform.instagram .platform-title { 
+    color: #E4405F; 
+}
+
+.social-platform.facebook .platform-title { 
+    color: #1877F2; 
+}
+
+.social-platform.youtube .platform-title { 
+    color: #FF0000; 
+}
+
+.social-platform.tiktok .platform-title { 
+    color: #000000; 
+}
+
+.social-platform.instagram .account-icon { 
+    background-color: #E4405F; 
+}
+
+.social-platform.facebook .account-icon { 
+    background-color: #1877F2; 
+}
+
+.social-platform.youtube .account-icon { 
+    background-color: #FF0000; 
+}
+
+.social-platform.tiktok .account-icon { 
+    background-color: #000000; 
+}
+
+.social-platform.instagram .social-account:hover { 
+    border-color: #E4405F; 
+}
+
+.social-platform.facebook .social-account:hover { 
+    border-color: #1877F2; 
+}
+
+.social-platform.youtube .social-account:hover { 
+    border-color: #FF0000; 
+}
+
+.social-platform.tiktok .social-account:hover { 
+    border-color: #000000; 
 }
 
 .footer-bottom {
@@ -799,6 +905,33 @@ footer {
 
     .form-actions {
         flex-direction: column;
+    }
+
+    /* Responsive untuk media sosial */
+    .social-media-section {
+        gap: 10px;
+    }
+    
+    .social-platform {
+        padding: 12px;
+    }
+    
+    .platform-title {
+        font-size: 0.9rem;
+    }
+    
+    .account-icon {
+        width: 25px;
+        height: 25px;
+        font-size: 0.8rem;
+    }
+    
+    .username {
+        font-size: 0.8rem;
+    }
+    
+    .social-account {
+        padding: 6px 10px;
     }
 }
 
