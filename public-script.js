@@ -96,52 +96,16 @@ const serviceDetails = {
     }
 };
 
-// ===== MODAL MANAGEMENT SYSTEM =====
-class ModalManager {
-    constructor() {
-        this.modals = {};
-        this.init();
-    }
-
-    init() {
-        document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('modal')) {
-                this.closeAll();
-            }
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') this.closeAll();
-        });
-    }
-
-    registerModal(id, element) {
-        this.modals[id] = element;
-    }
-
-    openModal(id) {
-        this.closeAll();
-        if (this.modals[id]) {
-            this.modals[id].style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-    }
-
-    closeModal(id) {
-        if (this.modals[id]) {
-            this.modals[id].style.display = 'none';
-        }
-    }
-
-    closeAll() {
-        Object.values(this.modals).forEach(modal => {
-            if (modal) modal.style.display = 'none';
-        });
-        document.body.style.overflow = 'auto';
-    }
+// ===== MODAL MANAGEMENT =====
+function openModal(modalId) {
+    document.getElementById(modalId).style.display = 'block';
+    document.body.style.overflow = 'hidden';
 }
 
-const modalManager = new ModalManager();
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
 
 // ===== SERVICE DETAIL MODAL FUNCTIONS =====
 function showServiceDetail(serviceId) {
@@ -192,7 +156,7 @@ function showServiceDetail(serviceId) {
             </div>
             
             <div class="service-modal-footer">
-                <button class="cta-button secondary" onclick="modalManager.closeAll()">
+                <button class="cta-button secondary" onclick="closeModal('serviceModal')">
                     Kembali
                 </button>
                 <button class="cta-button" id="bookingBtn" onclick="proceedToBooking('${serviceId}')" disabled>
@@ -201,22 +165,10 @@ function showServiceDetail(serviceId) {
             </div>
         `;
 
-    } else {
-        content = `
-            <div class="service-modal-header">
-                <h2>${service.title}</h2>
-                <p class="service-description">${service.description}</p>
-            </div>
-            <div class="service-modal-footer">
-                <button class="cta-button secondary" onclick="modalManager.closeAll()">
-                    Tutup
-                </button>
-            </div>
-        `;
     }
 
     document.getElementById('serviceModalContent').innerHTML = content;
-    modalManager.openModal('serviceModal');
+    openModal('serviceModal');
 
     if (service.type === "checkbox") {
         attachCheckboxListeners(serviceId);
@@ -393,7 +345,7 @@ function showBookingForm() {
     `;
 
     document.getElementById('serviceModalContent').innerHTML = content;
-    modalManager.openModal('serviceModal');
+    openModal('serviceModal');
 
     setDefaultAppointmentDate();
     setupFormValidation();
@@ -459,7 +411,7 @@ function goBackToServiceSelection() {
     if (selectedData.serviceId) {
         showServiceDetail(selectedData.serviceId);
     } else {
-        modalManager.closeAll();
+        closeModal('serviceModal');
     }
 }
 
@@ -531,9 +483,13 @@ function validateBookingForm(formData) {
     return true;
 }
 
+// ===== DATA MANAGEMENT =====
 function saveBookingToStorage(bookingData) {
     try {
-        const existingBookings = JSON.parse(localStorage.getItem('clinicBookings') || '[]');
+        const dataManager = new DataManager();
+        const existingBookings = dataManager.getBookings();
+        
+        console.log('Saving booking:', bookingData); // Debug
         
         const isDuplicate = existingBookings.some(booking => 
             booking.patientInfo.phone === bookingData.patientInfo.phone &&
@@ -547,9 +503,36 @@ function saveBookingToStorage(bookingData) {
         }
         
         existingBookings.push(bookingData);
-        localStorage.setItem('clinicBookings', JSON.stringify(existingBookings));
+        const success = dataManager.saveBookings(existingBookings);
         
-        return true;
+        if (success) {
+            console.log('Booking saved successfully to storage');
+            
+            // Try to send notification (if notification manager exists)
+            try {
+                if (typeof NotificationManager !== 'undefined') {
+                    const notificationManager = new NotificationManager();
+                    notificationManager.notifyNewBooking(bookingData);
+                }
+            } catch (e) {
+                console.log('Notification manager not available');
+            }
+            
+            // Try to create calendar event (if calendar manager exists)
+            try {
+                if (typeof CalendarManager !== 'undefined') {
+                    const calendarManager = new CalendarManager();
+                    calendarManager.createEventFromBooking(bookingData);
+                }
+            } catch (e) {
+                console.log('Calendar manager not available');
+            }
+            
+            return true;
+        } else {
+            showNotification('Gagal menyimpan booking', 'error');
+            return false;
+        }
     } catch (error) {
         console.error('Error saving booking:', error);
         showNotification('Terjadi error saat menyimpan booking', 'error');
@@ -604,7 +587,7 @@ function showBookingConfirmation(bookingData) {
                 <button class="cta-button secondary" onclick="printBookingDetails('${bookingData.bookingId}')">
                     🖨️ Cetak Detail
                 </button>
-                <button class="cta-button" onclick="modalManager.closeAll()">
+                <button class="cta-button" onclick="closeModal('serviceModal')">
                     Tutup
                 </button>
             </div>
@@ -615,7 +598,8 @@ function showBookingConfirmation(bookingData) {
 }
 
 function printBookingDetails(bookingId) {
-    const bookings = JSON.parse(localStorage.getItem('clinicBookings') || '[]');
+    const dataManager = new DataManager();
+    const bookings = dataManager.getBookings();
     const booking = bookings.find(b => b.bookingId === bookingId);
     
     if (booking) {
@@ -685,97 +669,6 @@ function showNotification(message, type = 'info') {
     }
 }
 
-// ===== ADMIN SYSTEM =====
-function showAdminLogin() {
-    modalManager.openModal('adminLoginModal');
-}
-
-function closeAdminLogin() {
-    modalManager.closeModal('adminLoginModal');
-}
-
-document.getElementById('adminLoginForm')?.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const username = document.getElementById('adminUsername').value;
-    const password = document.getElementById('adminPassword').value;
-    
-    if (username === 'admin' && password === 'admin123') {
-        closeAdminLogin();
-        showAdminDashboard();
-        showNotification('🔑 Login admin berhasil!', 'success');
-    } else {
-        showNotification('❌ Username atau password salah!', 'error');
-    }
-});
-
-function showAdminDashboard() {
-    const bookings = JSON.parse(localStorage.getItem('clinicBookings') || '[]');
-    
-    const bookingsTable = document.getElementById('bookingsTable');
-    if (bookingsTable) {
-        if (bookings.length === 0) {
-            bookingsTable.innerHTML = `
-                <tr>
-                    <td colspan="6" style="text-align: center;">Tidak ada data booking</td>
-                </tr>
-            `;
-        } else {
-            bookingsTable.innerHTML = bookings.map(booking => `
-                <tr>
-                    <td>${booking.patientInfo.name}</td>
-                    <td>${booking.serviceInfo.serviceName}</td>
-                    <td>${booking.appointmentInfo.date}</td>
-                    <td>${booking.appointmentInfo.time}</td>
-                    <td>${booking.status}</td>
-                    <td>
-                        <button class="action-btn" onclick="editBooking('${booking.bookingId}')">✏️</button>
-                        <button class="action-btn" onclick="deleteBooking('${booking.bookingId}')">🗑️</button>
-                    </td>
-                </tr>
-            `).join('');
-        }
-    }
-    
-    modalManager.openModal('adminDashboard');
-}
-
-function closeAdminDashboard() {
-    modalManager.closeModal('adminDashboard');
-}
-
-function openAdminTab(tabName) {
-    document.querySelectorAll('.tab-content').forEach(tab => {
-        tab.classList.remove('active');
-    });
-    
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    
-    document.getElementById(tabName + 'Tab').classList.add('active');
-    event.currentTarget.classList.add('active');
-}
-
-function editBooking(bookingId) {
-    showNotification(`✏️ Mengedit booking: ${bookingId}`, 'info');
-}
-
-function deleteBooking(bookingId) {
-    if (confirm(`Apakah Anda yakin ingin menghapus booking ${bookingId}?`)) {
-        const bookings = JSON.parse(localStorage.getItem('clinicBookings') || '[]');
-        const updatedBookings = bookings.filter(booking => booking.bookingId !== bookingId);
-        localStorage.setItem('clinicBookings', JSON.stringify(updatedBookings));
-        showNotification(`🗑️ Booking ${bookingId} telah dihapus`, 'success');
-        showAdminDashboard();
-    }
-}
-
-// ===== GALLERY SYSTEM =====
-function openGallery(imageId) {
-    showNotification(`🖼️ Membuka galeri: ${imageId}`, 'info');
-}
-
 // ===== NAVIGATION FUNCTIONS =====
 function scrollToServices() {
     document.getElementById('services').scrollIntoView({
@@ -790,6 +683,11 @@ function showBookingModal() {
     } else {
         showNotification('Silakan pilih layanan terlebih dahulu', 'warning');
     }
+}
+
+// ===== UTILITY FUNCTIONS =====
+function formatDate(dateString) {
+    return new Date(dateString).toLocaleDateString('id-ID');
 }
 
 // ===== INITIALIZATION =====
@@ -842,18 +740,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Register modals
-    const modals = {
-        'serviceModal': document.getElementById('serviceModal'),
-        'adminLoginModal': document.getElementById('adminLoginModal'),
-        'adminDashboard': document.getElementById('adminDashboard')
-    };
-    
-    Object.entries(modals).forEach(([id, element]) => {
-        if (element) {
-            modalManager.registerModal(id, element);
-        }
-    });
-    
-    console.log('Klinik Sehat Website initialized successfully!');
+    console.log('Klinik Sehat Public Website initialized successfully!');
 });
