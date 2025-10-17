@@ -4,7 +4,7 @@ let currentService = null;
 // ===== SERVICE DETAILS DATA =====
 const serviceDetails = {
     perawatan1: {
-        title: "Perawatan Luka Profesional",
+        title: "Perawatan Luka Modern",
         description: "Pilih jenis perawatan luka yang Anda butuhkan",
         type: "checkbox",
         options: [
@@ -12,14 +12,14 @@ const serviceDetails = {
                 id: "luka-diabetes",
                 name: "Luka Diabetes",
                 description: "Perawatan khusus untuk luka pada penderita diabetes dengan penanganan ekstra hati-hati",
-                price: "Rp 300.000 - 450.000",
+                price: "Rp 150.000 - 200.000",
                 image: "🩺",
             },
             {
                 id: "luka-bakar",
                 name: "Luka Bakar",
                 description: "Penanganan profesional untuk luka bakar derajat 1 dan 2",
-                price: "Rp 250.000 - 400.000",
+                price: "Rp 150.000 - 200.000",
                 image: "🔥",
             }
         ]
@@ -40,13 +40,13 @@ const serviceDetails = {
                 id: "kutil",
                 name: "Perawatan Kutil",
                 description: "Penanganan medis untuk berbagai jenis kutil dengan hasil optimal",
-                price: "Rp 200.000 - 600.000",
+                price: "Rp 150.000 - 600.000",
                 image: "🔍",
             }
         ]
     },
     perawatan3: {
-        title: "Layanan Sunat Modern",
+        title: "Sunat Modern",
         description: "Pilih metode sunat yang sesuai dengan kebutuhan",
         type: "checkbox",
         options: [
@@ -54,13 +54,13 @@ const serviceDetails = {
                 id: "sunat-ring",
                 name: "Sunat Ring",
                 description: "Teknik sunat modern menggunakan ring dengan proses cepat dan minim rasa sakit",
-                price: "Rp 1.500.000 - 2.500.000",
+                price: "Rp 1.200.000 - 2.800.000",
                 image: "💍",
             }
         ]
     },
     perawatan4: {
-        title: "Terapi Hipnoterapi",
+        title: "Hipnoterapi",
         description: "Pilih jenis terapi hipnoterapi yang sesuai dengan kebutuhan Anda",
         type: "checkbox",
         options: [
@@ -68,28 +68,28 @@ const serviceDetails = {
                 id: "berhenti-merokok",
                 name: "Berhenti Merokok",
                 description: "Program hipnoterapi khusus untuk mengatasi kecanduan rokok secara permanen",
-                price: "Rp 600.000 - 900.000",
+                price: "Rp 500.000 - 3.000.000",
                 image: "🚭",
             }
         ]
     },
     perawatan5: {
-        title: "Produk Kecantikan",
-        description: "Pilih produk kecantikan yang sesuai dengan kebutuhan kulit Anda",
+        title: "Skincare",
+        description: "Pilih produk skincare yang sesuai dengan kebutuhan kulit Anda",
         type: "checkbox",
         options: [
             {
                 id: "serum-vitamin-c",
                 name: "Serum Vitamin C",
                 description: "Serum dengan kandungan vitamin C tinggi untuk mencerahkan dan meremajakan kulit",
-                price: "Rp 250.000",
+                price: "Rp 155.000 - 250.000",
                 image: "✨",
             },
             {
                 id: "facial-cleanser",
                 name: "Facial Cleanser",
                 description: "Pembersih wajah lembut yang membersihkan tanpa mengeringkan kulit",
-                price: "Rp 120.000",
+                price: "Rp 155.000 - 200.000",
                 image: "🧼",
             }
         ]
@@ -97,15 +97,25 @@ const serviceDetails = {
 };
 
 // ===== MODAL MANAGEMENT =====
-function openModal(modalId) {
-    document.getElementById(modalId).style.display = 'block';
-    document.body.style.overflow = 'hidden';
-}
-
-function closeModal(modalId) {
-    document.getElementById(modalId).style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
+const modalManager = {
+    openModal: function(modalId) {
+        document.getElementById(modalId).style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    },
+    
+    closeModal: function(modalId) {
+        document.getElementById(modalId).style.display = 'none';
+        document.body.style.overflow = 'auto';
+    },
+    
+    closeAll: function() {
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach(modal => {
+            modal.style.display = 'none';
+        });
+        document.body.style.overflow = 'auto';
+    }
+};
 
 // ===== SERVICE DETAIL MODAL FUNCTIONS =====
 function showServiceDetail(serviceId) {
@@ -156,7 +166,7 @@ function showServiceDetail(serviceId) {
             </div>
             
             <div class="service-modal-footer">
-                <button class="cta-button secondary" onclick="closeModal('serviceModal')">
+                <button class="cta-button secondary" onclick="modalManager.closeAll()">
                     Kembali
                 </button>
                 <button class="cta-button" id="bookingBtn" onclick="proceedToBooking('${serviceId}')" disabled>
@@ -168,7 +178,7 @@ function showServiceDetail(serviceId) {
     }
 
     document.getElementById('serviceModalContent').innerHTML = content;
-    openModal('serviceModal');
+    modalManager.openModal('serviceModal');
 
     if (service.type === "checkbox") {
         attachCheckboxListeners(serviceId);
@@ -210,18 +220,17 @@ function attachCheckboxListeners(serviceId) {
                         </div>
                     `;
                     
-                    const priceRange = option.price.match(/(\d+\.?\d*)/g);
-                    if (priceRange && priceRange.length > 0) {
-                        const minPrice = parseInt(priceRange[0].replace('.', ''));
-                        const maxPrice = priceRange[1] ? parseInt(priceRange[1].replace('.', '')) : minPrice;
-                        const avgPrice = (minPrice + maxPrice) / 2;
-                        totalPrice += avgPrice;
+                    // Simple price calculation (ambil harga terendah)
+                    const priceMatch = option.price.match(/(\d+\.?\d*)/g);
+                    if (priceMatch && priceMatch.length > 0) {
+                        const minPrice = parseInt(priceMatch[0].replace('.', ''));
+                        totalPrice += minPrice;
                     }
                 }
             });
             
             selectedOptionsList.innerHTML = optionsHTML;
-            totalPriceElement.textContent = `Rp ${Math.round(totalPrice).toLocaleString('id-ID')}`;
+            totalPriceElement.textContent = `Rp ${totalPrice.toLocaleString('id-ID')}`;
             
         } else {
             selectionSummary.style.display = 'none';
@@ -345,7 +354,7 @@ function showBookingForm() {
     `;
 
     document.getElementById('serviceModalContent').innerHTML = content;
-    openModal('serviceModal');
+    modalManager.openModal('serviceModal');
 
     setDefaultAppointmentDate();
     setupFormValidation();
@@ -411,7 +420,7 @@ function goBackToServiceSelection() {
     if (selectedData.serviceId) {
         showServiceDetail(selectedData.serviceId);
     } else {
-        closeModal('serviceModal');
+        modalManager.closeAll();
     }
 }
 
@@ -486,10 +495,8 @@ function validateBookingForm(formData) {
 // ===== DATA MANAGEMENT =====
 function saveBookingToStorage(bookingData) {
     try {
-        const dataManager = new DataManager();
-        const existingBookings = dataManager.getBookings();
-        
-        console.log('Saving booking:', bookingData); // Debug
+        // Simpan ke localStorage (sementara)
+        const existingBookings = JSON.parse(localStorage.getItem('klinikBookings') || '[]');
         
         const isDuplicate = existingBookings.some(booking => 
             booking.patientInfo.phone === bookingData.patientInfo.phone &&
@@ -503,36 +510,11 @@ function saveBookingToStorage(bookingData) {
         }
         
         existingBookings.push(bookingData);
-        const success = dataManager.saveBookings(existingBookings);
+        localStorage.setItem('klinikBookings', JSON.stringify(existingBookings));
         
-        if (success) {
-            console.log('Booking saved successfully to storage');
-            
-            // Try to send notification (if notification manager exists)
-            try {
-                if (typeof NotificationManager !== 'undefined') {
-                    const notificationManager = new NotificationManager();
-                    notificationManager.notifyNewBooking(bookingData);
-                }
-            } catch (e) {
-                console.log('Notification manager not available');
-            }
-            
-            // Try to create calendar event (if calendar manager exists)
-            try {
-                if (typeof CalendarManager !== 'undefined') {
-                    const calendarManager = new CalendarManager();
-                    calendarManager.createEventFromBooking(bookingData);
-                }
-            } catch (e) {
-                console.log('Calendar manager not available');
-            }
-            
-            return true;
-        } else {
-            showNotification('Gagal menyimpan booking', 'error');
-            return false;
-        }
+        showNotification('Booking berhasil disimpan!', 'success');
+        return true;
+        
     } catch (error) {
         console.error('Error saving booking:', error);
         showNotification('Terjadi error saat menyimpan booking', 'error');
@@ -587,7 +569,7 @@ function showBookingConfirmation(bookingData) {
                 <button class="cta-button secondary" onclick="printBookingDetails('${bookingData.bookingId}')">
                     🖨️ Cetak Detail
                 </button>
-                <button class="cta-button" onclick="closeModal('serviceModal')">
+                <button class="cta-button" onclick="modalManager.closeAll()">
                     Tutup
                 </button>
             </div>
@@ -598,8 +580,7 @@ function showBookingConfirmation(bookingData) {
 }
 
 function printBookingDetails(bookingId) {
-    const dataManager = new DataManager();
-    const bookings = dataManager.getBookings();
+    const bookings = JSON.parse(localStorage.getItem('klinikBookings') || '[]');
     const booking = bookings.find(b => b.bookingId === bookingId);
     
     if (booking) {
@@ -683,11 +664,6 @@ function showBookingModal() {
     } else {
         showNotification('Silakan pilih layanan terlebih dahulu', 'warning');
     }
-}
-
-// ===== UTILITY FUNCTIONS =====
-function formatDate(dateString) {
-    return new Date(dateString).toLocaleDateString('id-ID');
 }
 
 // ===== INITIALIZATION =====
