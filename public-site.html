@@ -56,59 +56,74 @@
             <p class="section-subtitle">Berbagai jenis perawatan profesional untuk kesehatan dan kecantikan Anda</p>
             
             <div class="services-grid">
+                <!-- Perawatan Luka Modern -->
                 <div class="service-card" onclick="showServiceDetail('perawatan1')">
-                    <div class="service-icon">
+                    <div class="service-image-container">
                         <img src="images/L_PERAWATANLIKADIKLINIK.jpg" alt="Perawatan Luka Modern">
                     </div>
-                    <h3>Perawatan Luka Modern</h3>
-                    <div class="service-price">
-                        <span class="price">Rp 150.000 - 200.000</span>
+                    <div class="service-content">
+                        <h3>Perawatan Luka Modern</h3>
+                        <div class="service-price">
+                            <span class="price">Rp 150.000 - 200.000</span>
+                        </div>
+                        <button class="service-btn">Detail Layanan</button>
                     </div>
-                    <button class="service-btn">Detail Layanan</button>
                 </div>
 
+                <!-- Perawatan Kecantikan -->
                 <div class="service-card" onclick="showServiceDetail('perawatan2')">
-                    <div class="service-icon">
+                    <div class="service-image-container">
                         <img src="images/A_COVER.jpg" alt="Perawatan Kecantikan">
                     </div>
-                    <h3>Perawatan Kecantikan</h3>
-                    <div class="service-price">
-                        <span class="price">Rp 150.000 - 1.600.000</span>
+                    <div class="service-content">
+                        <h3>Perawatan Kecantikan</h3>
+                        <div class="service-price">
+                            <span class="price">Rp 150.000 - 1.600.000</span>
+                        </div>
+                        <button class="service-btn">Detail Layanan</button>
                     </div>
-                    <button class="service-btn">Detail Layanan</button>
                 </div>
 
+                <!-- Sunat Modern -->
                 <div class="service-card" onclick="showServiceDetail('perawatan3')">
-                    <div class="service-icon">
+                    <div class="service-image-container">
                         <img src="images/S_COVER.jpg" alt="Sunat Modern">
                     </div>
-                    <h3>Sunat Modern</h3>
-                    <div class="service-price">
-                        <span class="price">Rp 1.200.000 - 2.800.000</span>
+                    <div class="service-content">
+                        <h3>Sunat Modern</h3>
+                        <div class="service-price">
+                            <span class="price">Rp 1.200.000 - 2.800.000</span>
+                        </div>
+                        <button class="service-btn">Detail Layanan</button>
                     </div>
-                    <button class="service-btn">Detail Layanan</button>
                 </div>
 
+                <!-- Hipnoterapi -->
                 <div class="service-card" onclick="showServiceDetail('perawatan4')">
-                    <div class="service-icon">
-                        <img src="images/hipnoterapi-placeholder.jpg" alt="Hipnoterapi">
+                    <div class="service-image-container">
+                        <img src="images/hipnoterapi.jpg" alt="Hipnoterapi">
                     </div>
-                    <h3>Hipnoterapi</h3>
-                    <div class="service-price">
-                        <span class="price">Rp 500.000 - 3.000.000</span>
+                    <div class="service-content">
+                        <h3>Hipnoterapi</h3>
+                        <div class="service-price">
+                            <span class="price">Rp 500.000 - 3.000.000</span>
+                        </div>
+                        <button class="service-btn">Detail Layanan</button>
                     </div>
-                    <button class="service-btn">Detail Layanan</button>
                 </div>
 
+                <!-- Skincare -->
                 <div class="service-card" onclick="showServiceDetail('perawatan5')">
-                    <div class="service-icon">
-                        <img src="images/skincare-placeholder.jpg" alt="Skincare">
+                    <div class="service-image-container">
+                        <img src="images/skincare.jpg" alt="Skincare">
                     </div>
-                    <h3>Skincare</h3>
-                    <div class="service-price">
-                        <span class="price">Rp 155.000 - 450.000</span>
+                    <div class="service-content">
+                        <h3>Skincare</h3>
+                        <div class="service-price">
+                            <span class="price">Rp 155.000 - 450.000</span>
+                        </div>
+                        <button class="service-btn">Detail Layanan</button>
                     </div>
-                    <button class="service-btn">Detail Layanan</button>
                 </div>
             </div>
         </div>
@@ -145,14 +160,16 @@
     <footer id="footer">
         <div class="container">
             <div class="footer-content">
+                <!-- Info Klinik -->
                 <div class="footer-section">
                     <img src="images/image_logo.png" alt="Klinik Sehat Logo">
                     <p>Pusat Perawatan Luka Modern</p>
                     <p>Pusat Perawatan Kecantikan</p>
-                    <p>Pusat Perawatan Sunat Modern</p>
-                    <p>Pusat Perawatan Hipnoterapi</p>
+                    <p>Pusat Sunat Modern</p>
+                    <p>Pusat Hipnoterapi</p>
                 </div>
                 
+                <!-- Media Sosial -->
                 <div class="footer-section">
                     <h4>Media Sosial</h4>
                     <div class="social-media-section">
@@ -270,11 +287,33 @@
                     </div>
                 </div>
                 
+                <!-- Kontak -->
                 <div class="footer-section">
                     <h4>Kontak</h4>
-                    <p>📞 0813-8122-3811</p>
-                    <p>📧 rahmadramadhanaswin@gmail.com</p>
-                    <p>📍 Jl. Purnama No. 16, Pontianak</p>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">0813-8122-3811</div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <a href="mailto:rahmadramadhanaswin@gmail.com" class="contact-link">
+                                    rahmadramadhanaswin@gmail.com
+                                </a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">Jl. Purnama No. 16, Pontianak</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
