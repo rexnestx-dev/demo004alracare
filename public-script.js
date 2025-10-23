@@ -17,7 +17,7 @@ const serviceDetails = {
             {
                 id: "Perawatan Luka Ke Rumah",
                 name: "Perawatan Luka Ke Rumah di Area Pontianak",
-                price: "200.000",
+                price: "Rp 200.000",
                 image: "images/L_PERAWATANLUKAKERUMAHPASIENDIAREAPONTIANAK.webp",
             }
         ]
@@ -28,18 +28,16 @@ const serviceDetails = {
         type: "checkbox",
         options: [
             {
-                id: "laser-tato",
-                name: "Laser Tato",
-                description: "Penghapusan tato dengan teknologi laser modern yang aman dan efektif",
-                price: "Rp 500.000 - 1.500.000 per sesi",
-                image: "⚡",
+                id: "A_TOMPEL3X3CM",
+                name: "Tompel 3x3cm",
+                price: "Rp 500.000",
+                image: "images/A_TOMPEL.webp",
             },
             {
-                id: "kutil",
-                name: "Perawatan Kutil",
-                description: "Penanganan medis untuk berbagai jenis kutil dengan hasil optimal",
-                price: "Rp 150.000 - 600.000",
-                image: "🔍",
+                id: "A_XENTALASMA",
+                name: "Xentalasma",
+                price: "Rp 500.000",
+                image: "images/A_XENTALASMA.webp",
             }
         ]
     },
@@ -49,11 +47,10 @@ const serviceDetails = {
         type: "checkbox",
         options: [
             {
-                id: "sunat-ring",
+                id: "S_RING",
                 name: "Sunat Ring",
-                description: "Teknik sunat modern menggunakan ring dengan proses cepat dan minim rasa sakit",
-                price: "Rp 1.200.000 - 2.800.000",
-                image: "💍",
+                price: "Rp 1.200.000",
+                image: "images/S_RING.webp",
             }
         ]
     },
@@ -63,11 +60,16 @@ const serviceDetails = {
         type: "checkbox",
         options: [
             {
-                id: "berhenti-merokok",
+                id: "H_BERHENTIJUDOL",
+                name: "Berhenti Judol",
+                price: "Rp 500.000",
+                image: "images/H_BERHENTIJUDOL.webp",
+            },
+            {
+                id: "H_BERHENTIMEROKOK",
                 name: "Berhenti Merokok",
-                description: "Program hipnoterapi khusus untuk mengatasi kecanduan rokok secara permanen",
-                price: "Rp 500.000 - 3.000.000",
-                image: "🚭",
+                price: "Rp 500.000",
+                image: "images/H_BERHENTIMEROKOK.webp",
             }
         ]
     },
@@ -77,18 +79,16 @@ const serviceDetails = {
         type: "checkbox",
         options: [
             {
-                id: "serum-vitamin-c",
-                name: "Serum Vitamin C",
-                description: "Serum dengan kandungan vitamin C tinggi untuk mencerahkan dan meremajakan kulit",
-                price: "Rp 155.000 - 250.000",
-                image: "✨",
+                id: "SK_BBCREAMACNE",
+                name: "BB Cream Acne",
+                price: "Rp 160.000",
+                image: "images/SK_BBCREAMACNE.webp",
             },
             {
-                id: "facial-cleanser",
-                name: "Facial Cleanser",
-                description: "Pembersih wajah lembut yang membersihkan tanpa mengeringkan kulit",
-                price: "Rp 155.000 - 200.000",
-                image: "🧼",
+                id: "SK_FACIALSOAPSALICID",
+                name: "Facial Soap Salicid",
+                price: "Rp 170.000",
+                image: "images/SK_FACIALSOAPSALICID.webp",
             }
         ]
     }
@@ -123,26 +123,42 @@ function showServiceDetail(serviceId) {
     let content = '';
 
     if (service.type === "checkbox") {
-        const optionsHTML = service.options.map(option => `
-            <div class="option-card">
-                <div class="option-header">
-                    <div class="option-checkbox">
-                        <input type="checkbox" id="${option.id}" name="service-option" value="${option.id}">
+        const optionsHTML = service.options.map(option => {
+            // Tentukan rasio berdasarkan serviceId dan option.id
+            let ratioClass = 'ratio-1-1'; // default
+            
+            if (serviceId === 'perawatan5' || serviceId === 'perawatan4') {
+                // Skincare dan Hipnoterapi - 16:9
+                ratioClass = 'ratio-16-9';
+            } else if (serviceId === 'perawatan3') {
+                // Sunat Modern - 9:16
+                ratioClass = 'ratio-9-16';
+            }
+            // Perawatan Luka dan Kecantikan tetap 1:1
+            
+            return `
+                <div class="option-card">
+                    <div class="option-header">
+                        <div class="option-checkbox">
+                            <input type="checkbox" id="${option.id}" name="service-option" value="${option.id}">
+                        </div>
+                        <div class="option-image-container ${ratioClass}">
+                            <img src="${option.image}" alt="${option.name}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjhmOGY4Ii8+CjxwYXRoIGQ9Ik04MCA2MEgxMjBWODBIMzBWOTBIMTIwVjExMEg4MFYxMjBIMTMwVjYwSDgwWiIgZmlsbD0iI2NjYyIvPgo8L3N2Zz4K'">
+                        </div>
+                        <div class="option-title">
+                            <h3>${option.name}</h3>
+                            <p class="option-description">${option.description || 'Perawatan profesional'}</p>
+                        </div>
                     </div>
-                    <div class="option-icon">${option.image}</div>
-                    <div class="option-title">
-                        <h3>${option.name}</h3>
-                        <p class="option-description">${option.description}</p>
+                    
+                    <div class="option-details">
+                        <div class="option-price">
+                            <strong>Harga:</strong> ${option.price}
+                        </div>
                     </div>
                 </div>
-                
-                <div class="option-details">
-                    <div class="option-price">
-                        <strong>Harga:</strong> ${option.price}
-                    </div>
-                </div>
-            </div>
-        `).join('');
+            `;
+        }).join('');
 
         content = `
             <div class="service-modal-header">

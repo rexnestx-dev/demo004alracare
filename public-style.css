@@ -279,15 +279,32 @@ section:nth-child(even) {
     box-shadow: var(--shadow-hover);
 }
 
-/* ===== SERVICE IMAGE STYLES - SQUARE 1:1 ===== */
+/* ===== SERVICE IMAGE STYLES - VARIOUS ASPECT RATIOS ===== */
 .service-image-container {
     width: 100%;
-    height: 0;
-    padding-bottom: 100%; /* Rasio 1:1 untuk bentuk persegi */
     overflow: hidden;
     border-radius: var(--border-radius);
     margin-bottom: 1rem;
     position: relative;
+    background-color: var(--bg-light);
+}
+
+/* Default untuk gambar 1:1 */
+.service-image-container.ratio-1-1 {
+    height: 0;
+    padding-bottom: 100%; /* Rasio 1:1 */
+}
+
+/* Untuk gambar 16:9 */
+.service-image-container.ratio-16-9 {
+    height: 0;
+    padding-bottom: 56.25%; /* 9/16 = 0.5625 = 56.25% */
+}
+
+/* Untuk gambar 9:16 (portrait) */
+.service-image-container.ratio-9-16 {
+    height: 0;
+    padding-bottom: 177.78%; /* 16/9 = 1.7778 = 177.78% */
 }
 
 .service-image-container img {
@@ -610,9 +627,32 @@ footer {
     cursor: pointer;
 }
 
-.option-icon {
-    font-size: 2rem;
-    margin-right: 10px;
+/* Option Image Styles */
+.option-image-container {
+    width: 80px;
+    overflow: hidden;
+    border-radius: 8px;
+    position: relative;
+    background-color: var(--bg-light);
+    flex-shrink: 0;
+}
+
+.option-image-container.ratio-1-1 {
+    height: 80px;
+}
+
+.option-image-container.ratio-16-9 {
+    height: 45px; /* 80 * 9/16 = 45 */
+}
+
+.option-image-container.ratio-9-16 {
+    height: 142px; /* 80 * 16/9 = 142.22 */
+}
+
+.option-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .option-title h3 {
@@ -883,11 +923,6 @@ footer {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 1.5rem;
     }
-    
-    /* Tetap 1:1 untuk tablet */
-    .service-image-container {
-        padding-bottom: 100%;
-    }
 }
 
 @media (max-width: 768px) {
@@ -977,11 +1012,6 @@ footer {
         flex-direction: column;
     }
 
-    /* Tetap 1:1 untuk mobile landscape */
-    .service-image-container {
-        padding-bottom: 100%;
-    }
-
     /* Responsive untuk media sosial */
     .social-media-section {
         gap: 10px;
@@ -1051,12 +1081,6 @@ footer {
         padding: 1rem;
     }
     
-    /* Tetap 1:1 untuk mobile portrait */
-    .service-image-container {
-        padding-bottom: 100%;
-        margin-bottom: 0.8rem;
-    }
-    
     .service-content h3 {
         font-size: 1.3rem;
     }
@@ -1074,11 +1098,6 @@ footer {
     
     .service-card {
         padding: 0.8rem;
-    }
-    
-    /* Tetap 1:1 untuk small mobile */
-    .service-image-container {
-        padding-bottom: 100%;
     }
     
     .hero-content img {
