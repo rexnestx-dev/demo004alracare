@@ -9,18 +9,16 @@ const serviceDetails = {
         type: "checkbox",
         options: [
             {
-                id: "luka-diabetes",
-                name: "Luka Diabetes",
-                description: "Perawatan khusus untuk luka pada penderita diabetes dengan penanganan ekstra hati-hati",
-                price: "Rp 150.000 - 200.000",
-                image: "🩺",
+                id: "Perawatan Luka di Klinik",
+                name: "Perawatan Luka di Klinik",
+                price: "Rp 150.000",
+                image: "images/L_PERAWATANLIKADIKLINIK.webp",
             },
             {
-                id: "luka-bakar",
-                name: "Luka Bakar",
-                description: "Penanganan profesional untuk luka bakar derajat 1 dan 2",
-                price: "Rp 150.000 - 200.000",
-                image: "🔥",
+                id: "Perawatan Luka Ke Rumah",
+                name: "Perawatan Luka Ke Rumah di Area Pontianak",
+                price: "200.000",
+                image: "images/L_PERAWATANLUKAKERUMAHPASIENDIAREAPONTIANAK.webp",
             }
         ]
     },
