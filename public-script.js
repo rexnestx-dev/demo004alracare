@@ -12,13 +12,15 @@ const serviceDetails = {
                 id: "Perawatan Luka di Klinik",
                 name: "Perawatan Luka di Klinik",
                 price: "Rp 150.000",
-                image: "images/L_PERAWATANLIKADIKLINIK.webp",
+                image: "./images/L_PERAWATANLIKADIKLINIK.webp",
+                duration: "30-45 menit"
             },
             {
                 id: "Perawatan Luka Ke Rumah",
                 name: "Perawatan Luka Ke Rumah di Area Pontianak",
                 price: "Rp 200.000",
-                image: "images/L_PERAWATANLUKAKERUMAHPASIENDIAREAPONTIANAK.webp",
+                image: "./images/L_PERAWATANLUKAKERUMAHPASIENDIAREAPONTIANAK.webp",
+                duration: "60 menit"
             }
         ]
     },
@@ -31,13 +33,15 @@ const serviceDetails = {
                 id: "A_TOMPEL3X3CM",
                 name: "Tompel 3x3cm",
                 price: "Rp 500.000",
-                image: "images/A_TOMPEL.webp",
+                image: "./images/A_TOMPEL.webp",
+                duration: "45-60 menit"
             },
             {
                 id: "A_XENTALASMA",
                 name: "Xentalasma",
                 price: "Rp 500.000",
-                image: "images/A_XENTALASMA.webp",
+                image: "./images/A_XENTALASMA.webp",
+                duration: "60 menit"
             }
         ]
     },
@@ -50,7 +54,8 @@ const serviceDetails = {
                 id: "S_RING",
                 name: "Sunat Ring",
                 price: "Rp 1.200.000",
-                image: "images/S_RING.webp",
+                image: "./images/S_RING.webp",
+                duration: "30 menit"
             }
         ]
     },
@@ -63,13 +68,15 @@ const serviceDetails = {
                 id: "H_BERHENTIJUDOL",
                 name: "Berhenti Judol",
                 price: "Rp 500.000",
-                image: "images/H_BERHENTIJUDOL.webp",
+                image: "./images/H_BERHENTIJUDOL.webp",
+                duration: "90 menit"
             },
             {
                 id: "H_BERHENTIMEROKOK",
                 name: "Berhenti Merokok",
                 price: "Rp 500.000",
-                image: "images/H_BERHENTIMEROKOK.webp",
+                image: "./images/H_BERHENTIMEROKOK.webp",
+                duration: "90 menit"
             }
         ]
     },
@@ -82,13 +89,15 @@ const serviceDetails = {
                 id: "SK_BBCREAMACNE",
                 name: "BB Cream Acne",
                 price: "Rp 160.000",
-                image: "images/SK_BBCREAMACNE.webp",
+                image: "./images/SK_BBCREAMACNE.webp",
+                duration: "Konsultasi 15 menit"
             },
             {
                 id: "SK_FACIALSOAPSALICID",
                 name: "Facial Soap Salicid",
                 price: "Rp 170.000",
-                image: "images/SK_FACIALSOAPSALICID.webp",
+                image: "./images/SK_FACIALSOAPSALICID.webp",
+                duration: "Konsultasi 15 menit"
             }
         ]
     }
@@ -124,30 +133,19 @@ function showServiceDetail(serviceId) {
 
     if (service.type === "checkbox") {
         const optionsHTML = service.options.map(option => {
-            // Tentukan rasio berdasarkan serviceId dan option.id
-            let ratioClass = 'ratio-1-1'; // default
-            
-            if (serviceId === 'perawatan5' || serviceId === 'perawatan4') {
-                // Skincare dan Hipnoterapi - 16:9
-                ratioClass = 'ratio-16-9';
-            } else if (serviceId === 'perawatan3') {
-                // Sunat Modern - 9:16
-                ratioClass = 'ratio-9-16';
-            }
-            // Perawatan Luka dan Kecantikan tetap 1:1
-            
             return `
                 <div class="option-card">
                     <div class="option-header">
                         <div class="option-checkbox">
                             <input type="checkbox" id="${option.id}" name="service-option" value="${option.id}">
                         </div>
-                        <div class="option-image-container ${ratioClass}">
-                            <img src="${option.image}" alt="${option.name}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjhmOGY4Ii8+CjxwYXRoIGQ9Ik04MCA2MEgxMjBWODBIMzBWOTBIMTIwVjExMEg4MFYxMjBIMTMwVjYwSDgwWiIgZmlsbD0iI2NjYyIvPgo8L3N2Zz4K'">
+                        <div class="option-image-container">
+                            <img src="${option.image}" alt="${option.name}" 
+                                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSIjZjhmOGY4IiByeD0iOCIvPgo8dGV4dCB4PSI2MCIgeT0iNjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iI2NjYyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+SW1hZ2UgTm90IEZvdW5kPC90ZXh0Pgo8L3N2Zz4K'">
                         </div>
                         <div class="option-title">
                             <h3>${option.name}</h3>
-                            <p class="option-description">${option.description || 'Perawatan profesional'}</p>
+                            <p class="option-description">${option.description || 'Perawatan profesional dengan hasil terbaik'}</p>
                         </div>
                     </div>
                     
@@ -155,6 +153,7 @@ function showServiceDetail(serviceId) {
                         <div class="option-price">
                             <strong>Harga:</strong> ${option.price}
                         </div>
+                        ${option.duration ? `<div class="option-duration"><strong>Durasi:</strong> ${option.duration}</div>` : ''}
                     </div>
                 </div>
             `;
@@ -262,7 +261,8 @@ function proceedToBooking(serviceId) {
             selectedOptions.push({
                 id: option.id,
                 name: option.name,
-                price: option.price
+                price: option.price,
+                duration: option.duration
             });
         }
     });
@@ -577,6 +577,7 @@ function showBookingConfirmation(bookingData) {
                 <p>📞 Kami akan menghubungi Anda di <strong>${bookingData.patientInfo.phone}</strong> 
                    dalam 1x24 jam untuk konfirmasi jadwal.</p>
                 <p>📍 Pastikan Anda datang 15 menit sebelum jadwal perawatan.</p>
+                <p>💳 Siapkan pembayaran sesuai dengan layanan yang dipilih.</p>
             </div>
             
             <div class="confirmation-actions">
@@ -604,29 +605,45 @@ function printBookingDetails(bookingId) {
                 <head>
                     <title>Booking Confirmation - ${booking.bookingId}</title>
                     <style>
-                        body { font-family: Arial, sans-serif; margin: 20px; }
-                        .header { text-align: center; border-bottom: 2px solid #333; padding-bottom: 10px; }
+                        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.4; }
+                        .header { text-align: center; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 20px; }
                         .details { margin: 20px 0; }
-                        .detail-item { margin: 10px 0; }
-                        .footer { margin-top: 30px; font-size: 12px; color: #666; }
+                        .detail-item { margin: 10px 0; padding: 8px 0; border-bottom: 1px solid #eee; }
+                        .footer { margin-top: 30px; font-size: 12px; color: #666; text-align: center; }
+                        .service-item { background: #f9f9f9; padding: 10px; margin: 5px 0; border-radius: 4px; }
+                        @media print { body { margin: 0; } }
                     </style>
                 </head>
                 <body>
                     <div class="header">
                         <h1>Klinik Sehat</h1>
                         <h2>Konfirmasi Booking</h2>
+                        <p>Kesehatan & Kecantikan Profesional</p>
                     </div>
                     <div class="details">
                         <div class="detail-item"><strong>Nomor Booking:</strong> ${booking.bookingId}</div>
                         <div class="detail-item"><strong>Nama Pasien:</strong> ${booking.patientInfo.name}</div>
                         <div class="detail-item"><strong>Telepon:</strong> ${booking.patientInfo.phone}</div>
-                        <div class="detail-item"><strong>Layanan:</strong> ${booking.serviceInfo.serviceName}</div>
+                        <div class="detail-item"><strong>Alamat:</strong> ${booking.patientInfo.address}</div>
                         <div class="detail-item"><strong>Tanggal:</strong> ${booking.appointmentInfo.date}</div>
                         <div class="detail-item"><strong>Jam:</strong> ${booking.appointmentInfo.time}</div>
+                        <div class="detail-item">
+                            <strong>Layanan:</strong> ${booking.serviceInfo.serviceName}
+                            ${booking.serviceInfo.selectedOptions ? booking.serviceInfo.selectedOptions.map(option => `
+                                <div class="service-item">
+                                    <div><strong>${option.name}</strong></div>
+                                    <div>${option.price} ${option.duration ? '• ' + option.duration : ''}</div>
+                                </div>
+                            `).join('') : ''}
+                        </div>
+                        <div class="detail-item"><strong>Catatan:</strong> ${booking.patientInfo.notes}</div>
+                        <div class="detail-item"><strong>Status:</strong> <span style="color: #ff9800; font-weight: bold;">Menunggu Konfirmasi</span></div>
                     </div>
                     <div class="footer">
                         <p>Harap datang 15 menit sebelum jadwal perawatan</p>
+                        <p>Bawa bukti booking ini saat datang ke klinik</p>
                         <p>Terima kasih atas kepercayaan Anda kepada Klinik Sehat</p>
+                        <p>Jl. Purnama No. 16, Pontianak • 0813-8122-3811</p>
                     </div>
                 </body>
             </html>
@@ -729,6 +746,14 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
+    // Close modal when clicking outside
+    window.addEventListener('click', function(event) {
+        const modal = document.getElementById('serviceModal');
+        if (event.target === modal) {
+            modalManager.closeAll();
+        }
+    });
 
     console.log('Klinik Sehat Public Website initialized successfully!');
 });

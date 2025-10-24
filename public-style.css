@@ -609,12 +609,47 @@ footer {
 .option-card:hover {
     border-color: var(--primary-color);
     box-shadow: 0 2px 8px rgba(44, 120, 115, 0.1);
+    transform: translateY(-2px);
+}
+
+/* ===== OPTION IMAGE STYLES - UKURAN 120px ===== */
+.option-image-container {
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    border-radius: 8px;
+    position: relative;
+    background-color: var(--bg-light);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #f0f0f0;
+    transition: var(--transition);
+}
+
+.option-card:hover .option-image-container {
+    border-color: var(--primary-color);
+    transform: scale(1.02);
+}
+
+.option-image-container img {
+    width: auto;
+    height: auto;
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    transition: var(--transition);
+}
+
+.option-card:hover .option-image-container img {
+    transform: scale(1.15);
 }
 
 .option-header {
     display: flex;
     align-items: flex-start;
-    gap: 12px;
+    gap: 15px;
 }
 
 .option-checkbox {
@@ -627,55 +662,46 @@ footer {
     cursor: pointer;
 }
 
-/* Option Image Styles */
-.option-image-container {
-    width: 80px;
-    overflow: hidden;
-    border-radius: 8px;
-    position: relative;
-    background-color: var(--bg-light);
-    flex-shrink: 0;
-}
-
-.option-image-container.ratio-1-1 {
-    height: 80px;
-}
-
-.option-image-container.ratio-16-9 {
-    height: 45px; /* 80 * 9/16 = 45 */
-}
-
-.option-image-container.ratio-9-16 {
-    height: 142px; /* 80 * 16/9 = 142.22 */
-}
-
-.option-image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.option-title {
+    flex: 1;
+    min-width: 0;
 }
 
 .option-title h3 {
-    margin: 0 0 5px 0;
+    margin: 0 0 8px 0;
     color: #333;
+    font-size: 1.1rem;
+    line-height: 1.3;
 }
 
 .option-description {
     color: #666;
     margin: 0;
-    font-size: 14px;
+    font-size: 0.9rem;
+    line-height: 1.4;
 }
 
 .option-details {
     margin-top: 15px;
     padding-top: 15px;
     border-top: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .option-price {
-    font-size: 14px;
-    color: #2c7873;
+    font-size: 15px;
+    color: var(--primary-color);
     font-weight: 600;
+}
+
+.option-duration {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-top: 5px;
 }
 
 .selection-summary {
@@ -1012,6 +1038,18 @@ footer {
         flex-direction: column;
     }
 
+    /* Responsive untuk option images */
+    .option-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .option-image-container {
+        width: 100px;
+        height: 100px;
+        align-self: center;
+    }
+
     /* Responsive untuk media sosial */
     .social-media-section {
         gap: 10px;
@@ -1088,6 +1126,24 @@ footer {
     .price {
         font-size: 1.1rem;
     }
+
+    /* Mobile kecil untuk option images */
+    .option-image-container {
+        width: 80px;
+        height: 80px;
+    }
+
+    .option-header {
+        gap: 10px;
+    }
+
+    .option-title h3 {
+        font-size: 1rem;
+    }
+
+    .option-description {
+        font-size: 0.8rem;
+    }
 }
 
 /* Tambahan untuk device sangat kecil */
@@ -1106,5 +1162,10 @@ footer {
     
     .hero-content p {
         font-size: 0.9rem;
+    }
+
+    .option-image-container {
+        width: 70px;
+        height: 70px;
     }
 }
