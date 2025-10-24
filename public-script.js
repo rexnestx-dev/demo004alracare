@@ -13,14 +13,16 @@ const serviceDetails = {
                 name: "Perawatan Luka di Klinik",
                 price: "Rp 150.000",
                 image: "./images/L_PERAWATANLIKADIKLINIK.webp",
-                duration: "30-45 menit"
+                duration: "30-45 menit",
+                description: "Perawatan luka profesional di klinik dengan peralatan modern dan steril"
             },
             {
                 id: "Perawatan Luka Ke Rumah",
                 name: "Perawatan Luka Ke Rumah di Area Pontianak",
                 price: "Rp 200.000",
                 image: "./images/L_PERAWATANLUKAKERUMAHPASIENDIAREAPONTIANAK.webp",
-                duration: "60 menit"
+                duration: "60 menit",
+                description: "Layanan perawatan luka di rumah pasien dengan tim medis berpengalaman"
             }
         ]
     },
@@ -34,14 +36,16 @@ const serviceDetails = {
                 name: "Tompel 3x3cm",
                 price: "Rp 500.000",
                 image: "./images/A_TOMPEL.webp",
-                duration: "45-60 menit"
+                duration: "45-60 menit",
+                description: "Penghilangan tompel dengan teknologi laser yang aman dan efektif"
             },
             {
                 id: "A_XENTALASMA",
                 name: "Xentalasma",
                 price: "Rp 500.000",
                 image: "./images/A_XENTALASMA.webp",
-                duration: "60 menit"
+                duration: "60 menit",
+                description: "Perawatan xentalasma untuk kulit wajah yang lebih bersih dan merata"
             }
         ]
     },
@@ -55,7 +59,8 @@ const serviceDetails = {
                 name: "Sunat Ring",
                 price: "Rp 1.200.000",
                 image: "./images/S_RING.webp",
-                duration: "30 menit"
+                duration: "30 menit",
+                description: "Sunat modern dengan teknik ring yang minim rasa sakit dan cepat sembuh"
             }
         ]
     },
@@ -69,14 +74,16 @@ const serviceDetails = {
                 name: "Berhenti Judol",
                 price: "Rp 500.000",
                 image: "./images/H_BERHENTIJUDOL.webp",
-                duration: "90 menit"
+                duration: "90 menit",
+                description: "Terapi hipnotis untuk mengatasi kecanduan judi dengan pendekatan psikologis"
             },
             {
                 id: "H_BERHENTIMEROKOK",
                 name: "Berhenti Merokok",
                 price: "Rp 500.000",
                 image: "./images/H_BERHENTIMEROKOK.webp",
-                duration: "90 menit"
+                duration: "90 menit",
+                description: "Program berhenti merokok dengan teknik hipnoterapi yang terbukti efektif"
             }
         ]
     },
@@ -90,14 +97,16 @@ const serviceDetails = {
                 name: "BB Cream Acne",
                 price: "Rp 160.000",
                 image: "./images/SK_BBCREAMACNE.webp",
-                duration: "Konsultasi 15 menit"
+                duration: "Konsultasi 15 menit",
+                description: "BB cream khusus untuk kulit berjerawat dengan coverage natural"
             },
             {
                 id: "SK_FACIALSOAPSALICID",
                 name: "Facial Soap Salicid",
                 price: "Rp 170.000",
                 image: "./images/SK_FACIALSOAPSALICID.webp",
-                duration: "Konsultasi 15 menit"
+                duration: "Konsultasi 15 menit",
+                description: "Sabun wajah dengan kandungan salicylic acid untuk kulit berminyak dan berjerawat"
             }
         ]
     }
@@ -134,18 +143,19 @@ function showServiceDetail(serviceId) {
     if (service.type === "checkbox") {
         const optionsHTML = service.options.map(option => {
             return `
-                <div class="option-card">
+                <div class="option-card" onclick="toggleOptionSelection('${option.id}')">
                     <div class="option-header">
                         <div class="option-checkbox">
-                            <input type="checkbox" id="${option.id}" name="service-option" value="${option.id}">
+                            <input type="checkbox" id="${option.id}" name="service-option" value="${option.id}" 
+                                   onclick="event.stopPropagation(); updateSelectionSummary('${serviceId}')">
                         </div>
                         <div class="option-image-container">
                             <img src="${option.image}" alt="${option.name}" 
-                                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSIjZjhmOGY4IiByeD0iOCIvPgo8dGV4dCB4PSI2MCIgeT0iNjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iI2NjYyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+SW1hZ2UgTm90IEZvdW5kPC90ZXh0Pgo8L3N2Zz4K'">
+                                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjhmOGY4IiByeD0iMTIiLz4KPHRleHQgeD0iMTAwIiB5PSIxMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2NjYyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+SW1hZ2UgTm90IEZvdW5kPC90ZXh0Pgo8L3N2Zz4K'">
                         </div>
                         <div class="option-title">
                             <h3>${option.name}</h3>
-                            <p class="option-description">${option.description || 'Perawatan profesional dengan hasil terbaik'}</p>
+                            <p class="option-description">${option.description}</p>
                         </div>
                     </div>
                     
@@ -153,7 +163,7 @@ function showServiceDetail(serviceId) {
                         <div class="option-price">
                             <strong>Harga:</strong> ${option.price}
                         </div>
-                        ${option.duration ? `<div class="option-duration"><strong>Durasi:</strong> ${option.duration}</div>` : ''}
+                        ${option.duration ? `<div class="option-duration"><strong>⏱️ Durasi:</strong> ${option.duration}</div>` : ''}
                     </div>
                 </div>
             `;
@@ -163,7 +173,7 @@ function showServiceDetail(serviceId) {
             <div class="service-modal-header">
                 <h2>${service.title}</h2>
                 <p class="service-description">${service.description}</p>
-                <p class="selection-info">✓ Pilih satu atau beberapa perawatan</p>
+                <p class="selection-info">✓ Pilih satu atau beberapa perawatan dengan mengklik card-nya</p>
             </div>
             
             <div class="options-container">
@@ -171,16 +181,16 @@ function showServiceDetail(serviceId) {
             </div>
             
             <div class="selection-summary" id="selectionSummary" style="display: none;">
-                <h4>Perawatan yang Dipilih:</h4>
+                <h4>📋 Perawatan yang Dipilih:</h4>
                 <div id="selectedOptionsList"></div>
                 <div class="total-price">
-                    <strong>Total Estimasi: <span id="totalPrice">Rp 0</span></strong>
+                    <strong>💰 Total Estimasi: <span id="totalPrice">Rp 0</span></strong>
                 </div>
             </div>
             
             <div class="service-modal-footer">
                 <button class="cta-button secondary" onclick="modalManager.closeAll()">
-                    Kembali
+                    ← Kembali
                 </button>
                 <button class="cta-button" id="bookingBtn" onclick="proceedToBooking('${serviceId}')" disabled>
                     📅 Lanjut ke Booking
@@ -198,56 +208,73 @@ function showServiceDetail(serviceId) {
     }
 }
 
+function toggleOptionSelection(optionId) {
+    const checkbox = document.getElementById(optionId);
+    if (checkbox) {
+        checkbox.checked = !checkbox.checked;
+        // Cari serviceId dari checkbox yang di-click
+        const serviceId = Object.keys(serviceDetails).find(id => 
+            serviceDetails[id].options.some(opt => opt.id === optionId)
+        );
+        if (serviceId) {
+            updateSelectionSummary(serviceId);
+        }
+    }
+}
+
 function attachCheckboxListeners(serviceId) {
     const checkboxes = document.querySelectorAll('input[name="service-option"]');
-    const bookingBtn = document.getElementById('bookingBtn');
-    const selectionSummary = document.getElementById('selectionSummary');
-    const selectedOptionsList = document.getElementById('selectedOptionsList');
-    const totalPriceElement = document.getElementById('totalPrice');
-
+    
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', function() {
             updateSelectionSummary(serviceId);
         });
     });
 
-    function updateSelectionSummary(serviceId) {
-        const service = serviceDetails[serviceId];
-        const selectedCheckboxes = document.querySelectorAll('input[name="service-option"]:checked');
+    // Initial update
+    updateSelectionSummary(serviceId);
+}
+
+function updateSelectionSummary(serviceId) {
+    const service = serviceDetails[serviceId];
+    const selectedCheckboxes = document.querySelectorAll('input[name="service-option"]:checked');
+    const bookingBtn = document.getElementById('bookingBtn');
+    const selectionSummary = document.getElementById('selectionSummary');
+    const selectedOptionsList = document.getElementById('selectedOptionsList');
+    const totalPriceElement = document.getElementById('totalPrice');
+
+    bookingBtn.disabled = selectedCheckboxes.length === 0;
+    
+    if (selectedCheckboxes.length > 0) {
+        selectionSummary.style.display = 'block';
         
-        bookingBtn.disabled = selectedCheckboxes.length === 0;
+        let optionsHTML = '';
+        let totalPrice = 0;
         
-        if (selectedCheckboxes.length > 0) {
-            selectionSummary.style.display = 'block';
-            
-            let optionsHTML = '';
-            let totalPrice = 0;
-            
-            selectedCheckboxes.forEach(checkbox => {
-                const option = service.options.find(opt => opt.id === checkbox.value);
-                if (option) {
-                    optionsHTML += `
-                        <div class="selected-option">
-                            <span class="option-name">${option.name}</span>
-                            <span class="option-price">${option.price}</span>
-                        </div>
-                    `;
-                    
-                    // Simple price calculation (ambil harga terendah)
-                    const priceMatch = option.price.match(/(\d+\.?\d*)/g);
-                    if (priceMatch && priceMatch.length > 0) {
-                        const minPrice = parseInt(priceMatch[0].replace('.', ''));
-                        totalPrice += minPrice;
-                    }
+        selectedCheckboxes.forEach(checkbox => {
+            const option = service.options.find(opt => opt.id === checkbox.value);
+            if (option) {
+                optionsHTML += `
+                    <div class="selected-option">
+                        <span class="option-name">${option.name}</span>
+                        <span class="option-price">${option.price}</span>
+                    </div>
+                `;
+                
+                // Simple price calculation (ambil harga terendah)
+                const priceMatch = option.price.match(/(\d+\.?\d*)/g);
+                if (priceMatch && priceMatch.length > 0) {
+                    const minPrice = parseInt(priceMatch[0].replace('.', ''));
+                    totalPrice += minPrice;
                 }
-            });
-            
-            selectedOptionsList.innerHTML = optionsHTML;
-            totalPriceElement.textContent = `Rp ${totalPrice.toLocaleString('id-ID')}`;
-            
-        } else {
-            selectionSummary.style.display = 'none';
-        }
+            }
+        });
+        
+        selectedOptionsList.innerHTML = optionsHTML;
+        totalPriceElement.textContent = `Rp ${totalPrice.toLocaleString('id-ID')}`;
+        
+    } else {
+        selectionSummary.style.display = 'none';
     }
 }
 
@@ -262,7 +289,8 @@ function proceedToBooking(serviceId) {
                 id: option.id,
                 name: option.name,
                 price: option.price,
-                duration: option.duration
+                duration: option.duration,
+                description: option.description
             });
         }
     });
@@ -284,26 +312,31 @@ function showBookingForm() {
     const timeOptions = generateTimeOptions();
     const today = new Date().toISOString().split('T')[0];
     
+    const servicesHTML = selectedData.selectedOptions ? selectedData.selectedOptions.map(option => `
+        <div class="service-summary-item">
+            <div>
+                <strong>${option.name}</strong>
+                ${option.duration ? `<br><small>⏱️ ${option.duration}</small>` : ''}
+            </div>
+            <span class="service-price">${option.price}</span>
+        </div>
+    `).join('') : '<p>Tidak ada layanan yang dipilih</p>';
+
     const content = `
         <div class="booking-form-modal">
             <div class="booking-header">
-                <h2>Formulir Booking Perawatan</h2>
+                <h2>📋 Formulir Booking Perawatan</h2>
                 <p class="form-description">Lengkapi data diri Anda untuk melanjutkan booking</p>
             </div>
             
             <div class="selected-services-summary">
-                <h4>Layanan yang Dipilih:</h4>
-                ${selectedData.selectedOptions ? selectedData.selectedOptions.map(option => `
-                    <div class="service-summary-item">
-                        <span class="service-name">${option.name}</span>
-                        <span class="service-price">${option.price}</span>
-                    </div>
-                `).join('') : '<p>Tidak ada layanan yang dipilih</p>'}
+                <h4>🛍️ Layanan yang Dipilih:</h4>
+                ${servicesHTML}
             </div>
             
             <form id="patientBookingForm" class="booking-form">
                 <div class="form-section">
-                    <h4>Data Diri Pasien</h4>
+                    <h4>👤 Data Diri Pasien</h4>
                     
                     <div class="form-row">
                         <div class="form-group">
@@ -326,7 +359,7 @@ function showBookingForm() {
                 </div>
                 
                 <div class="form-section">
-                    <h4>Jadwal Perawatan</h4>
+                    <h4>📅 Jadwal Perawatan</h4>
                     
                     <div class="form-row">
                         <div class="form-group">
@@ -347,7 +380,7 @@ function showBookingForm() {
                 </div>
                 
                 <div class="form-section">
-                    <h4>Informasi Tambahan</h4>
+                    <h4>📝 Informasi Tambahan</h4>
                     <div class="form-group full-width">
                         <label for="patientNotes">Catatan Tambahan (opsional)</label>
                         <textarea id="patientNotes" name="patientNotes" rows="3" 
@@ -526,12 +559,12 @@ function saveBookingToStorage(bookingData) {
         existingBookings.push(bookingData);
         localStorage.setItem('klinikBookings', JSON.stringify(existingBookings));
         
-        showNotification('Booking berhasil disimpan!', 'success');
+        showNotification('🎉 Booking berhasil disimpan! Kami akan menghubungi Anda dalam 1x24 jam.', 'success');
         return true;
         
     } catch (error) {
         console.error('Error saving booking:', error);
-        showNotification('Terjadi error saat menyimpan booking', 'error');
+        showNotification('❌ Terjadi error saat menyimpan booking', 'error');
         return false;
     }
 }
@@ -544,6 +577,13 @@ function showBookingConfirmation(bookingData) {
         month: 'long',
         day: 'numeric'
     });
+    
+    const servicesHTML = bookingData.serviceInfo.selectedOptions ? bookingData.serviceInfo.selectedOptions.map(option => `
+        <div class="detail-item">
+            <span><strong>${option.name}</strong></span>
+            <span>${option.price}</span>
+        </div>
+    `).join('') : '';
     
     const content = `
         <div class="confirmation-modal">
@@ -560,9 +600,14 @@ function showBookingConfirmation(bookingData) {
                     <span>${bookingData.patientInfo.name}</span>
                 </div>
                 <div class="detail-item">
+                    <strong>Telepon:</strong>
+                    <span>${bookingData.patientInfo.phone}</span>
+                </div>
+                <div class="detail-item">
                     <strong>Layanan:</strong>
                     <span>${bookingData.serviceInfo.serviceName}</span>
                 </div>
+                ${servicesHTML}
                 <div class="detail-item">
                     <strong>Tanggal & Jam:</strong>
                     <span>${formattedDate}, ${bookingData.appointmentInfo.time}</span>
@@ -574,18 +619,19 @@ function showBookingConfirmation(bookingData) {
             </div>
             
             <div class="confirmation-message">
-                <p>📞 Kami akan menghubungi Anda di <strong>${bookingData.patientInfo.phone}</strong> 
+                <p>📞 <strong>Konfirmasi Booking:</strong> Kami akan menghubungi Anda di <strong>${bookingData.patientInfo.phone}</strong> 
                    dalam 1x24 jam untuk konfirmasi jadwal.</p>
-                <p>📍 Pastikan Anda datang 15 menit sebelum jadwal perawatan.</p>
-                <p>💳 Siapkan pembayaran sesuai dengan layanan yang dipilih.</p>
+                <p>📍 <strong>Ketentuan:</strong> Pastikan Anda datang 15 menit sebelum jadwal perawatan.</p>
+                <p>💳 <strong>Pembayaran:</strong> Siapkan pembayaran sesuai dengan layanan yang dipilih.</p>
+                <p>📝 <strong>Catatan:</strong> ${bookingData.patientInfo.notes}</p>
             </div>
             
             <div class="confirmation-actions">
                 <button class="cta-button secondary" onclick="printBookingDetails('${bookingData.bookingId}')">
-                    🖨️ Cetak Detail
+                    🖨️ Cetak Detail Booking
                 </button>
-                <button class="cta-button" onclick="modalManager.closeAll()">
-                    Tutup
+                <button class="cta-button" onclick="modalManager.closeAll(); showNotification('Terima kasih telah membooking layanan kami!', 'success')">
+                    👍 Tutup & Selesai
                 </button>
             </div>
         </div>
@@ -600,50 +646,57 @@ function printBookingDetails(bookingId) {
     
     if (booking) {
         const printWindow = window.open('', '_blank');
+        const servicesHTML = booking.serviceInfo.selectedOptions ? booking.serviceInfo.selectedOptions.map(option => `
+            <div style="background: #f9f9f9; padding: 10px; margin: 5px 0; border-radius: 4px; border-left: 3px solid #3aaff3;">
+                <div style="font-weight: bold;">${option.name}</div>
+                <div>${option.price} ${option.duration ? '• ' + option.duration : ''}</div>
+            </div>
+        `).join('') : '';
+        
         const printContent = `
             <html>
                 <head>
                     <title>Booking Confirmation - ${booking.bookingId}</title>
                     <style>
-                        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.4; }
-                        .header { text-align: center; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 20px; }
-                        .details { margin: 20px 0; }
-                        .detail-item { margin: 10px 0; padding: 8px 0; border-bottom: 1px solid #eee; }
-                        .footer { margin-top: 30px; font-size: 12px; color: #666; text-align: center; }
-                        .service-item { background: #f9f9f9; padding: 10px; margin: 5px 0; border-radius: 4px; }
-                        @media print { body { margin: 0; } }
+                        body { font-family: Arial, sans-serif; margin: 25px; line-height: 1.5; color: #333; }
+                        .header { text-align: center; border-bottom: 3px solid #3aaff3; padding-bottom: 15px; margin-bottom: 25px; }
+                        .details { margin: 25px 0; }
+                        .detail-item { margin: 12px 0; padding: 10px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; }
+                        .footer { margin-top: 30px; font-size: 12px; color: #666; text-align: center; padding-top: 15px; border-top: 1px solid #ddd; }
+                        .status { background: #fff3e0; color: #ff9800; padding: 4px 12px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; }
+                        @media print { 
+                            body { margin: 15px; }
+                            .header { border-bottom-color: #000; }
+                        }
                     </style>
                 </head>
                 <body>
                     <div class="header">
-                        <h1>Klinik Sehat</h1>
-                        <h2>Konfirmasi Booking</h2>
-                        <p>Kesehatan & Kecantikan Profesional</p>
+                        <h1 style="margin: 0; color: #3aaff3;">Klinik Sehat</h1>
+                        <h2 style="margin: 5px 0; color: #333;">Konfirmasi Booking</h2>
+                        <p style="margin: 0; color: #666;">Kesehatan & Kecantikan Profesional</p>
                     </div>
                     <div class="details">
-                        <div class="detail-item"><strong>Nomor Booking:</strong> ${booking.bookingId}</div>
-                        <div class="detail-item"><strong>Nama Pasien:</strong> ${booking.patientInfo.name}</div>
-                        <div class="detail-item"><strong>Telepon:</strong> ${booking.patientInfo.phone}</div>
-                        <div class="detail-item"><strong>Alamat:</strong> ${booking.patientInfo.address}</div>
-                        <div class="detail-item"><strong>Tanggal:</strong> ${booking.appointmentInfo.date}</div>
-                        <div class="detail-item"><strong>Jam:</strong> ${booking.appointmentInfo.time}</div>
+                        <div class="detail-item"><strong>Nomor Booking:</strong> <span>${booking.bookingId}</span></div>
+                        <div class="detail-item"><strong>Nama Pasien:</strong> <span>${booking.patientInfo.name}</span></div>
+                        <div class="detail-item"><strong>Telepon:</strong> <span>${booking.patientInfo.phone}</span></div>
+                        <div class="detail-item"><strong>Alamat:</strong> <span>${booking.patientInfo.address}</span></div>
+                        <div class="detail-item"><strong>Tanggal:</strong> <span>${booking.appointmentInfo.date}</span></div>
+                        <div class="detail-item"><strong>Jam:</strong> <span>${booking.appointmentInfo.time}</span></div>
                         <div class="detail-item">
-                            <strong>Layanan:</strong> ${booking.serviceInfo.serviceName}
-                            ${booking.serviceInfo.selectedOptions ? booking.serviceInfo.selectedOptions.map(option => `
-                                <div class="service-item">
-                                    <div><strong>${option.name}</strong></div>
-                                    <div>${option.price} ${option.duration ? '• ' + option.duration : ''}</div>
-                                </div>
-                            `).join('') : ''}
+                            <strong>Layanan:</strong> 
+                            <span>${booking.serviceInfo.serviceName}</span>
                         </div>
-                        <div class="detail-item"><strong>Catatan:</strong> ${booking.patientInfo.notes}</div>
-                        <div class="detail-item"><strong>Status:</strong> <span style="color: #ff9800; font-weight: bold;">Menunggu Konfirmasi</span></div>
+                        ${servicesHTML}
+                        <div class="detail-item"><strong>Catatan:</strong> <span>${booking.patientInfo.notes}</span></div>
+                        <div class="detail-item"><strong>Status:</strong> <span class="status">Menunggu Konfirmasi</span></div>
                     </div>
                     <div class="footer">
-                        <p>Harap datang 15 menit sebelum jadwal perawatan</p>
+                        <p><strong>Harap datang 15 menit sebelum jadwal perawatan</strong></p>
                         <p>Bawa bukti booking ini saat datang ke klinik</p>
                         <p>Terima kasih atas kepercayaan Anda kepada Klinik Sehat</p>
                         <p>Jl. Purnama No. 16, Pontianak • 0813-8122-3811</p>
+                        <p>www.kliniksehat.com • info@kliniksehat.com</p>
                     </div>
                 </body>
             </html>
@@ -665,12 +718,16 @@ function showNotification(message, type = 'info') {
         
         if (type === 'error') {
             notification.style.borderLeftColor = '#ff6b6b';
+            notification.style.background = '#ffeaea';
         } else if (type === 'success') {
             notification.style.borderLeftColor = '#4CAF50';
+            notification.style.background = '#f0f9f0';
         } else if (type === 'warning') {
             notification.style.borderLeftColor = '#ff9800';
+            notification.style.background = '#fff3e0';
         } else {
             notification.style.borderLeftColor = '#2c7873';
+            notification.style.background = '#f0f9f0';
         }
         
         notification.classList.add('show');

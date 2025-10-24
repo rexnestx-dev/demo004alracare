@@ -549,8 +549,8 @@ footer {
     padding: 2rem;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-hover);
-    max-width: 600px;
-    width: 90%;
+    max-width: 800px; /* Diperbesar untuk gambar 200px */
+    width: 95%;
     position: relative;
     animation: modalFadeIn 0.3s;
 }
@@ -600,66 +600,70 @@ footer {
 .option-card {
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
-    padding: 1.5rem;
-    margin-bottom: 1rem;
+    padding: 2rem; /* Diperbesar untuk gambar 200px */
+    margin-bottom: 1.5rem;
     cursor: pointer;
     transition: var(--transition);
+    background: var(--bg-white);
 }
 
 .option-card:hover {
     border-color: var(--primary-color);
-    box-shadow: 0 2px 8px rgba(44, 120, 115, 0.1);
-    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(44, 120, 115, 0.15);
+    transform: translateY(-3px);
 }
 
-/* ===== OPTION IMAGE STYLES - UKURAN 120px ===== */
+/* ===== OPTION IMAGE STYLES - UKURAN 200px ===== */
 .option-image-container {
-    width: 120px;
-    height: 120px;
+    width: 200px;
+    height: 200px;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 12px;
     position: relative;
     background-color: var(--bg-light);
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid #f0f0f0;
+    border: 3px solid #f0f0f0;
     transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .option-card:hover .option-image-container {
     border-color: var(--primary-color);
-    transform: scale(1.02);
+    transform: scale(1.03);
+    box-shadow: 0 6px 20px rgba(44, 120, 115, 0.2);
 }
 
 .option-image-container img {
     width: auto;
     height: auto;
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 95%;
+    max-height: 95%;
     object-fit: contain;
     transition: var(--transition);
 }
 
 .option-card:hover .option-image-container img {
-    transform: scale(1.15);
+    transform: scale(1.1);
 }
 
 .option-header {
     display: flex;
     align-items: flex-start;
-    gap: 15px;
+    gap: 25px; /* Diperbesar untuk gambar 200px */
 }
 
 .option-checkbox {
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .option-checkbox input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
+    width: 22px;
+    height: 22px;
     cursor: pointer;
+    accent-color: var(--primary-color);
 }
 
 .option-title {
@@ -668,58 +672,66 @@ footer {
 }
 
 .option-title h3 {
-    margin: 0 0 8px 0;
+    margin: 0 0 12px 0;
     color: #333;
-    font-size: 1.1rem;
-    line-height: 1.3;
+    font-size: 1.3rem;
+    line-height: 1.4;
+    font-weight: 600;
 }
 
 .option-description {
     color: #666;
     margin: 0;
-    font-size: 0.9rem;
-    line-height: 1.4;
+    font-size: 1rem;
+    line-height: 1.5;
 }
 
 .option-details {
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid #f0f0f0;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid #f0f0f0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 15px;
 }
 
 .option-price {
-    font-size: 15px;
+    font-size: 1.2rem;
     color: var(--primary-color);
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .option-duration {
-    font-size: 13px;
+    font-size: 0.95rem;
     color: var(--text-light);
-    margin-top: 5px;
+    background: #f8f9fa;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 500;
 }
 
 .selection-summary {
     background: #f8f9fa;
-    padding: 15px;
-    border-radius: 8px;
-    margin: 20px 0;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 25px 0;
+    border-left: 4px solid var(--primary-color);
 }
 
 .selection-summary h4 {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    color: var(--text-dark);
+    font-size: 1.1rem;
 }
 
 .selected-option {
     display: flex;
     justify-content: space-between;
-    padding: 8px 0;
+    padding: 12px 0;
     border-bottom: 1px solid #e9ecef;
+    align-items: center;
 }
 
 .selected-option:last-child {
@@ -728,9 +740,10 @@ footer {
 
 .total-price {
     text-align: right;
-    margin-top: 10px;
-    padding-top: 10px;
+    margin-top: 15px;
+    padding-top: 15px;
     border-top: 2px solid #dee2e6;
+    font-size: 1.3rem;
 }
 
 .service-modal-footer {
@@ -757,20 +770,22 @@ footer {
 
 .selected-services-summary {
     background: #f8f9fa;
-    padding: 15px;
-    border-radius: 8px;
+    padding: 20px;
+    border-radius: 12px;
     margin-bottom: 2rem;
+    border-left: 4px solid var(--primary-color);
 }
 
 .selected-services-summary h4 {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .service-summary-item {
     display: flex;
     justify-content: space-between;
-    padding: 8px 0;
+    padding: 10px 0;
     border-bottom: 1px solid #e9ecef;
+    align-items: center;
 }
 
 .service-summary-item:last-child {
@@ -822,7 +837,7 @@ footer {
 .form-group textarea,
 .form-group select {
     width: 100%;
-    padding: 10px 12px;
+    padding: 12px 15px;
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
     font-size: 1rem;
@@ -836,12 +851,12 @@ footer {
 .form-group select:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(44, 120, 115, 0.2);
+    box-shadow: 0 0 0 3px rgba(44, 120, 115, 0.1);
 }
 
 .form-group textarea {
     resize: vertical;
-    min-height: 80px;
+    min-height: 100px;
 }
 
 .date-note, .time-note {
@@ -866,21 +881,23 @@ footer {
 .confirmation-icon {
     font-size: 4rem;
     margin-bottom: 1rem;
+    color: #4CAF50;
 }
 
 .confirmation-details {
     background: #f8f9fa;
-    padding: 20px;
-    border-radius: 8px;
-    margin: 20px 0;
+    padding: 25px;
+    border-radius: 12px;
+    margin: 25px 0;
     text-align: left;
+    border-left: 4px solid #4CAF50;
 }
 
 .detail-item {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
     border-bottom: 1px solid #e9ecef;
 }
 
@@ -892,18 +909,24 @@ footer {
 .status-pending {
     color: #ff9800;
     font-weight: 600;
+    background: #fff3e0;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
 }
 
 .confirmation-message {
     background: #e8f5e8;
-    padding: 15px;
-    border-radius: 8px;
-    margin: 20px 0;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 25px 0;
     text-align: left;
+    border-left: 4px solid #4CAF50;
 }
 
 .confirmation-message p {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    line-height: 1.6;
 }
 
 .confirmation-message p:last-child {
@@ -948,6 +971,11 @@ footer {
     .services-grid {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 1.5rem;
+    }
+    
+    .modal-content {
+        max-width: 90%;
+        margin: 3% auto;
     }
 }
 
@@ -1017,7 +1045,7 @@ footer {
     }
 
     .modal-content {
-        margin: 10% auto;
+        margin: 5% auto;
         width: 95%;
         padding: 1.5rem;
     }
@@ -1038,16 +1066,22 @@ footer {
         flex-direction: column;
     }
 
-    /* Responsive untuk option images */
+    /* Responsive untuk option images 200px */
     .option-header {
         flex-direction: column;
-        gap: 12px;
+        gap: 20px;
+        text-align: center;
     }
 
     .option-image-container {
-        width: 100px;
-        height: 100px;
+        width: 180px;
+        height: 180px;
         align-self: center;
+        margin: 0 auto;
+    }
+
+    .option-checkbox {
+        align-self: flex-start;
     }
 
     /* Responsive untuk media sosial */
@@ -1112,7 +1146,7 @@ footer {
     .modal-content {
         padding: 1rem;
         width: 98%;
-        margin: 5% auto;
+        margin: 2% auto;
     }
 
     .service-card {
@@ -1127,22 +1161,26 @@ footer {
         font-size: 1.1rem;
     }
 
-    /* Mobile kecil untuk option images */
+    /* Mobile kecil untuk option images 200px */
     .option-image-container {
-        width: 80px;
-        height: 80px;
+        width: 150px;
+        height: 150px;
     }
 
     .option-header {
-        gap: 10px;
+        gap: 15px;
     }
 
     .option-title h3 {
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 
     .option-description {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .option-card {
+        padding: 1.5rem;
     }
 }
 
@@ -1165,7 +1203,11 @@ footer {
     }
 
     .option-image-container {
-        width: 70px;
-        height: 70px;
+        width: 130px;
+        height: 130px;
+    }
+
+    .option-card {
+        padding: 1rem;
     }
 }
