@@ -12,7 +12,7 @@ const serviceDetails = {
                 id: "Perawatan Luka di Klinik",
                 name: "Perawatan Luka di Klinik",
                 price: "Rp 150.000",
-                image: "./images/L_PERAWATANLIKADIKLINIK.webp",
+                image: "./images/L_PERAWATANLIKADIKLINIK_600px.webp",
                 duration: "30-45 menit",
                 description: "Perawatan luka profesional di klinik dengan peralatan modern dan steril. Tim medis berpengalaman akan menangani luka Anda dengan teknik terbaru untuk penyembuhan optimal."
             },
@@ -20,7 +20,7 @@ const serviceDetails = {
                 id: "Perawatan Luka Ke Rumah",
                 name: "Perawatan Luka Ke Rumah di Area Pontianak",
                 price: "Rp 200.000",
-                image: "./images/L_PERAWATANLUKAKERUMAHPASIENDIAREAPONTIANAK.webp",
+                image: "./images/L_PERAWATANLUKAKERUMAHPASIENDIAREAPONTIANAK_600px.webp",
                 duration: "60 menit",
                 description: "Layanan perawatan luka di rumah pasien dengan tim medis berpengalaman. Cocok untuk pasien dengan mobilitas terbatas atau membutuhkan perawatan berkelanjutan."
             }
@@ -35,7 +35,7 @@ const serviceDetails = {
                 id: "A_TOMPEL3X3CM",
                 name: "Tompel 3x3cm",
                 price: "Rp 500.000",
-                image: "./images/A_TOMPEL.webp",
+                image: "./images/A_TOMPEL_600px.webp",
                 duration: "45-60 menit",
                 description: "Penghilangan tompel dengan teknologi laser yang aman dan efektif. Proses cepat dengan hasil maksimal dan minim iritasi pada kulit."
             },
@@ -43,7 +43,7 @@ const serviceDetails = {
                 id: "A_XENTALASMA",
                 name: "Xentalasma",
                 price: "Rp 500.000",
-                image: "./images/A_XENTALASMA.webp",
+                image: "./images/A_XENTALASMA_600px.webp",
                 duration: "60 menit",
                 description: "Perawatan xentalasma untuk kulit wajah yang lebih bersih dan merata. Menggunakan teknologi canggih untuk mengatasi pigmentasi kulit secara efektif."
             }
@@ -58,7 +58,7 @@ const serviceDetails = {
                 id: "S_RING",
                 name: "Sunat Ring",
                 price: "Rp 1.200.000",
-                image: "./images/S_RING.webp",
+                image: "./images/S_RING_600px.webp",
                 duration: "30 menit",
                 description: "Sunat modern dengan teknik ring yang minim rasa sakit dan cepat sembuh. Proses higienis dengan hasil yang rapi dan natural."
             }
@@ -73,7 +73,7 @@ const serviceDetails = {
                 id: "H_BERHENTIJUDOL",
                 name: "Berhenti Judol",
                 price: "Rp 500.000",
-                image: "./images/H_BERHENTIJUDOL.webp",
+                image: "./images/H_BERHENTIJUDOL_600px.webp",
                 duration: "90 menit",
                 description: "Terapi hipnotis untuk mengatasi kecanduan judi dengan pendekatan psikologis. Membantu memprogram ulang pikiran bawah sadar untuk kebiasaan sehat."
             },
@@ -81,7 +81,7 @@ const serviceDetails = {
                 id: "H_BERHENTIMEROKOK",
                 name: "Berhenti Merokok",
                 price: "Rp 500.000",
-                image: "./images/H_BERHENTIMEROKOK.webp",
+                image: "./images/H_BERHENTIMEROKOK_600px.webp",
                 duration: "90 menit",
                 description: "Program berhenti merokok dengan teknik hipnoterapi yang terbukti efektif. Tanpa obat-obatan, aman dan alami untuk kesehatan jangka panjang."
             }
@@ -96,7 +96,7 @@ const serviceDetails = {
                 id: "SK_BBCREAMACNE",
                 name: "BB Cream Acne",
                 price: "Rp 160.000",
-                image: "./images/SK_BBCREAMACNE.webp",
+                image: "./images/SK_BBCREAMACNE_600px.webp",
                 duration: "Konsultasi 15 menit",
                 description: "BB cream khusus untuk kulit berjerawat dengan coverage natural. Mengandung bahan aktif untuk mengontrol minyak dan mencegah jerawat."
             },
@@ -104,7 +104,7 @@ const serviceDetails = {
                 id: "SK_FACIALSOAPSALICID",
                 name: "Facial Soap Salicid",
                 price: "Rp 170.000",
-                image: "./images/SK_FACIALSOAPSALICID.webp",
+                image: "./images/SK_FACIALSOAPSALICID_600px.webp",
                 duration: "Konsultasi 15 menit",
                 description: "Sabun wajah dengan kandungan salicylic acid untuk kulit berminyak dan berjerawat. Membersihkan pori-pori secara mendalam dan mengontrol produksi minyak."
             }
@@ -154,7 +154,8 @@ function showServiceDetail(serviceId) {
                         </div>
                         <div class="option-image-container">
                             <img src="${option.image}" alt="${option.name}" 
-                                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjZjhmOGY4IiByeD0iMjAiLz4KPHRleHQgeD0iMjAwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2NjYyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+SW1hZ2UgTm90IEZvdW5kPC90ZXh0Pgo8L3N2Zz4K'">
+                                 width="600" height="600"
+                                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDYwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjZjhmOGY4IiByeD0iMTYiLz4KPHRleHQgeD0iMzAwIiB5PSIzMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMCIgZmlsbD0iI2NjYyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+SW1hZ2UgTm90IEZvdW5kPC90ZXh0Pgo8L3N2Zz4K'">
                         </div>
                         <div class="option-title">
                             <h3>${option.name}</h3>
@@ -685,9 +686,9 @@ function printBookingDetails(bookingId) {
     if (booking) {
         const printWindow = window.open('', '_blank');
         const servicesHTML = booking.serviceInfo.selectedOptions ? booking.serviceInfo.selectedOptions.map(option => `
-            <div style="background: #f9f9f9; padding: 12px; margin: 8px 0; border-radius: 8px; border-left: 4px solid #3aaff3;">
-                <div style="font-weight: bold; font-size: 14px;">${option.name}</div>
-                <div style="color: #666; font-size: 13px;">${option.price} ${option.duration ? '• ' + option.duration : ''}</div>
+            <div style="background: #f9f9f9; padding: 10px; margin: 6px 0; border-radius: 6px; border-left: 3px solid #3aaff3;">
+                <div style="font-weight: bold; font-size: 13px;">${option.name}</div>
+                <div style="color: #666; font-size: 12px;">${option.price} ${option.duration ? '• ' + option.duration : ''}</div>
             </div>
         `).join('') : '';
         
@@ -696,23 +697,23 @@ function printBookingDetails(bookingId) {
                 <head>
                     <title>Booking Confirmation - ${booking.bookingId}</title>
                     <style>
-                        body { font-family: Arial, sans-serif; margin: 30px; line-height: 1.6; color: #333; }
-                        .header { text-align: center; border-bottom: 4px solid #3aaff3; padding-bottom: 20px; margin-bottom: 30px; }
-                        .details { margin: 30px 0; }
-                        .detail-item { margin: 15px 0; padding: 12px 0; border-bottom: 2px solid #eee; display: flex; justify-content: space-between; font-size: 14px; }
-                        .footer { margin-top: 40px; font-size: 12px; color: #666; text-align: center; padding-top: 20px; border-top: 2px solid #ddd; }
-                        .status { background: #fff3e0; color: #ff9800; padding: 6px 15px; border-radius: 25px; font-weight: bold; font-size: 12px; border: 2px solid #ff9800; }
+                        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.5; color: #333; font-size: 14px; }
+                        .header { text-align: center; border-bottom: 3px solid #3aaff3; padding-bottom: 15px; margin-bottom: 20px; }
+                        .details { margin: 20px 0; }
+                        .detail-item { margin: 10px 0; padding: 8px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; font-size: 13px; }
+                        .footer { margin-top: 30px; font-size: 11px; color: #666; text-align: center; padding-top: 15px; border-top: 1px solid #ddd; }
+                        .status { background: #fff3e0; color: #ff9800; padding: 4px 10px; border-radius: 15px; font-weight: bold; font-size: 11px; border: 1px solid #ff9800; }
                         @media print { 
-                            body { margin: 20px; }
+                            body { margin: 15px; }
                             .header { border-bottom-color: #000; }
                         }
                     </style>
                 </head>
                 <body>
                     <div class="header">
-                        <h1 style="margin: 0; color: #3aaff3; font-size: 28px;">Klinik Sehat</h1>
-                        <h2 style="margin: 10px 0; color: #333; font-size: 22px;">Konfirmasi Booking</h2>
-                        <p style="margin: 0; color: #666; font-size: 16px;">Kesehatan & Kecantikan Profesional</p>
+                        <h1 style="margin: 0; color: #3aaff3; font-size: 24px;">Klinik Sehat</h1>
+                        <h2 style="margin: 8px 0; color: #333; font-size: 18px;">Konfirmasi Booking</h2>
+                        <p style="margin: 0; color: #666; font-size: 14px;">Kesehatan & Kecantikan Profesional</p>
                     </div>
                     <div class="details">
                         <div class="detail-item"><strong>Nomor Booking:</strong> <span>${booking.bookingId}</span></div>
@@ -730,7 +731,7 @@ function printBookingDetails(bookingId) {
                         <div class="detail-item"><strong>Status:</strong> <span class="status">Menunggu Konfirmasi</span></div>
                     </div>
                     <div class="footer">
-                        <p style="font-weight: bold; font-size: 14px;">Harap datang 15 menit sebelum jadwal perawatan</p>
+                        <p style="font-weight: bold; font-size: 13px;">Harap datang 15 menit sebelum jadwal perawatan</p>
                         <p>Bawa bukti booking ini saat datang ke klinik</p>
                         <p>Terima kasih atas kepercayaan Anda kepada Klinik Sehat</p>
                         <p>Jl. Purnama No. 16, Pontianak • 0813-8122-3811</p>
