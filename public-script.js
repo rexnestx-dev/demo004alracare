@@ -112,12 +112,49 @@ const serviceDetails = {
     }
 };
 
+// ===== IMAGE ORIENTATION DETECTION =====
+function detectImageOrientation(imgSrc, callback) {
+    const img = new Image();
+    img.onload = function() {
+        const isPortrait = this.height > this.width;
+        const isLandscape = this.width > this.height;
+        const isSquare = this.width === this.height;
+        
+        callback({
+            isPortrait,
+            isLandscape,
+            isSquare,
+            width: this.width,
+            height: this.height,
+            aspectRatio: this.width / this.height
+        });
+    };
+    img.onerror = function() {
+        // Fallback jika gambar gagal load
+        callback({
+            isPortrait: false,
+            isLandscape: true,
+            isSquare: false,
+            width: 400,
+            height: 300,
+            aspectRatio: 4/3
+        });
+    };
+    img.src = imgSrc;
+}
+
+function getImageContainerClass(orientation) {
+    if (orientation.isPortrait) return 'portrait';
+    if (orientation.isLandscape) return 'landscape';
+    return 'square';
+}
+
 // ===== MODAL MANAGEMENT =====
 const modalManager = {
     openModal: function(modalId) {
         document.getElementById(modalId).style.display = 'block';
         document.body.style.overflow = 'hidden';
-        document.body.style.paddingRight = '15px'; // Prevent layout shift
+        document.body.style.paddingRight = '15px';
     },
     
     closeModal: function(modalId) {
@@ -144,71 +181,92 @@ function showServiceDetail(serviceId) {
     let content = '';
 
     if (service.type === "checkbox") {
-        const optionsHTML = service.options.map(option => {
-            return `
-                <div class="option-card" onclick="toggleOptionSelection('${option.id}')">
-                    <div class="option-header">
-                        <div class="option-checkbox">
-                            <input type="checkbox" id="${option.id}" name="service-option" value="${option.id}" 
-                                   onclick="event.stopPropagation(); updateSelectionSummary('${serviceId}')">
+        // Buat array promises untuk mendeteksi semua orientasi gambar
+        const orientationPromises = service.options.map(option => {
+            return new Promise((resolve) => {
+                detectImageOrientation(option.image, (orientation) => {
+                    resolve({
+                        option,
+                        orientation
+                    });
+                });
+            });
+        });
+
+        // Tunggu semua gambar selesai di-deteksi
+        Promise.all(orientationPromises).then(results => {
+            const optionsHTML = results.map(({ option, orientation }) => {
+                const containerClass = getImageContainerClass(orientation);
+                
+                return `
+                    <div class="option-card" onclick="toggleOptionSelection('${option.id}')">
+                        <div class="option-header">
+                            <div class="option-checkbox">
+                                <input type="checkbox" id="${option.id}" name="service-option" value="${option.id}" 
+                                       onclick="event.stopPropagation(); updateSelectionSummary('${serviceId}')">
+                            </div>
+                            <div class="option-image-container ${containerClass}">
+                                <img src="${option.image}" alt="${option.name}" 
+                                     onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjZjhmOGY4IiByeD0iMjAiLz4KPHRleHQgeD0iMjAwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2NjYyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+SW1hZ2UgTm90IEZvdW5kPC90ZXh0Pgo8L3N2Zz4K'">
+                            </div>
+                            <div class="option-title">
+                                <h3>${option.name}</h3>
+                                <p class="option-description">${option.description}</p>
+                            </div>
                         </div>
-                        <div class="option-image-container">
-                            <img src="${option.image}" alt="${option.name}" 
-                                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjZjhmOGY4IiByeD0iMjAiLz4KPHRleHQgeD0iMjAwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2NjYyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+SW1hZ2UgTm90IEZvdW5kPC90ZXh0Pgo8L3N2Zz4K'">
-                        </div>
-                        <div class="option-title">
-                            <h3>${option.name}</h3>
-                            <p class="option-description">${option.description}</p>
+                        
+                        <div class="option-details">
+                            <div class="option-price">
+                                <strong>💰 Harga:</strong> ${option.price}
+                            </div>
+                            ${option.duration ? `<div class="option-duration"><strong>⏱️ Durasi:</strong> ${option.duration}</div>` : ''}
                         </div>
                     </div>
-                    
-                    <div class="option-details">
-                        <div class="option-price">
-                            <strong>💰 Harga:</strong> ${option.price}
-                        </div>
-                        ${option.duration ? `<div class="option-duration"><strong>⏱️ Durasi:</strong> ${option.duration}</div>` : ''}
+                `;
+            }).join('');
+
+            content = `
+                <div class="service-modal-header">
+                    <h2>${service.title}</h2>
+                    <p class="service-description">${service.description}</p>
+                    <p class="selection-info">✅ Pilih satu atau beberapa perawatan dengan mengklik card-nya</p>
+                </div>
+                
+                <div class="options-container">
+                    ${optionsHTML}
+                </div>
+                
+                <div class="selection-summary" id="selectionSummary" style="display: none;">
+                    <h4>📋 Perawatan yang Dipilih:</h4>
+                    <div id="selectedOptionsList"></div>
+                    <div class="total-price">
+                        <strong>💰 Total Estimasi: <span id="totalPrice">Rp 0</span></strong>
                     </div>
+                </div>
+                
+                <div class="service-modal-footer">
+                    <button class="cta-button secondary" onclick="modalManager.closeAll()">
+                        ← Kembali
+                    </button>
+                    <button class="cta-button" id="bookingBtn" onclick="proceedToBooking('${serviceId}')" disabled>
+                        📅 Lanjut ke Booking
+                    </button>
                 </div>
             `;
-        }).join('');
 
-        content = `
-            <div class="service-modal-header">
-                <h2>${service.title}</h2>
-                <p class="service-description">${service.description}</p>
-                <p class="selection-info">✅ Pilih satu atau beberapa perawatan dengan mengklik card-nya</p>
-            </div>
+            document.getElementById('serviceModalContent').innerHTML = content;
             
-            <div class="options-container">
-                ${optionsHTML}
-            </div>
-            
-            <div class="selection-summary" id="selectionSummary" style="display: none;">
-                <h4>📋 Perawatan yang Dipilih:</h4>
-                <div id="selectedOptionsList"></div>
-                <div class="total-price">
-                    <strong>💰 Total Estimasi: <span id="totalPrice">Rp 0</span></strong>
-                </div>
-            </div>
-            
-            <div class="service-modal-footer">
-                <button class="cta-button secondary" onclick="modalManager.closeAll()">
-                    ← Kembali
-                </button>
-                <button class="cta-button" id="bookingBtn" onclick="proceedToBooking('${serviceId}')" disabled>
-                    📅 Lanjut ke Booking
-                </button>
-            </div>
-        `;
+            if (service.type === "checkbox") {
+                attachCheckboxListeners(serviceId);
+            }
+        }).catch(error => {
+            console.error('Error loading images:', error);
+            showNotification('Terjadi error saat memuat gambar', 'error');
+        });
 
     }
 
-    document.getElementById('serviceModalContent').innerHTML = content;
     modalManager.openModal('serviceModal');
-
-    if (service.type === "checkbox") {
-        attachCheckboxListeners(serviceId);
-    }
 }
 
 function toggleOptionSelection(optionId) {
@@ -746,6 +804,27 @@ function printBookingDetails(bookingId) {
     }
 }
 
+// ===== SERVICE CARD IMAGE INITIALIZATION =====
+function initializeServiceCards() {
+    const serviceCards = document.querySelectorAll('.service-card');
+    
+    serviceCards.forEach(card => {
+        const img = card.querySelector('.service-image-container img');
+        if (img) {
+            detectImageOrientation(img.src, (orientation) => {
+                const container = img.parentElement;
+                const containerClass = getImageContainerClass(orientation);
+                
+                // Hapus class ratio lama jika ada
+                container.classList.remove('ratio-1-1', 'ratio-16-9', 'ratio-9-16');
+                
+                // Tambah class untuk natural ratio
+                container.classList.add('natural-ratio', containerClass);
+            });
+        }
+    });
+}
+
 // ===== NOTIFICATION SYSTEM =====
 function showNotification(message, type = 'info') {
     const notification = document.getElementById('notification');
@@ -856,6 +935,9 @@ document.addEventListener('DOMContentLoaded', function() {
             modalManager.closeAll();
         }
     });
+
+    // Initialize service card images
+    initializeServiceCards();
 
     console.log('Klinik Sehat Public Website initialized successfully!');
 });
