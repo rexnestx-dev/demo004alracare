@@ -12,7 +12,7 @@ const serviceDetails = {
                 id: "Perawatan Luka di Klinik",
                 name: "Perawatan Luka di Klinik",
                 price: "Rp 150.000",
-                image: "./images/L_PERAWATANLIKADIKLINIK_600px.webp",
+                image: "./images/L_PERAWATANLIKADIKLINIK.webp",
                 duration: "30-45 menit",
                 description: "Perawatan luka profesional di klinik dengan peralatan modern dan steril. Tim medis berpengalaman akan menangani luka Anda dengan teknik terbaru untuk penyembuhan optimal."
             },
@@ -20,7 +20,7 @@ const serviceDetails = {
                 id: "Perawatan Luka Ke Rumah",
                 name: "Perawatan Luka Ke Rumah di Area Pontianak",
                 price: "Rp 200.000",
-                image: "./images/L_PERAWATANLUKAKERUMAHPASIENDIAREAPONTIANAK_600px.webp",
+                image: "./images/L_PERAWATANLUKAKERUMAHPASIENDIAREAPONTIANAK.webp",
                 duration: "60 menit",
                 description: "Layanan perawatan luka di rumah pasien dengan tim medis berpengalaman. Cocok untuk pasien dengan mobilitas terbatas atau membutuhkan perawatan berkelanjutan."
             }
@@ -35,7 +35,7 @@ const serviceDetails = {
                 id: "A_TOMPEL3X3CM",
                 name: "Tompel 3x3cm",
                 price: "Rp 500.000",
-                image: "./images/A_TOMPEL_600px.webp",
+                image: "./images/A_TOMPEL.webp",
                 duration: "45-60 menit",
                 description: "Penghilangan tompel dengan teknologi laser yang aman dan efektif. Proses cepat dengan hasil maksimal dan minim iritasi pada kulit."
             },
@@ -43,7 +43,7 @@ const serviceDetails = {
                 id: "A_XENTALASMA",
                 name: "Xentalasma",
                 price: "Rp 500.000",
-                image: "./images/A_XENTALASMA_600px.webp",
+                image: "./images/A_XENTALASMA.webp",
                 duration: "60 menit",
                 description: "Perawatan xentalasma untuk kulit wajah yang lebih bersih dan merata. Menggunakan teknologi canggih untuk mengatasi pigmentasi kulit secara efektif."
             }
@@ -58,7 +58,7 @@ const serviceDetails = {
                 id: "S_RING",
                 name: "Sunat Ring",
                 price: "Rp 1.200.000",
-                image: "./images/S_RING_600px.webp",
+                image: "./images/S_RING.webp",
                 duration: "30 menit",
                 description: "Sunat modern dengan teknik ring yang minim rasa sakit dan cepat sembuh. Proses higienis dengan hasil yang rapi dan natural."
             }
@@ -73,7 +73,7 @@ const serviceDetails = {
                 id: "H_BERHENTIJUDOL",
                 name: "Berhenti Judol",
                 price: "Rp 500.000",
-                image: "./images/H_BERHENTIJUDOL_600px.webp",
+                image: "./images/H_BERHENTIJUDOL.webp",
                 duration: "90 menit",
                 description: "Terapi hipnotis untuk mengatasi kecanduan judi dengan pendekatan psikologis. Membantu memprogram ulang pikiran bawah sadar untuk kebiasaan sehat."
             },
@@ -81,7 +81,7 @@ const serviceDetails = {
                 id: "H_BERHENTIMEROKOK",
                 name: "Berhenti Merokok",
                 price: "Rp 500.000",
-                image: "./images/H_BERHENTIMEROKOK_600px.webp",
+                image: "./images/H_BERHENTIMEROKOK.webp",
                 duration: "90 menit",
                 description: "Program berhenti merokok dengan teknik hipnoterapi yang terbukti efektif. Tanpa obat-obatan, aman dan alami untuk kesehatan jangka panjang."
             }
@@ -96,7 +96,7 @@ const serviceDetails = {
                 id: "SK_BBCREAMACNE",
                 name: "BB Cream Acne",
                 price: "Rp 160.000",
-                image: "./images/SK_BBCREAMACNE_600px.webp",
+                image: "./images/SK_BBCREAMACNE.webp",
                 duration: "Konsultasi 15 menit",
                 description: "BB cream khusus untuk kulit berjerawat dengan coverage natural. Mengandung bahan aktif untuk mengontrol minyak dan mencegah jerawat."
             },
@@ -104,7 +104,7 @@ const serviceDetails = {
                 id: "SK_FACIALSOAPSALICID",
                 name: "Facial Soap Salicid",
                 price: "Rp 170.000",
-                image: "./images/SK_FACIALSOAPSALICID_600px.webp",
+                image: "./images/SK_FACIALSOAPSALICID.webp",
                 duration: "Konsultasi 15 menit",
                 description: "Sabun wajah dengan kandungan salicylic acid untuk kulit berminyak dan berjerawat. Membersihkan pori-pori secara mendalam dan mengontrol produksi minyak."
             }
