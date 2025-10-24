@@ -14,7 +14,7 @@ const serviceDetails = {
                 price: "Rp 150.000",
                 image: "./images/L_PERAWATANLIKADIKLINIK.webp",
                 duration: "30-45 menit",
-                description: "Perawatan luka profesional di klinik dengan peralatan modern dan steril"
+                description: "Perawatan luka profesional di klinik dengan peralatan modern dan steril. Tim medis berpengalaman akan menangani luka Anda dengan teknik terbaru untuk penyembuhan optimal."
             },
             {
                 id: "Perawatan Luka Ke Rumah",
@@ -22,7 +22,7 @@ const serviceDetails = {
                 price: "Rp 200.000",
                 image: "./images/L_PERAWATANLUKAKERUMAHPASIENDIAREAPONTIANAK.webp",
                 duration: "60 menit",
-                description: "Layanan perawatan luka di rumah pasien dengan tim medis berpengalaman"
+                description: "Layanan perawatan luka di rumah pasien dengan tim medis berpengalaman. Cocok untuk pasien dengan mobilitas terbatas atau membutuhkan perawatan berkelanjutan."
             }
         ]
     },
@@ -37,7 +37,7 @@ const serviceDetails = {
                 price: "Rp 500.000",
                 image: "./images/A_TOMPEL.webp",
                 duration: "45-60 menit",
-                description: "Penghilangan tompel dengan teknologi laser yang aman dan efektif"
+                description: "Penghilangan tompel dengan teknologi laser yang aman dan efektif. Proses cepat dengan hasil maksimal dan minim iritasi pada kulit."
             },
             {
                 id: "A_XENTALASMA",
@@ -45,7 +45,7 @@ const serviceDetails = {
                 price: "Rp 500.000",
                 image: "./images/A_XENTALASMA.webp",
                 duration: "60 menit",
-                description: "Perawatan xentalasma untuk kulit wajah yang lebih bersih dan merata"
+                description: "Perawatan xentalasma untuk kulit wajah yang lebih bersih dan merata. Menggunakan teknologi canggih untuk mengatasi pigmentasi kulit secara efektif."
             }
         ]
     },
@@ -60,7 +60,7 @@ const serviceDetails = {
                 price: "Rp 1.200.000",
                 image: "./images/S_RING.webp",
                 duration: "30 menit",
-                description: "Sunat modern dengan teknik ring yang minim rasa sakit dan cepat sembuh"
+                description: "Sunat modern dengan teknik ring yang minim rasa sakit dan cepat sembuh. Proses higienis dengan hasil yang rapi dan natural."
             }
         ]
     },
@@ -75,7 +75,7 @@ const serviceDetails = {
                 price: "Rp 500.000",
                 image: "./images/H_BERHENTIJUDOL.webp",
                 duration: "90 menit",
-                description: "Terapi hipnotis untuk mengatasi kecanduan judi dengan pendekatan psikologis"
+                description: "Terapi hipnotis untuk mengatasi kecanduan judi dengan pendekatan psikologis. Membantu memprogram ulang pikiran bawah sadar untuk kebiasaan sehat."
             },
             {
                 id: "H_BERHENTIMEROKOK",
@@ -83,7 +83,7 @@ const serviceDetails = {
                 price: "Rp 500.000",
                 image: "./images/H_BERHENTIMEROKOK.webp",
                 duration: "90 menit",
-                description: "Program berhenti merokok dengan teknik hipnoterapi yang terbukti efektif"
+                description: "Program berhenti merokok dengan teknik hipnoterapi yang terbukti efektif. Tanpa obat-obatan, aman dan alami untuk kesehatan jangka panjang."
             }
         ]
     },
@@ -98,7 +98,7 @@ const serviceDetails = {
                 price: "Rp 160.000",
                 image: "./images/SK_BBCREAMACNE.webp",
                 duration: "Konsultasi 15 menit",
-                description: "BB cream khusus untuk kulit berjerawat dengan coverage natural"
+                description: "BB cream khusus untuk kulit berjerawat dengan coverage natural. Mengandung bahan aktif untuk mengontrol minyak dan mencegah jerawat."
             },
             {
                 id: "SK_FACIALSOAPSALICID",
@@ -106,7 +106,7 @@ const serviceDetails = {
                 price: "Rp 170.000",
                 image: "./images/SK_FACIALSOAPSALICID.webp",
                 duration: "Konsultasi 15 menit",
-                description: "Sabun wajah dengan kandungan salicylic acid untuk kulit berminyak dan berjerawat"
+                description: "Sabun wajah dengan kandungan salicylic acid untuk kulit berminyak dan berjerawat. Membersihkan pori-pori secara mendalam dan mengontrol produksi minyak."
             }
         ]
     }
@@ -117,11 +117,13 @@ const modalManager = {
     openModal: function(modalId) {
         document.getElementById(modalId).style.display = 'block';
         document.body.style.overflow = 'hidden';
+        document.body.style.paddingRight = '15px'; // Prevent layout shift
     },
     
     closeModal: function(modalId) {
         document.getElementById(modalId).style.display = 'none';
         document.body.style.overflow = 'auto';
+        document.body.style.paddingRight = '0';
     },
     
     closeAll: function() {
@@ -130,6 +132,7 @@ const modalManager = {
             modal.style.display = 'none';
         });
         document.body.style.overflow = 'auto';
+        document.body.style.paddingRight = '0';
     }
 };
 
@@ -151,7 +154,7 @@ function showServiceDetail(serviceId) {
                         </div>
                         <div class="option-image-container">
                             <img src="${option.image}" alt="${option.name}" 
-                                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjhmOGY4IiByeD0iMTIiLz4KPHRleHQgeD0iMTAwIiB5PSIxMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2NjYyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+SW1hZ2UgTm90IEZvdW5kPC90ZXh0Pgo8L3N2Zz4K'">
+                                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjZjhmOGY4IiByeD0iMjAiLz4KPHRleHQgeD0iMjAwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2NjYyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+SW1hZ2UgTm90IEZvdW5kPC90ZXh0Pgo8L3N2Zz4K'">
                         </div>
                         <div class="option-title">
                             <h3>${option.name}</h3>
@@ -161,7 +164,7 @@ function showServiceDetail(serviceId) {
                     
                     <div class="option-details">
                         <div class="option-price">
-                            <strong>Harga:</strong> ${option.price}
+                            <strong>💰 Harga:</strong> ${option.price}
                         </div>
                         ${option.duration ? `<div class="option-duration"><strong>⏱️ Durasi:</strong> ${option.duration}</div>` : ''}
                     </div>
@@ -173,7 +176,7 @@ function showServiceDetail(serviceId) {
             <div class="service-modal-header">
                 <h2>${service.title}</h2>
                 <p class="service-description">${service.description}</p>
-                <p class="selection-info">✓ Pilih satu atau beberapa perawatan dengan mengklik card-nya</p>
+                <p class="selection-info">✅ Pilih satu atau beberapa perawatan dengan mengklik card-nya</p>
             </div>
             
             <div class="options-container">
@@ -212,6 +215,15 @@ function toggleOptionSelection(optionId) {
     const checkbox = document.getElementById(optionId);
     if (checkbox) {
         checkbox.checked = !checkbox.checked;
+        
+        // Add/remove selected class for visual feedback
+        const optionCard = checkbox.closest('.option-card');
+        if (checkbox.checked) {
+            optionCard.classList.add('selected');
+        } else {
+            optionCard.classList.remove('selected');
+        }
+        
         // Cari serviceId dari checkbox yang di-click
         const serviceId = Object.keys(serviceDetails).find(id => 
             serviceDetails[id].options.some(opt => opt.id === optionId)
@@ -227,6 +239,12 @@ function attachCheckboxListeners(serviceId) {
     
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', function() {
+            const optionCard = this.closest('.option-card');
+            if (this.checked) {
+                optionCard.classList.add('selected');
+            } else {
+                optionCard.classList.remove('selected');
+            }
             updateSelectionSummary(serviceId);
         });
     });
@@ -273,8 +291,12 @@ function updateSelectionSummary(serviceId) {
         selectedOptionsList.innerHTML = optionsHTML;
         totalPriceElement.textContent = `Rp ${totalPrice.toLocaleString('id-ID')}`;
         
+        // Update button text dengan jumlah selected
+        bookingBtn.innerHTML = `📅 Lanjut ke Booking (${selectedCheckboxes.length})`;
+        
     } else {
         selectionSummary.style.display = 'none';
+        bookingBtn.innerHTML = `📅 Lanjut ke Booking`;
     }
 }
 
@@ -353,7 +375,7 @@ function showBookingForm() {
                     
                     <div class="form-group full-width">
                         <label for="patientAddress">Alamat Lengkap *</label>
-                        <textarea id="patientAddress" name="patientAddress" rows="3" required 
+                        <textarea id="patientAddress" name="patientAddress" rows="4" required 
                                   placeholder="Masukkan alamat lengkap (jalan, RT/RW, kelurahan, kecamatan, kota)"></textarea>
                     </div>
                 </div>
@@ -383,7 +405,7 @@ function showBookingForm() {
                     <h4>📝 Informasi Tambahan</h4>
                     <div class="form-group full-width">
                         <label for="patientNotes">Catatan Tambahan (opsional)</label>
-                        <textarea id="patientNotes" name="patientNotes" rows="3" 
+                        <textarea id="patientNotes" name="patientNotes" rows="4" 
                                   placeholder="Keluhan khusus, alergi, riwayat penyakit, atau informasi lain yang perlu kami ketahui..."></textarea>
                     </div>
                 </div>
@@ -414,9 +436,13 @@ function showBookingForm() {
 
 function generateTimeOptions() {
     let options = '';
+    // Generate time slots from 08:00 to 17:00 every 30 minutes
     for (let hour = 8; hour <= 17; hour++) {
-        const time = `${hour.toString().padStart(2, '0')}:00`;
-        options += `<option value="${time}">${time}</option>`;
+        for (let minute = 0; minute < 60; minute += 30) {
+            if (hour === 17 && minute > 0) break; // Stop at 17:00
+            const time = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+            options += `<option value="${time}">${time}</option>`;
+        }
     }
     return options;
 }
@@ -460,6 +486,18 @@ function setupFormValidation() {
             }
         });
     }
+
+    // Real-time validation feedback
+    const inputs = document.querySelectorAll('input, textarea, select');
+    inputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value.trim() !== '' && this.checkValidity()) {
+                this.style.borderColor = '#4CAF50';
+            } else if (this.checkValidity() === false) {
+                this.style.borderColor = '#ff6b6b';
+            }
+        });
+    });
 }
 
 function goBackToServiceSelection() {
@@ -647,9 +685,9 @@ function printBookingDetails(bookingId) {
     if (booking) {
         const printWindow = window.open('', '_blank');
         const servicesHTML = booking.serviceInfo.selectedOptions ? booking.serviceInfo.selectedOptions.map(option => `
-            <div style="background: #f9f9f9; padding: 10px; margin: 5px 0; border-radius: 4px; border-left: 3px solid #3aaff3;">
-                <div style="font-weight: bold;">${option.name}</div>
-                <div>${option.price} ${option.duration ? '• ' + option.duration : ''}</div>
+            <div style="background: #f9f9f9; padding: 12px; margin: 8px 0; border-radius: 8px; border-left: 4px solid #3aaff3;">
+                <div style="font-weight: bold; font-size: 14px;">${option.name}</div>
+                <div style="color: #666; font-size: 13px;">${option.price} ${option.duration ? '• ' + option.duration : ''}</div>
             </div>
         `).join('') : '';
         
@@ -658,23 +696,23 @@ function printBookingDetails(bookingId) {
                 <head>
                     <title>Booking Confirmation - ${booking.bookingId}</title>
                     <style>
-                        body { font-family: Arial, sans-serif; margin: 25px; line-height: 1.5; color: #333; }
-                        .header { text-align: center; border-bottom: 3px solid #3aaff3; padding-bottom: 15px; margin-bottom: 25px; }
-                        .details { margin: 25px 0; }
-                        .detail-item { margin: 12px 0; padding: 10px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; }
-                        .footer { margin-top: 30px; font-size: 12px; color: #666; text-align: center; padding-top: 15px; border-top: 1px solid #ddd; }
-                        .status { background: #fff3e0; color: #ff9800; padding: 4px 12px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; }
+                        body { font-family: Arial, sans-serif; margin: 30px; line-height: 1.6; color: #333; }
+                        .header { text-align: center; border-bottom: 4px solid #3aaff3; padding-bottom: 20px; margin-bottom: 30px; }
+                        .details { margin: 30px 0; }
+                        .detail-item { margin: 15px 0; padding: 12px 0; border-bottom: 2px solid #eee; display: flex; justify-content: space-between; font-size: 14px; }
+                        .footer { margin-top: 40px; font-size: 12px; color: #666; text-align: center; padding-top: 20px; border-top: 2px solid #ddd; }
+                        .status { background: #fff3e0; color: #ff9800; padding: 6px 15px; border-radius: 25px; font-weight: bold; font-size: 12px; border: 2px solid #ff9800; }
                         @media print { 
-                            body { margin: 15px; }
+                            body { margin: 20px; }
                             .header { border-bottom-color: #000; }
                         }
                     </style>
                 </head>
                 <body>
                     <div class="header">
-                        <h1 style="margin: 0; color: #3aaff3;">Klinik Sehat</h1>
-                        <h2 style="margin: 5px 0; color: #333;">Konfirmasi Booking</h2>
-                        <p style="margin: 0; color: #666;">Kesehatan & Kecantikan Profesional</p>
+                        <h1 style="margin: 0; color: #3aaff3; font-size: 28px;">Klinik Sehat</h1>
+                        <h2 style="margin: 10px 0; color: #333; font-size: 22px;">Konfirmasi Booking</h2>
+                        <p style="margin: 0; color: #666; font-size: 16px;">Kesehatan & Kecantikan Profesional</p>
                     </div>
                     <div class="details">
                         <div class="detail-item"><strong>Nomor Booking:</strong> <span>${booking.bookingId}</span></div>
@@ -692,7 +730,7 @@ function printBookingDetails(bookingId) {
                         <div class="detail-item"><strong>Status:</strong> <span class="status">Menunggu Konfirmasi</span></div>
                     </div>
                     <div class="footer">
-                        <p><strong>Harap datang 15 menit sebelum jadwal perawatan</strong></p>
+                        <p style="font-weight: bold; font-size: 14px;">Harap datang 15 menit sebelum jadwal perawatan</p>
                         <p>Bawa bukti booking ini saat datang ke klinik</p>
                         <p>Terima kasih atas kepercayaan Anda kepada Klinik Sehat</p>
                         <p>Jl. Purnama No. 16, Pontianak • 0813-8122-3811</p>
@@ -808,6 +846,13 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('click', function(event) {
         const modal = document.getElementById('serviceModal');
         if (event.target === modal) {
+            modalManager.closeAll();
+        }
+    });
+
+    // Escape key to close modal
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
             modalManager.closeAll();
         }
     });
