@@ -279,6 +279,7 @@ section:nth-child(even) {
     box-shadow: var(--shadow-hover);
 }
 
+/* ===== SERVICE IMAGE STYLES - VARIOUS ASPECT RATIOS ===== */
 .service-image-container {
     width: 100%;
     overflow: hidden;
@@ -288,19 +289,22 @@ section:nth-child(even) {
     background-color: var(--bg-light);
 }
 
+/* Default untuk gambar 1:1 */
 .service-image-container.ratio-1-1 {
     height: 0;
-    padding-bottom: 100%;
+    padding-bottom: 100%; /* Rasio 1:1 */
 }
 
+/* Untuk gambar 16:9 */
 .service-image-container.ratio-16-9 {
     height: 0;
-    padding-bottom: 56.25%;
+    padding-bottom: 56.25%; /* 9/16 = 0.5625 = 56.25% */
 }
 
+/* Untuk gambar 9:16 (portrait) */
 .service-image-container.ratio-9-16 {
     height: 0;
-    padding-bottom: 177.78%;
+    padding-bottom: 177.78%; /* 16/9 = 1.7778 = 177.78% */
 }
 
 .service-image-container img {
@@ -545,7 +549,7 @@ footer {
     padding: 2rem;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-hover);
-    max-width: 1200px; /* Diperkecil untuk gambar 600px */
+    max-width: 1000px; /* Diperbesar untuk gambar 400px */
     width: 95%;
     position: relative;
     animation: modalFadeIn 0.3s;
@@ -600,7 +604,7 @@ footer {
 .option-card {
     border: 2px solid var(--border-color);
     border-radius: 16px;
-    padding: 2rem;
+    padding: 2.5rem; /* Diperbesar untuk gambar 400px */
     margin-bottom: 2rem;
     cursor: pointer;
     transition: var(--transition);
@@ -619,27 +623,27 @@ footer {
     box-shadow: 0 8px 30px rgba(44, 120, 115, 0.15);
 }
 
-/* ===== OPTION IMAGE STYLES - UKURAN 600px ===== */
+/* ===== OPTION IMAGE STYLES - UKURAN 400px ===== */
 .option-image-container {
-    width: 600px;
-    height: 600px;
+    width: 400px;
+    height: 400px;
     overflow: hidden;
-    border-radius: 16px;
+    border-radius: 20px;
     position: relative;
     background: linear-gradient(135deg, #f8f9fa, #e9ecef);
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 3px solid #f0f0f0;
+    border: 4px solid #f0f0f0;
     transition: var(--transition);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .option-card:hover .option-image-container {
     border-color: var(--primary-color);
     transform: scale(1.02);
-    box-shadow: 0 10px 30px rgba(44, 120, 115, 0.2);
+    box-shadow: 0 12px 35px rgba(44, 120, 115, 0.25);
 }
 
 .option-image-container img {
@@ -649,26 +653,26 @@ footer {
     max-height: 95%;
     object-fit: contain;
     transition: var(--transition);
-    border-radius: 14px;
+    border-radius: 16px;
 }
 
 .option-card:hover .option-image-container img {
-    transform: scale(1.06);
+    transform: scale(1.08);
 }
 
 .option-header {
     display: flex;
     align-items: flex-start;
-    gap: 25px;
+    gap: 35px; /* Diperbesar untuk gambar 400px */
 }
 
 .option-checkbox {
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .option-checkbox input[type="checkbox"] {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     cursor: pointer;
     accent-color: var(--primary-color);
     transition: var(--transition);
@@ -684,70 +688,70 @@ footer {
 }
 
 .option-title h3 {
-    margin: 0 0 12px 0;
+    margin: 0 0 15px 0;
     color: #333;
-    font-size: 1.5rem;
-    line-height: 1.3;
+    font-size: 1.6rem;
+    line-height: 1.4;
     font-weight: 700;
 }
 
 .option-description {
     color: #666;
     margin: 0;
-    font-size: 1rem;
-    line-height: 1.5;
+    font-size: 1.1rem;
+    line-height: 1.6;
 }
 
 .option-details {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 2px solid #f0f0f0;
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 3px solid #f0f0f0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 20px;
 }
 
 .option-price {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     color: var(--primary-color);
-    font-weight: 700;
+    font-weight: 800;
 }
 
 .option-duration {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: var(--text-light);
     background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-    padding: 6px 12px;
-    border-radius: 20px;
+    padding: 8px 16px;
+    border-radius: 25px;
     font-weight: 600;
     border: 2px solid #e9ecef;
 }
 
 .selection-summary {
     background: linear-gradient(135deg, #f8fdff, #f0f9ff);
-    padding: 20px;
-    border-radius: 14px;
-    margin: 25px 0;
-    border-left: 5px solid var(--primary-color);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    border-radius: 16px;
+    margin: 30px 0;
+    border-left: 6px solid var(--primary-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .selection-summary h4 {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     color: var(--text-dark);
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 700;
 }
 
 .selected-option {
     display: flex;
     justify-content: space-between;
-    padding: 12px 0;
-    border-bottom: 1px solid #e9ecef;
+    padding: 15px 0;
+    border-bottom: 2px solid #e9ecef;
     align-items: center;
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 .selected-option:last-child {
@@ -756,10 +760,10 @@ footer {
 
 .total-price {
     text-align: right;
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 2px solid #dee2e6;
-    font-size: 1.3rem;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 3px solid #dee2e6;
+    font-size: 1.5rem;
     font-weight: 700;
 }
 
@@ -767,12 +771,12 @@ footer {
     display: flex;
     justify-content: space-between;
     gap: 1.5rem;
-    margin-top: 2rem;
+    margin-top: 2.5rem;
 }
 
 .service-modal-footer .cta-button {
-    padding: 12px 25px;
-    font-size: 1rem;
+    padding: 15px 30px;
+    font-size: 1.1rem;
     font-weight: 600;
 }
 
@@ -784,41 +788,41 @@ footer {
 
 .booking-header {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 
 .booking-header h2 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     margin-bottom: 1rem;
 }
 
 .form-description {
     color: var(--text-light);
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 .selected-services-summary {
     background: linear-gradient(135deg, #f8fdff, #f0f9ff);
-    padding: 20px;
-    border-radius: 14px;
-    margin-bottom: 2rem;
-    border-left: 5px solid var(--primary-color);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    border-radius: 16px;
+    margin-bottom: 2.5rem;
+    border-left: 6px solid var(--primary-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .selected-services-summary h4 {
-    margin-bottom: 15px;
-    font-size: 1.2rem;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
     font-weight: 700;
 }
 
 .service-summary-item {
     display: flex;
     justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px solid #e9ecef;
+    padding: 12px 0;
+    border-bottom: 2px solid #e9ecef;
     align-items: center;
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 .service-summary-item:last-child {
@@ -828,34 +832,34 @@ footer {
 .booking-form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2rem;
 }
 
 .form-section {
     background: var(--bg-white);
-    padding: 1.5rem;
-    border-radius: 14px;
+    padding: 2rem;
+    border-radius: 16px;
     border: 2px solid var(--border-color);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 .form-section h4 {
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.5rem;
     color: var(--primary-color);
     border-bottom: 2px solid var(--border-color);
-    padding-bottom: 0.6rem;
-    font-size: 1.2rem;
+    padding-bottom: 0.8rem;
+    font-size: 1.3rem;
     font-weight: 700;
 }
 
 .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.2rem;
+    gap: 1.5rem;
 }
 
 .form-group {
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.5rem;
 }
 
 .form-group.full-width {
@@ -864,20 +868,20 @@ footer {
 
 .form-group label {
     display: block;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.8rem;
     font-weight: 600;
     color: var(--text-dark);
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 .form-group input,
 .form-group textarea,
 .form-group select {
     width: 100%;
-    padding: 12px 16px;
+    padding: 15px 20px;
     border: 2px solid var(--border-color);
-    border-radius: 10px;
-    font-size: 1rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
     transition: var(--transition);
     font-family: inherit;
     box-sizing: border-box;
@@ -888,32 +892,32 @@ footer {
 .form-group select:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(44, 120, 115, 0.15);
-    transform: translateY(-1px);
+    box-shadow: 0 0 0 4px rgba(44, 120, 115, 0.15);
+    transform: translateY(-2px);
 }
 
 .form-group textarea {
     resize: vertical;
-    min-height: 100px;
+    min-height: 120px;
 }
 
 .date-note, .time-note {
     display: block;
-    margin-top: 6px;
-    font-size: 0.85rem;
+    margin-top: 8px;
+    font-size: 0.9rem;
     color: var(--text-light);
 }
 
 .form-actions {
     display: flex;
     justify-content: space-between;
-    gap: 1.2rem;
-    margin-top: 2rem;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
 }
 
 .form-actions .cta-button {
-    padding: 12px 25px;
-    font-size: 1rem;
+    padding: 15px 30px;
+    font-size: 1.1rem;
     font-weight: 600;
 }
 
@@ -923,28 +927,28 @@ footer {
 }
 
 .confirmation-icon {
-    font-size: 4rem;
-    margin-bottom: 1.2rem;
+    font-size: 5rem;
+    margin-bottom: 1.5rem;
     color: #4CAF50;
 }
 
 .confirmation-details {
     background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-    padding: 25px;
-    border-radius: 14px;
-    margin: 25px 0;
+    padding: 30px;
+    border-radius: 16px;
+    margin: 30px 0;
     text-align: left;
-    border-left: 5px solid #4CAF50;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-left: 6px solid #4CAF50;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .detail-item {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 12px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid #e9ecef;
-    font-size: 1rem;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e9ecef;
+    font-size: 1.1rem;
 }
 
 .detail-item:last-child {
@@ -954,27 +958,27 @@ footer {
 
 .status-pending {
     color: #ff9800;
-    font-weight: 600;
+    font-weight: 700;
     background: #fff3e0;
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 0.9rem;
+    padding: 6px 15px;
+    border-radius: 25px;
+    font-size: 1rem;
     border: 2px solid #ff9800;
 }
 
 .confirmation-message {
     background: linear-gradient(135deg, #e8f5e8, #d4edda);
-    padding: 20px;
-    border-radius: 14px;
-    margin: 25px 0;
+    padding: 25px;
+    border-radius: 16px;
+    margin: 30px 0;
     text-align: left;
-    border-left: 5px solid #4CAF50;
+    border-left: 6px solid #4CAF50;
 }
 
 .confirmation-message p {
-    margin-bottom: 12px;
-    line-height: 1.6;
-    font-size: 1rem;
+    margin-bottom: 15px;
+    line-height: 1.7;
+    font-size: 1.1rem;
 }
 
 .confirmation-message p:last-child {
@@ -984,33 +988,33 @@ footer {
 .confirmation-actions {
     display: flex;
     justify-content: center;
-    gap: 1.2rem;
-    margin-top: 2rem;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
 }
 
 .confirmation-actions .cta-button {
-    padding: 12px 25px;
-    font-size: 1rem;
+    padding: 15px 30px;
+    font-size: 1.1rem;
     font-weight: 600;
 }
 
 /* ===== NOTIFICATION ===== */
 .notification {
     position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 16px 20px;
+    top: 25px;
+    right: 25px;
+    padding: 20px 25px;
     background: white;
-    border-left: 5px solid var(--primary-color);
-    border-radius: 10px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    border-left: 6px solid var(--primary-color);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
     transform: translateX(150%);
     transition: transform 0.4s ease;
     z-index: 10000;
-    max-width: 350px;
+    max-width: 400px;
     width: 90%;
     box-sizing: border-box;
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 .notification.show {
@@ -1034,42 +1038,31 @@ footer {
     }
     
     .option-image-container {
-        width: 500px;
-        height: 500px;
+        width: 350px;
+        height: 350px;
     }
     
     .option-header {
-        gap: 20px;
+        gap: 30px;
     }
 }
 
 @media (max-width: 1024px) {
     .option-image-container {
-        width: 450px;
-        height: 450px;
+        width: 300px;
+        height: 300px;
     }
     
     .option-header {
-        gap: 20px;
+        gap: 25px;
     }
     
     .option-title h3 {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
     }
     
     .option-description {
-        font-size: 0.95rem;
-    }
-}
-
-@media (max-width: 900px) {
-    .option-image-container {
-        width: 400px;
-        height: 400px;
-    }
-    
-    .option-header {
-        gap: 18px;
+        font-size: 1rem;
     }
 }
 
@@ -1160,16 +1153,16 @@ footer {
         flex-direction: column;
     }
 
-    /* Responsive untuk option images 600px */
+    /* Responsive untuk option images 400px */
     .option-header {
         flex-direction: column;
-        gap: 20px;
+        gap: 25px;
         text-align: center;
     }
 
     .option-image-container {
-        width: 350px;
-        height: 350px;
+        width: 280px;
+        height: 280px;
         align-self: center;
         margin: 0 auto;
     }
@@ -1179,7 +1172,7 @@ footer {
     }
 
     .option-card {
-        padding: 1.5rem;
+        padding: 2rem;
     }
 
     /* Responsive untuk media sosial */
@@ -1259,14 +1252,14 @@ footer {
         font-size: 1.1rem;
     }
 
-    /* Mobile kecil untuk option images 600px */
+    /* Mobile kecil untuk option images 400px */
     .option-image-container {
-        width: 280px;
-        height: 280px;
+        width: 240px;
+        height: 240px;
     }
 
     .option-header {
-        gap: 15px;
+        gap: 20px;
     }
 
     .option-title h3 {
@@ -1274,19 +1267,20 @@ footer {
     }
 
     .option-description {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
     }
 
     .option-card {
-        padding: 1.2rem;
+        padding: 1.5rem;
     }
     
     .option-checkbox input[type="checkbox"] {
-        width: 22px;
-        height: 22px;
+        width: 24px;
+        height: 24px;
     }
 }
 
+/* Tambahan untuk device sangat kecil */
 @media (max-width: 360px) {
     .container {
         padding: 0 8px;
@@ -1305,12 +1299,12 @@ footer {
     }
 
     .option-image-container {
-        width: 250px;
-        height: 250px;
+        width: 200px;
+        height: 200px;
     }
 
     .option-card {
-        padding: 1rem;
+        padding: 1.2rem;
     }
     
     .option-title h3 {
@@ -1318,6 +1312,6 @@ footer {
     }
     
     .option-description {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
     }
 }
