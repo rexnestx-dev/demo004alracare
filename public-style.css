@@ -279,6 +279,7 @@ section:nth-child(even) {
     box-shadow: var(--shadow-hover);
 }
 
+/* ===== SERVICE IMAGE STYLES - VARIOUS ASPECT RATIOS ===== */
 .service-image-container {
     width: 100%;
     overflow: hidden;
@@ -288,19 +289,22 @@ section:nth-child(even) {
     background-color: var(--bg-light);
 }
 
+/* Default untuk gambar 1:1 */
 .service-image-container.ratio-1-1 {
     height: 0;
-    padding-bottom: 100%;
+    padding-bottom: 100%; /* Rasio 1:1 */
 }
 
+/* Untuk gambar 16:9 */
 .service-image-container.ratio-16-9 {
     height: 0;
-    padding-bottom: 56.25%;
+    padding-bottom: 56.25%; /* 9/16 = 0.5625 = 56.25% */
 }
 
+/* Untuk gambar 9:16 (portrait) */
 .service-image-container.ratio-9-16 {
     height: 0;
-    padding-bottom: 177.78%;
+    padding-bottom: 177.78%; /* 16/9 = 1.7778 = 177.78% */
 }
 
 .service-image-container img {
@@ -545,7 +549,7 @@ footer {
     padding: 2rem;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-hover);
-    max-width: 1400px; /* Diperbesar untuk gambar 800px */
+    max-width: 1000px; /* Diperbesar untuk gambar 400px */
     width: 95%;
     position: relative;
     animation: modalFadeIn 0.3s;
@@ -600,7 +604,7 @@ footer {
 .option-card {
     border: 2px solid var(--border-color);
     border-radius: 16px;
-    padding: 2.5rem;
+    padding: 2.5rem; /* Diperbesar untuk gambar 400px */
     margin-bottom: 2rem;
     cursor: pointer;
     transition: var(--transition);
@@ -619,10 +623,10 @@ footer {
     box-shadow: 0 8px 30px rgba(44, 120, 115, 0.15);
 }
 
-/* ===== OPTION IMAGE STYLES - UKURAN 800px ===== */
+/* ===== OPTION IMAGE STYLES - UKURAN 400px ===== */
 .option-image-container {
-    width: 800px;
-    height: 800px;
+    width: 400px;
+    height: 400px;
     overflow: hidden;
     border-radius: 20px;
     position: relative;
@@ -659,7 +663,7 @@ footer {
 .option-header {
     display: flex;
     align-items: flex-start;
-    gap: 35px;
+    gap: 35px; /* Diperbesar untuk gambar 400px */
 }
 
 .option-checkbox {
@@ -1018,17 +1022,6 @@ footer {
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 1400px) {
-    .modal-content {
-        max-width: 95%;
-    }
-    
-    .option-image-container {
-        width: 600px;
-        height: 600px;
-    }
-}
-
 @media (max-width: 1200px) {
     .container {
         padding: 0 15px;
@@ -1045,8 +1038,8 @@ footer {
     }
     
     .option-image-container {
-        width: 600px;
-        height: 600px;
+        width: 350px;
+        height: 350px;
     }
     
     .option-header {
@@ -1056,8 +1049,8 @@ footer {
 
 @media (max-width: 1024px) {
     .option-image-container {
-        width: 500px;
-        height: 500px;
+        width: 300px;
+        height: 300px;
     }
     
     .option-header {
@@ -1160,7 +1153,7 @@ footer {
         flex-direction: column;
     }
 
-    /* Responsive untuk option images 800px */
+    /* Responsive untuk option images 400px */
     .option-header {
         flex-direction: column;
         gap: 25px;
@@ -1168,8 +1161,8 @@ footer {
     }
 
     .option-image-container {
-        width: 400px;
-        height: 400px;
+        width: 280px;
+        height: 280px;
         align-self: center;
         margin: 0 auto;
     }
@@ -1259,10 +1252,10 @@ footer {
         font-size: 1.1rem;
     }
 
-    /* Mobile kecil untuk option images 800px */
+    /* Mobile kecil untuk option images 400px */
     .option-image-container {
-        width: 320px;
-        height: 320px;
+        width: 240px;
+        height: 240px;
     }
 
     .option-header {
@@ -1287,6 +1280,7 @@ footer {
     }
 }
 
+/* Tambahan untuk device sangat kecil */
 @media (max-width: 360px) {
     .container {
         padding: 0 8px;
@@ -1305,8 +1299,8 @@ footer {
     }
 
     .option-image-container {
-        width: 280px;
-        height: 280px;
+        width: 200px;
+        height: 200px;
     }
 
     .option-card {
