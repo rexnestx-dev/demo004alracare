@@ -1,5 +1,6 @@
 // ===== GLOBAL VARIABLES =====
 let currentService = null;
+let isModalTransitioning = false;
 
 // ===== SERVICE DETAILS DATA =====
 const serviceDetails = {
@@ -147,7 +148,21 @@ const serviceDetails = {
 // ===== IMAGE ORIENTATION DETECTION =====
 function detectImageOrientation(imgSrc, callback) {
     const img = new Image();
+    
+    // Set timeout untuk mencegah hanging
+    const timeout = setTimeout(() => {
+        callback({
+            isPortrait: false,
+            isLandscape: true,
+            isSquare: false,
+            width: 400,
+            height: 300,
+            aspectRatio: 4/3
+        });
+    }, 3000);
+    
     img.onload = function() {
+        clearTimeout(timeout);
         const isPortrait = this.height > this.width;
         const isLandscape = this.width > this.height;
         const isSquare = this.width === this.height;
@@ -161,7 +176,9 @@ function detectImageOrientation(imgSrc, callback) {
             aspectRatio: this.width / this.height
         });
     };
+    
     img.onerror = function() {
+        clearTimeout(timeout);
         // Fallback jika gambar gagal load
         callback({
             isPortrait: false,
@@ -172,6 +189,7 @@ function detectImageOrientation(imgSrc, callback) {
             aspectRatio: 4/3
         });
     };
+    
     img.src = imgSrc;
 }
 
@@ -208,36 +226,107 @@ function loadImageWithFallback(imgElement, src, alt) {
     });
 }
 
-// ===== MODAL MANAGEMENT =====
+// ===== IMPROVED MODAL MANAGEMENT =====
 const modalManager = {
     openModal: function(modalId) {
-        document.getElementById(modalId).style.display = 'block';
+        if (isModalTransitioning) return;
+        isModalTransitioning = true;
+        
+        const modal = document.getElementById(modalId);
+        modal.style.display = 'block';
+        
+        // Reset scroll position
+        modal.scrollTop = 0;
+        
+        // Prevent body scroll
         document.body.style.overflow = 'hidden';
         document.body.style.paddingRight = '15px';
+        
+        // Smooth opening
+        setTimeout(() => {
+            modal.classList.add('show');
+            isModalTransitioning = false;
+        }, 10);
     },
     
     closeModal: function(modalId) {
-        document.getElementById(modalId).style.display = 'none';
-        document.body.style.overflow = 'auto';
-        document.body.style.paddingRight = '0';
+        if (isModalTransitioning) return;
+        isModalTransitioning = true;
+        
+        const modal = document.getElementById(modalId);
+        modal.classList.remove('show');
+        
+        setTimeout(() => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            document.body.style.paddingRight = '0';
+            
+            // Clear modal content to prevent glitches
+            if (modalId === 'serviceModal') {
+                document.getElementById('serviceModalContent').innerHTML = '';
+            }
+            isModalTransitioning = false;
+        }, 300);
     },
     
     closeAll: function() {
+        if (isModalTransitioning) return;
+        isModalTransitioning = true;
+        
         const modals = document.querySelectorAll('.modal');
         modals.forEach(modal => {
-            modal.style.display = 'none';
+            modal.classList.remove('show');
+            
+            setTimeout(() => {
+                modal.style.display = 'none';
+                
+                // Clear service modal content
+                if (modal.id === 'serviceModal') {
+                    document.getElementById('serviceModalContent').innerHTML = '';
+                }
+            }, 300);
         });
+        
         document.body.style.overflow = 'auto';
         document.body.style.paddingRight = '0';
+        
+        setTimeout(() => {
+            isModalTransitioning = false;
+        }, 350);
     }
 };
 
-// ===== SERVICE DETAIL MODAL FUNCTIONS =====
+// ===== IMPROVED SERVICE NAVIGATION =====
+function navigateToService(serviceId) {
+    if (isModalTransitioning) return;
+    
+    // Close any existing modals smoothly
+    modalManager.closeAll();
+    
+    // Small delay to allow modal to close completely
+    setTimeout(() => {
+        showServiceDetail(serviceId);
+    }, 350);
+}
+
+// ===== IMPROVED SERVICE DETAIL MODAL FUNCTIONS =====
 function showServiceDetail(serviceId) {
+    if (isModalTransitioning) return;
+    
     const service = serviceDetails[serviceId];
     if (!service) return;
 
-    let content = '';
+    // Show loading state immediately
+    const modalContent = document.getElementById('serviceModalContent');
+    modalContent.innerHTML = `
+        <div class="loading-state">
+            <div class="loading-icon">⏳</div>
+            <h3>Memuat Layanan...</h3>
+            <p>Sedang memuat detail layanan yang dipilih</p>
+        </div>
+    `;
+
+    modalManager.openModal('serviceModal');
 
     if (service.type === "checkbox") {
         // Buat array promises untuk mendeteksi semua orientasi gambar
@@ -253,79 +342,106 @@ function showServiceDetail(serviceId) {
         });
 
         // Tunggu semua gambar selesai di-deteksi
-        Promise.all(orientationPromises).then(results => {
-            const optionsHTML = results.map(({ option, orientation }) => {
-                const containerClass = getImageContainerClass(orientation);
-                
-                return `
-                    <div class="option-card" onclick="toggleOptionSelection('${option.id}')">
-                        <div class="option-header">
-                            <div class="option-checkbox">
-                                <input type="checkbox" id="${option.id}" name="service-option" value="${option.id}" 
-                                       onclick="event.stopPropagation(); updateSelectionSummary('${serviceId}')">
-                            </div>
-                            <div class="option-image-container ${containerClass}">
-                                <img src="${option.image}" alt="${option.name}" 
-                                     onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjZjhmOGY4IiByeD0iMjAiLz4KPHRleHQgeD0iMjAwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2NjYyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+SW1hZ2UgTm90IEZvdW5kPC90ZXh0Pgo8L3N2Zz4K'">
-                            </div>
-                            <div class="option-title">
-                                <h3>${option.name}</h3>
-                                <p class="option-description">${option.description}</p>
-                            </div>
-                        </div>
-                        
-                        <div class="option-details">
-                            <div class="option-price">
-                                <strong>💰 Harga:</strong> ${option.price}
-                            </div>
-                            ${option.duration ? `<div class="option-duration"><strong>⏱️ Durasi:</strong> ${option.duration}</div>` : ''}
-                        </div>
-                    </div>
-                `;
-            }).join('');
-
-            content = `
-                <div class="service-modal-header">
-                    <h2>${service.title}</h2>
-                    <p class="service-description">${service.description}</p>
-                    <p class="selection-info">✅ Pilih satu atau beberapa perawatan dengan mengklik card-nya</p>
-                </div>
-                
-                <div class="options-container">
-                    ${optionsHTML}
-                </div>
-                
-                <div class="selection-summary" id="selectionSummary" style="display: none;">
-                    <h4>📋 Perawatan yang Dipilih:</h4>
-                    <div id="selectedOptionsList"></div>
-                    <div class="total-price">
-                        <strong>💰 Total Estimasi: <span id="totalPrice">Rp 0</span></strong>
-                    </div>
-                </div>
-                
-                <div class="service-modal-footer">
-                    <button class="cta-button secondary" onclick="modalManager.closeAll()">
-                        ← Kembali
-                    </button>
-                    <button class="cta-button" id="bookingBtn" onclick="proceedToBooking('${serviceId}')" disabled>
-                        📅 Lanjut ke Booking
-                    </button>
-                </div>
-            `;
-
-            document.getElementById('serviceModalContent').innerHTML = content;
-            
-            if (service.type === "checkbox") {
-                attachCheckboxListeners(serviceId);
-            }
-        }).catch(error => {
-            console.error('Error loading images:', error);
-            showNotification('Terjadi error saat memuat gambar', 'error');
-        });
-
+        Promise.all(orientationPromises)
+            .then(results => {
+                renderServiceOptions(service, results);
+            })
+            .catch(error => {
+                console.error('Error loading service details:', error);
+                showErrorState(service);
+            });
     }
+}
 
-    modalManager.openModal('serviceModal');
+function renderServiceOptions(service, results) {
+    const optionsHTML = results.map(({ option, orientation }) => {
+        const containerClass = getImageContainerClass(orientation);
+        
+        return `
+            <div class="option-card" onclick="toggleOptionSelection('${option.id}')">
+                <div class="option-header">
+                    <div class="option-checkbox">
+                        <input type="checkbox" id="${option.id}" name="service-option" value="${option.id}" 
+                               onclick="event.stopPropagation(); updateSelectionSummary('${service.title}')">
+                    </div>
+                    <div class="option-image-container ${containerClass}">
+                        <img src="${option.image}" alt="${option.name}" 
+                             loading="lazy"
+                             onload="this.style.opacity='1'"
+                             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjZjhmOGY4IiByeD0iMjAiLz4KPHRleHQgeD0iMjAwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2NjYyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+SW1hZ2UgTm90IEZvdW5kPC90ZXh0Pgo8L3N2Zz4K'; this.style.opacity='1'"
+                             style="opacity: 0; transition: opacity 0.3s ease">
+                    </div>
+                    <div class="option-title">
+                        <h3>${option.name}</h3>
+                        <p class="option-description">${option.description}</p>
+                    </div>
+                </div>
+                
+                <div class="option-details">
+                    <div class="option-price">
+                        <strong>💰 Harga:</strong> ${option.price}
+                    </div>
+                    ${option.duration ? `<div class="option-duration"><strong>⏱️ Durasi:</strong> ${option.duration}</div>` : ''}
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    const content = `
+        <div class="service-modal-header">
+            <h2>${service.title}</h2>
+            <p class="service-description">${service.description}</p>
+            <p class="selection-info">✅ Pilih satu atau beberapa perawatan dengan mengklik card-nya</p>
+        </div>
+        
+        <div class="options-container">
+            ${optionsHTML}
+        </div>
+        
+        <div class="selection-summary" id="selectionSummary" style="display: none;">
+            <h4>📋 Perawatan yang Dipilih:</h4>
+            <div id="selectedOptionsList"></div>
+            <div class="total-price">
+                <strong>💰 Total Estimasi: <span id="totalPrice">Rp 0</span></strong>
+            </div>
+        </div>
+        
+        <div class="service-modal-footer">
+            <button class="cta-button secondary" onclick="modalManager.closeAll()">
+                ← Kembali
+            </button>
+            <button class="cta-button" id="bookingBtn" onclick="proceedToBooking('${service.title}')" disabled>
+                📅 Lanjut ke Booking
+            </button>
+        </div>
+    `;
+
+    // Smooth transition for content update
+    const modalContent = document.getElementById('serviceModalContent');
+    modalContent.style.opacity = '0';
+    
+    setTimeout(() => {
+        modalContent.innerHTML = content;
+        modalContent.style.opacity = '1';
+        
+        if (service.type === "checkbox") {
+            attachCheckboxListeners(service.title);
+        }
+    }, 200);
+}
+
+function showErrorState(service) {
+    const modalContent = document.getElementById('serviceModalContent');
+    modalContent.innerHTML = `
+        <div class="error-state">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">❌</div>
+            <h3>Gagal Memuat Layanan</h3>
+            <p>Terjadi kesalahan saat memuat detail layanan. Silakan coba lagi.</p>
+            <button class="cta-button" onclick="showServiceDetail('${service.title}')" style="margin-top: 1rem;">
+                🔄 Coba Lagi
+            </button>
+        </div>
+    `;
 }
 
 function toggleOptionSelection(optionId) {
