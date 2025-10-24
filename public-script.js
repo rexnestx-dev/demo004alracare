@@ -23,6 +23,14 @@ const serviceDetails = {
                 image: "./images/L_PERAWATANLUKAKERUMAHPASIENDIAREAPONTIANAK.webp",
                 duration: "60 menit",
                 description: "Layanan perawatan luka di rumah pasien dengan tim medis berpengalaman. Cocok untuk pasien dengan mobilitas terbatas atau membutuhkan perawatan berkelanjutan."
+            },
+            {
+                id: "L_SENDALDIABETES",
+                name: "Sendal Diabetes",
+                price: "Rp 500.000",
+                image: "./images/L_SENDALDIABETES.webp",
+                duration: "Konsultasi",
+                description: "Sendal khusus untuk penderita diabetes dengan desain ergonomis yang nyaman dan aman untuk kaki sensitif."
             }
         ]
     },
@@ -31,6 +39,30 @@ const serviceDetails = {
         description: "Pilih jenis perawatan kecantikan yang Anda butuhkan",
         type: "checkbox",
         options: [
+            {
+                id: "A_BABAK(NEVUSOFOTA)",
+                name: "Babak (Nevusofota)",
+                price: "Rp 350.000",
+                image: "./images/A_BABAK(NEVUSOFOTA).webp",
+                duration: "45-60 menit",
+                description: "Perawatan babak untuk kulit dengan teknologi modern yang aman dan efektif."
+            },
+            {
+                id: "A_BB_GLOW",
+                name: "BB Glow",
+                price: "Rp 380.000",
+                image: "./images/A_BB_GLOW.webp",
+                duration: "60 menit",
+                description: "Treatment BB Glow untuk kulit wajah yang lebih cerah dan glowing secara alami."
+            },
+            {
+                id: "A_BEKASCACAR(SMALLPOXSCAR)",
+                name: "Bekas Cacar (Smallpox scar)",
+                price: "Rp 550.000",
+                image: "./images/A_BEKASCACAR(SMALLPOXSCAR).webp",
+                duration: "60-90 menit",
+                description: "Perawatan khusus untuk menghilangkan bekas cacar pada kulit dengan hasil maksimal."
+            },
             {
                 id: "A_TOMPEL3X3CM",
                 name: "Tompel 3x3cm",
@@ -147,6 +179,33 @@ function getImageContainerClass(orientation) {
     if (orientation.isPortrait) return 'portrait';
     if (orientation.isLandscape) return 'landscape';
     return 'square';
+}
+
+// ===== IMPROVED IMAGE LOADING =====
+function loadImageWithFallback(imgElement, src, alt) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = function() {
+            imgElement.src = src;
+            imgElement.alt = alt;
+            resolve({
+                success: true,
+                width: this.width,
+                height: this.height
+            });
+        };
+        img.onerror = function() {
+            // Fallback image
+            imgElement.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjZjhmOGY4IiByeD0iMjAiLz4KPHRleHQgeD0iMjAwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2NjYyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+SW1hZ2UgTm90IEZvdW5kPC90ZXh0Pgo8L3N2Zz4K';
+            imgElement.alt = 'Gambar tidak tersedia';
+            resolve({
+                success: false,
+                width: 400,
+                height: 400
+            });
+        };
+        img.src = src;
+    });
 }
 
 // ===== MODAL MANAGEMENT =====

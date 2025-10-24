@@ -346,6 +346,22 @@ section:nth-child(even) {
     color: var(--primary-color);
 }
 
+/* Loading state untuk images */
+.image-loading {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
 /* ===== GALLERY SECTION ===== */
 .gallery-grid {
     display: grid;
@@ -711,6 +727,7 @@ footer {
 .option-title {
     flex: 1;
     min-width: 0;
+    word-wrap: break-word;
 }
 
 .option-title h3 {
@@ -719,6 +736,7 @@ footer {
     font-size: 1.6rem;
     line-height: 1.4;
     font-weight: 700;
+    word-break: break-word;
 }
 
 .option-description {
@@ -726,6 +744,7 @@ footer {
     margin: 0;
     font-size: 1.1rem;
     line-height: 1.6;
+    word-break: break-word;
 }
 
 .option-details {
@@ -1047,6 +1066,12 @@ footer {
     transform: translateX(0);
 }
 
+/* Fallback untuk gambar yang gagal load */
+.option-image-container img:error,
+.service-image-container img:error {
+    content: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjZjhmOGY4IiByeD0iMjAiLz4KPHRleHQgeD0iMjAwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2NjYyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+SW1hZ2UgTm90IEZvdW5kPC90ZXh0Pgo8L3N2Zz4K');
+}
+
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 1200px) {
     .container {
@@ -1203,6 +1228,7 @@ footer {
 
     .option-checkbox {
         align-self: flex-start;
+        margin-top: 0;
     }
 
     .option-card {
@@ -1217,7 +1243,7 @@ footer {
         max-width: 240px;
     }
 
-    /* Responsive untuk service images */
+    /* Perbaikan untuk service images di mobile */
     .service-image-container.natural-ratio {
         min-height: 150px;
         max-height: 250px;
