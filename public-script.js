@@ -185,33 +185,6 @@ function getImageContainerClass(orientation) {
     return 'square';
 }
 
-// ===== IMPROVED IMAGE LOADING =====
-function loadImageWithFallback(imgElement, src, alt) {
-    return new Promise((resolve) => {
-        const img = new Image();
-        img.onload = function() {
-            imgElement.src = src;
-            imgElement.alt = alt;
-            resolve({
-                success: true,
-                width: this.width,
-                height: this.height
-            });
-        };
-        img.onerror = function() {
-            // Fallback image
-            imgElement.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjZjhmOGY4IiByeD0iMjAiLz4KPHRleHQgeD0iMjAwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2NjYyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+SW1hZ2UgTm90IEZvdW5kPC90ZXh0Pgo8L3N2Zz4K';
-            imgElement.alt = 'Gambar tidak tersedia';
-            resolve({
-                success: false,
-                width: 400,
-                height: 400
-            });
-        };
-        img.src = src;
-    });
-}
-
 // ===== IMPROVED MODAL MANAGEMENT =====
 const modalManager = {
     openModal: function(modalId) {
@@ -282,19 +255,6 @@ const modalManager = {
     }
 };
 
-// ===== IMPROVED SERVICE NAVIGATION =====
-function navigateToService(serviceId) {
-    if (isModalTransitioning) return;
-    
-    // Close any existing modals smoothly
-    modalManager.closeAll();
-    
-    // Small delay to allow modal to close completely
-    setTimeout(() => {
-        showServiceDetail(serviceId);
-    }, 350);
-}
-
 // ===== IMPROVED SERVICE DETAIL MODAL FUNCTIONS =====
 function showServiceDetail(serviceId) {
     if (isModalTransitioning) return;
@@ -330,7 +290,7 @@ function showServiceDetail(serviceId) {
         // Tunggu semua gambar selesai di-deteksi
         Promise.all(orientationPromises)
             .then(results => {
-                renderServiceOptions(service, results);
+                renderServiceOptions(serviceId, service, results);
             })
             .catch(error => {
                 console.error('Error loading service details:', error);
@@ -339,7 +299,7 @@ function showServiceDetail(serviceId) {
     }
 }
 
-function renderServiceOptions(service, results) {
+function renderServiceOptions(serviceId, service, results) {
     const optionsHTML = results.map(({ option, orientation }) => {
         const containerClass = getImageContainerClass(orientation);
         
@@ -348,7 +308,7 @@ function renderServiceOptions(service, results) {
                 <div class="option-header">
                     <div class="option-checkbox">
                         <input type="checkbox" id="${option.id}" name="service-option" value="${option.id}" 
-                               onclick="event.stopPropagation(); updateSelectionSummary('${service.title}')">
+                               onclick="event.stopPropagation(); updateSelectionSummary('${serviceId}')">
                     </div>
                     <div class="option-image-container ${containerClass}">
                         <img src="${option.image}" alt="${option.name}" 
@@ -394,7 +354,7 @@ function renderServiceOptions(service, results) {
             <button class="cta-button secondary" onclick="modalManager.closeAll()">
                 ← Kembali
             </button>
-            <button class="cta-button" id="bookingBtn" onclick="proceedToBooking('${service.title}')" disabled>
+            <button class="cta-button" id="bookingBtn" onclick="proceedToBooking('${serviceId}')" disabled style="opacity: 0.6; cursor: not-allowed;">
                 📅 Lanjut ke Booking
             </button>
         </div>
@@ -409,8 +369,11 @@ function renderServiceOptions(service, results) {
         modalContent.style.opacity = '1';
         
         if (service.type === "checkbox") {
-            attachCheckboxListeners(service.title);
+            attachCheckboxListeners(serviceId);
         }
+        
+        // Initial update untuk tombol booking
+        updateSelectionSummary(serviceId);
     }, 200);
 }
 
@@ -421,8 +384,8 @@ function showErrorState(service) {
             <div style="font-size: 3rem; margin-bottom: 1rem;">❌</div>
             <h3>Gagal Memuat Layanan</h3>
             <p>Terjadi kesalahan saat memuat detail layanan. Silakan coba lagi.</p>
-            <button class="cta-button" onclick="showServiceDetail('${service.title}')" style="margin-top: 1rem;">
-                🔄 Coba Lagi
+            <button class="cta-button" onclick="modalManager.closeAll()" style="margin-top: 1rem;">
+                Tutup
             </button>
         </div>
     `;
@@ -465,9 +428,6 @@ function attachCheckboxListeners(serviceId) {
             updateSelectionSummary(serviceId);
         });
     });
-
-    // Initial update
-    updateSelectionSummary(serviceId);
 }
 
 function updateSelectionSummary(serviceId) {
@@ -478,10 +438,23 @@ function updateSelectionSummary(serviceId) {
     const selectedOptionsList = document.getElementById('selectedOptionsList');
     const totalPriceElement = document.getElementById('totalPrice');
 
-    bookingBtn.disabled = selectedCheckboxes.length === 0;
+    // Update tombol booking
+    if (bookingBtn) {
+        bookingBtn.disabled = selectedCheckboxes.length === 0;
+        
+        if (selectedCheckboxes.length > 0) {
+            bookingBtn.style.opacity = "1";
+            bookingBtn.style.cursor = "pointer";
+            bookingBtn.innerHTML = `📅 Lanjut ke Booking (${selectedCheckboxes.length})`;
+        } else {
+            bookingBtn.style.opacity = "0.6";
+            bookingBtn.style.cursor = "not-allowed";
+            bookingBtn.innerHTML = `📅 Lanjut ke Booking`;
+        }
+    }
     
     if (selectedCheckboxes.length > 0) {
-        selectionSummary.style.display = 'block';
+        if (selectionSummary) selectionSummary.style.display = 'block';
         
         let optionsHTML = '';
         let totalPrice = 0;
@@ -505,39 +478,58 @@ function updateSelectionSummary(serviceId) {
             }
         });
         
-        selectedOptionsList.innerHTML = optionsHTML;
-        totalPriceElement.textContent = `Rp ${totalPrice.toLocaleString('id-ID')}`;
-        
-        // Update button text dengan jumlah selected
-        bookingBtn.innerHTML = `📅 Lanjut ke Booking (${selectedCheckboxes.length})`;
+        if (selectedOptionsList) selectedOptionsList.innerHTML = optionsHTML;
+        if (totalPriceElement) totalPriceElement.textContent = `Rp ${totalPrice.toLocaleString('id-ID')}`;
         
     } else {
-        selectionSummary.style.display = 'none';
-        bookingBtn.innerHTML = `📅 Lanjut ke Booking`;
+        if (selectionSummary) selectionSummary.style.display = 'none';
     }
 }
 
+// ===== PERBAIKAN FUNGSI proceedToBooking =====
 function proceedToBooking(serviceId) {
+    console.log('Memproses booking untuk service:', serviceId);
+    
+    const service = serviceDetails[serviceId];
+    if (!service) {
+        console.error('Service tidak ditemukan:', serviceId);
+        showNotification('❌ Gagal memproses booking. Service tidak ditemukan.', 'error');
+        return;
+    }
+
     const selectedCheckboxes = document.querySelectorAll('input[name="service-option"]:checked');
     const selectedOptions = [];
     
+    console.log('Jumlah opsi terpilih:', selectedCheckboxes.length);
+    
     selectedCheckboxes.forEach(checkbox => {
-        const option = serviceDetails[serviceId].options.find(opt => opt.id === checkbox.value);
+        const option = service.options.find(opt => opt.id === checkbox.value);
         if (option) {
             selectedOptions.push({
                 id: option.id,
                 name: option.name,
                 price: option.price
             });
+            console.log('Opsi terpilih:', option.name);
         }
     });
     
-    localStorage.setItem('selectedService', JSON.stringify({
+    if (selectedOptions.length === 0) {
+        showNotification('❌ Silakan pilih minimal satu perawatan sebelum booking.', 'warning');
+        return;
+    }
+    
+    // Simpan data ke localStorage
+    const bookingData = {
         serviceId: serviceId,
-        serviceName: serviceDetails[serviceId].title,
+        serviceName: service.title,
         selectedOptions: selectedOptions,
-        type: 'checkbox'
-    }));
+        type: 'checkbox',
+        timestamp: new Date().toISOString()
+    };
+    
+    localStorage.setItem('selectedService', JSON.stringify(bookingData));
+    console.log('Data booking disimpan:', bookingData);
     
     showBookingForm();
 }
@@ -546,17 +538,25 @@ function proceedToBooking(serviceId) {
 function showBookingForm() {
     const selectedData = JSON.parse(localStorage.getItem('selectedService') || '{}');
     
+    console.log('Data yang akan ditampilkan di form:', selectedData);
+    
+    if (!selectedData.serviceId || !selectedData.selectedOptions) {
+        showNotification('❌ Data booking tidak valid. Silakan pilih layanan kembali.', 'error');
+        modalManager.closeAll();
+        return;
+    }
+    
     const timeOptions = generateTimeOptions();
     const today = new Date().toISOString().split('T')[0];
     
-    const servicesHTML = selectedData.selectedOptions ? selectedData.selectedOptions.map(option => `
+    const servicesHTML = selectedData.selectedOptions.map(option => `
         <div class="service-summary-item">
             <div>
                 <strong>${option.name}</strong>
             </div>
             <span class="service-price">${option.price}</span>
         </div>
-    `).join('') : '<p>Tidak ada layanan yang dipilih</p>';
+    `).join('');
 
     const content = `
         <div class="booking-form-modal">
@@ -637,8 +637,8 @@ function showBookingForm() {
     `;
 
     document.getElementById('serviceModalContent').innerHTML = content;
-    modalManager.openModal('serviceModal');
-
+    
+    // Setup form validation dan event listener
     setDefaultAppointmentDate();
     setupFormValidation();
     
