@@ -26,7 +26,6 @@ const serviceDetails = {
                 name: "Sendal Diabetes",
                 price: "Rp 500.000",
                 image: "./images/L_SENDALDIABETES.webp",
-
             }
         ]
     },
@@ -35,7 +34,7 @@ const serviceDetails = {
         description: "Pilih jenis perawatan kecantikan yang Anda butuhkan",
         type: "checkbox",
         options: [
-{
+            {
                 id: "A_BABAK(NEVUSOFOTA)",
                 name: "Babak (Nevusofota)",
                 price: "Rp 350.000",
@@ -360,7 +359,6 @@ function renderServiceOptions(service, results) {
                     </div>
                     <div class="option-title">
                         <h3>${option.name}</h3>
-                        <p class="option-description">${option.description}</p>
                     </div>
                 </div>
                 
@@ -368,7 +366,6 @@ function renderServiceOptions(service, results) {
                     <div class="option-price">
                         <strong>💰 Harga:</strong> ${option.price}
                     </div>
-                    ${option.duration ? `<div class="option-duration"><strong>⏱️ Durasi:</strong> ${option.duration}</div>` : ''}
                 </div>
             </div>
         `;
@@ -530,9 +527,7 @@ function proceedToBooking(serviceId) {
             selectedOptions.push({
                 id: option.id,
                 name: option.name,
-                price: option.price,
-                duration: option.duration,
-                description: option.description
+                price: option.price
             });
         }
     });
@@ -558,7 +553,6 @@ function showBookingForm() {
         <div class="service-summary-item">
             <div>
                 <strong>${option.name}</strong>
-                ${option.duration ? `<br><small>⏱️ ${option.duration}</small>` : ''}
             </div>
             <span class="service-price">${option.price}</span>
         </div>
@@ -907,7 +901,7 @@ function printBookingDetails(bookingId) {
         const servicesHTML = booking.serviceInfo.selectedOptions ? booking.serviceInfo.selectedOptions.map(option => `
             <div style="background: #f9f9f9; padding: 12px; margin: 8px 0; border-radius: 8px; border-left: 4px solid #3aaff3;">
                 <div style="font-weight: bold; font-size: 14px;">${option.name}</div>
-                <div style="color: #666; font-size: 13px;">${option.price} ${option.duration ? '• ' + option.duration : ''}</div>
+                <div style="color: #666; font-size: 13px;">${option.price}</div>
             </div>
         `).join('') : '';
         
