@@ -122,7 +122,7 @@ const serviceDetails = {
                 id: "A_GOSONGKARENAJENUHPAKAIKRIMRACIKAN(ONCHRONOSIS)",
                 name: "Gosong Karena Jenuh Pakai Krim Racikan (Onchronosis)",
                 price: "Rp 500.000",
-                image: "./images/A_GOSONG KARENAJENUHPAKAIKRIMRACIKAN(ONCHRONOSIS).webp",
+                image: "./images/A_GOSONGKARENAJENUHPAKAIKRIMRACIKAN(ONCHRONOSIS).webp",
             },
             {
                 id: "A_JERAWAT(ACNE)",
@@ -194,7 +194,7 @@ const serviceDetails = {
                 id: "A_LASERTATO4X4CM",
                 name: "Laser Tato 4x4cm",
                 price: "Rp 350.000",
-                image: "./images/A_LASERTATO.webp",
+                image: "./images/A_LASERTATO4X4CM.webp",
             },
             {
                 id: "A_LENTIGO_1",
