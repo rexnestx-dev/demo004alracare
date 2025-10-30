@@ -60,9 +60,285 @@ const serviceDetails = {
             },
             {
                 id: "A_BLOODSPOT",
-                name: "Blood spot_1-10",
+                name: "Blood Spot_1-10",
                 price: "Rp 500.000",
                 image: "./images/A_BLOODSPOT.webp",
+            },
+            {
+                id: "A_BLOODSPOT_11_30",
+                name: "Blood Spot_11-30",
+                price: "Rp 1.000.000",
+                image: "./images/A_BLOODSPOT.webp",
+            },
+            {
+                id: "A_BLOODSPOT_31_SEWAJAH",
+                name: "Blood Spot_31-Sewajah",
+                price: "Rp 500.000",
+                image: "./images/A_BLOODSPOT.webp",
+            },
+            {
+                id: "A_BOPENG(ACNESCAR)",
+                name: "Bopeng (Acne Scar)",
+                price: "Rp 550.000",
+                image: "./images/A_BOPENG(ACNESCAR).webp",
+            },
+            {
+                id: "A_CHEMICALPEELING",
+                name: "Chemical Peeling",
+                price: "Rp 500.000",
+                image: "./images/A_CHEMICALPEELING.webp",
+            },
+            {
+                id: "A_DETOX",
+                name: "Detox",
+                price: "Rp 300.000",
+                image: "./images/A_DETOX.webp",
+            },
+            {
+                id: "A_FLEKBULE(FREACKLES)_1_20",
+                name: "Flek Bule (Freackles)_1-20",
+                price: "Rp 500.000",
+                image: "./images/A_FLEKBULE(FREACKLES).webp",
+            },
+            {
+                id: "A_FLEKBULE(FREACKLES)_21_50",
+                name: "Flek Bule (Freackles)_21-50",
+                price: "Rp 1.000.000",
+                image: "./images/A_FLEKBULE(FREACKLES).webp",
+            },
+            {
+                id: "A_FLEKBULE(FREACKLES)_50_SEWAJAH",
+                name: "Flek Bule (Freackles)_50-Sewajah",
+                price: "Rp 1.500.000",
+                image: "./images/A_FLEKBULE(FREACKLES).webp",
+            },
+            {
+                id: "A_FLEKHITAM(MELASMA)",
+                name: "Flek Hitam (Melasma)",
+                price: "Rp 350.000",
+                image: "./images/A_FLEKHITAM(MELASMA).webp",
+            },
+            {
+                id: "A_GOSONGKARENAJENUHPAKAIKRIMRACIKAN(ONCHRONOSIS)",
+                name: "Gosong Karena Jenuh Pakai Krim Racikan (Onchronosis)",
+                price: "Rp 500.000",
+                image: "./images/A_GOSONGKARENAJENUHPAKAIKRIMRACIKAN(ONCHRONOSIS).webp",
+            },
+            {
+                id: "A_JERAWAT(ACNE)",
+                name: "Jerawat (Acne)",
+                price: "Rp 250.000",
+                image: "./images/A_JERAWAT(ACNE).webp",
+            },
+            {
+                id: "A_KAKIPECAH-PECAH(FISURA)",
+                name: "Kaki Pecah-Pecah (Fisura)",
+                price: "Rp 300.000",
+                image: "./images/A_KAKIPECAH-PECAH(FISURA).webp",
+            },
+            {
+                id: "A_KANTUNGMATA(EYEBAG)",
+                name: "Kantung Mata (Eyebag)",
+                price: "Rp 550.000",
+                image: "./images/A_KANTUNGMATA(EYEBAG).webp",
+            },
+            {
+                id: "A_KAPALAN(CALLOUS)",
+                name: "Kapalan (Callous)",
+                price: "Rp 300.000",
+                image: "./images/A_KAPALAN(CALLOUS).webp",
+            },
+            {
+                id: "A_KELLOID",
+                name: "Kelloid",
+                price: "Rp 550.000",
+                image: "./images/A_KELLOID.webp",
+            },
+            {
+                id: "A_KERIPUT(WRINCLE)",
+                name: "Keriput (Wrincle)",
+                price: "Rp 550.000",
+                image: "./images/A_KERIPUT(WRINCLE).webp",
+            },
+            {
+                id: "A_KOMEDOHITAM(BLACKHEAD)",
+                name: "Komedo Hitam (Blackhead)",
+                price: "Rp 150.000",
+                image: "./images/A_KOMEDOHITAM(BLACKHEAD).webp",
+            },
+            {
+                id: "A_KOMEDOPUTIH(WHITEHEAD)",
+                name: "Komedo Putih (Whitehead)",
+                price: "Rp 150.000",
+                image: "./images/A_KOMEDOPUTIH(WHITEHEAD).webp",
+            },
+            {
+                id: "A_KUTIL(SKINTAG)_1_10",
+                name: "Kutil (SKintag)_1-10",
+                price: "Rp 500.000",
+                image: "./images/A_KUTIL(SKINTAG).webp",
+            },
+            {
+                id: "A_KUTIL(SKINTAG)_11_30",
+                name: "Kutil (SKintag)_11-30",
+                price: "Rp 1.000.000",
+                image: "./images/A_KUTIL(SKINTAG).webp",
+            },
+            {
+                id: "A_KUTIL(SKINTAG)_31_SEWAJAH",
+                name: "Kutil (SKintag)_31-SEWAJAH",
+                price: "Rp 1.500.000",
+                image: "./images/A_KUTIL(SKINTAG).webp",
+            },
+            {
+                id: "A_LASERTATO4X4CM",
+                name: "Laser Tato 4x4cm",
+                price: "Rp 350.000",
+                image: "./images/A_LASERTATO4X4CM.webp",
+            },
+            {
+                id: "A_LENTIGO_1",
+                name: "Lentigo_1",
+                price: "Rp 500.000",
+                image: "./images/A_LENTIGO.webp",
+            },
+            {
+                id: "A_LENTIGO_2_7",
+                name: "Lentigo_2-7",
+                price: "Rp 1.000.000",
+                image: "./images/A_LENTIGO.webp",
+            },
+            {
+                id: "A_LENTIGO_8_SEWAJAH",
+                name: "Lentigo_8-SEWAJAH",
+                price: "Rp 1.500.000",
+                image: "./images/A_LENTIGO.webp",
+            },
+            {
+                id: "A_MATAIKAN(CLAVUS)",
+                name: "Mata Ikan (Clavus)",
+                price: "Rp 500.000",
+                image: "./images/A_MATAIKAN(CLAVUS).webp",
+            },
+            {
+                id: "A_MENCERAHKAN(BRIGHTENING)",
+                name: "Mencerahkan (Brightening)",
+                price: "Rp 350.000",
+                image: "./images/A_MENCERAHKAN(BRIGHTENING).webp",
+            },
+            {
+                id: "A_MILLIA_1_10",
+                name: "Millia_1-10",
+                price: "Rp 500.000",
+                image: "./images/A_MILLIA.webp",
+            },
+            {
+                id: "A_MILLIA_11_30",
+                name: "Millia_11-30",
+                price: "Rp 1.000.000",
+                image: "./images/A_MILLIA.webp",
+            },
+            {
+                id: "A_MILLIA_31_SEWAJAH",
+                name: "Millia_31-SEWAJAH",
+                price: "Rp 1.500.000",
+                image: "./images/A_MILLIA.webp",
+            },
+            {
+                id: "A_NEVUSOFHORY",
+                name: "Nevusofhory",
+                price: "Rp 350.000",
+                image: "./images/A_NEVUSOFHORY.webp",
+            },
+            {
+                id: "A_NODABEKASJERAWAT(ACNESPOT)",
+                name: "Noda Bekas Jerawat (Acne Spot)",
+                price: "Rp 500.000",
+                image: "./images/A_NODABEKASJERAWAT(ACNESPOT).webp",
+            },
+            {
+                id: "A_NODABEKASLUKA(HIPERPIGMENTASI)",
+                name: "Noda Bekas Luka (Hiperpigmentasi)",
+                price: "Rp 550.000",
+                image: "./images/A_NODABEKASLUKA(HIPERPIGMENTASI).webp",
+            },
+            {
+                id: "A_NODAKOPISUSU(CAVEAULAITMACULE)",
+                name: "Noda Kopi Susu (Caveau Lait Macule)",
+                price: "Rp 500.000",
+                image: "./images/A_NODAKOPISUSU(CAVEAULAITMACULE).webp",
+            },
+            {
+                id: "A_RFSLIMING",
+                name: "Rfslimng",
+                price: "Rp 350.000",
+                image: "./images/A_RFSLIMING.webp",
+            },
+            {
+                id: "A_SEBOROIKKERATOSIS_1_10",
+                name: "Seboroik Keratosis_1-10",
+                price: "Rp 500.000",
+                image: "./images/A_SEBOROIKKERATOSIS.webp",
+            },
+            {
+                id: "A_SEBOROIKKERATOSIS_11_30",
+                name: "Seboroik Keratosis_11-30",
+                price: "Rp 1.000.000",
+                image: "./images/A_SEBOROIKKERATOSIS.webp",
+            },
+            {
+                id: "A_SEBOROIKKERATOSIS_31_SEWAJAH",
+                name: "Seboroik Keratosis_31-SEWAJAH",
+                price: "Rp 1.500.000",
+                image: "./images/A_SEBOROIKKERATOSIS.webp",
+            },
+            {
+                id: "A_SPIDERVEIN",
+                name: "Spidervein",
+                price: "Rp 350.000",
+                image: "./images/A_SPIDERVEIN.webp",
+            },
+            {
+                id: "A_STRETCHMARK",
+                name: "Stretchmark",
+                price: "Rp 550.000",
+                image: "./images/A_STRETCHMARK.webp",
+            },
+            {
+                id: "A_SYRINGOMA_1_10",
+                name: "Syringoma_1-10",
+                price: "Rp 500.000",
+                image: "./images/A_SYRINGOMA.webp",
+            },
+            {
+                id: "A_SYRINGOMA_11_30",
+                name: "Syringoma_11-30",
+                price: "Rp 1.000.000",
+                image: "./images/A_SYRINGOMA.webp",
+            },
+            {
+                id: "A_SYRINGOMA_31_SEWAJAH",
+                name: "Syringoma_31-SEWAJAH",
+                price: "Rp 1.500.000",
+                image: "./images/A_SYRINGOMA.webp",
+            },
+            {
+                id: "A_TAHILALAT(NEAVY)_1",
+                name: "Tahi Lalat (Neavy)_1",
+                price: "Rp 500.000",
+                image: "./images/A_TAHILALAT(NEAVY).webp",
+            },
+            {
+                id: "A_TAHILALAT(NEAVY)_2_7",
+                name: "Tahi Lalat (Neavy)_2-7",
+                price: "Rp 1.000.000",
+                image: "./images/A_TAHILALAT(NEAVY).webp",
+            },
+            {
+                id: "A_TAHILALAT(NEAVY)_8_SEWAJAH",
+                name: "Tahi Lalat (Neavy)_8-SEWAJAH",
+                price: "Rp 1.500.000",
+                image: "./images/A_TAHILALAT(NEAVY).webp",
             },
             {
                 id: "A_TOMPEL3X3CM",
@@ -88,6 +364,24 @@ const serviceDetails = {
                 name: "Sunat Ring",
                 price: "Rp 1.200.000",
                 image: "./images/S_RING.webp",
+            },
+            {
+                id: "S_RING(EXTRAMAINAN)",
+                name: "Sunat Ring Extra Mainan",
+                price: "Rp 1.500.000",
+                image: "./images/S_RING(EXTRAMAINAN).webp",
+            },
+            {
+                id: "S_TEKNOSEALER",
+                name: "Sunat Tekno Sealer",
+                price: "Rp 2.500.000",
+                image: "./images/S_TEKNOSEALER.webp",
+            },
+            {
+                id: "S_TEKNOSEALER(EXTRAMAINAN)",
+                name: "Sunat Tekno Sealer Extra Mainan",
+                price: "Rp 2.800.000",
+                image: "./images/S_TEKNOSEALER(EXTRAMAINAN).webp",
             }
         ]
     },
@@ -107,6 +401,24 @@ const serviceDetails = {
                 name: "Berhenti Merokok",
                 price: "Rp 500.000",
                 image: "./images/H_BERHENTIMEROKOK.webp",
+            },
+            {
+                id: "H_BERHENTISELINGKUH",
+                name: "Berhenti Selingkuh",
+                price: "Rp 500.000",
+                image: "./images/H_BERHENTISELINGKUH.webp",
+            },
+            {
+                id: "H_MELUPAKANMANTAN",
+                name: "Melupakan Mantan",
+                price: "Rp 500.000",
+                image: "./images/H_MELUPAKANMANTAN.webp",
+            },
+            {
+                id: "H_MENGHILANGKANFOBIA",
+                name: "Menghilangkan Fobia",
+                price: "Rp 500.000",
+                image: "./images/H_MENGHILANGKANFOBIA.webp",
             }
         ]
     },
@@ -131,11 +443,21 @@ const serviceDetails = {
     }
 };
 
+// ===== UTILITY FUNCTIONS =====
+function generateUniqueId() {
+    return 'id_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+}
+
+function extractPrice(priceString) {
+    if (!priceString) return 0;
+    const match = priceString.match(/(\d+\.?\d*)/g);
+    return match ? parseInt(match[0].replace(/\./g, '')) : 0;
+}
+
 // ===== IMAGE ORIENTATION DETECTION =====
 function detectImageOrientation(imgSrc, callback) {
     const img = new Image();
     
-    // Set timeout untuk mencegah hanging
     const timeout = setTimeout(() => {
         callback({
             isPortrait: false,
@@ -165,7 +487,6 @@ function detectImageOrientation(imgSrc, callback) {
     
     img.onerror = function() {
         clearTimeout(timeout);
-        // Fallback jika gambar gagal load
         callback({
             isPortrait: false,
             isLandscape: true,
@@ -192,16 +513,18 @@ const modalManager = {
         isModalTransitioning = true;
         
         const modal = document.getElementById(modalId);
-        modal.style.display = 'block';
+        if (!modal) {
+            console.error(`Modal dengan ID ${modalId} tidak ditemukan`);
+            isModalTransitioning = false;
+            return;
+        }
         
-        // Reset scroll position
+        modal.style.display = 'block';
         modal.scrollTop = 0;
         
-        // Prevent body scroll
         document.body.style.overflow = 'hidden';
         document.body.style.paddingRight = '15px';
         
-        // Smooth opening
         setTimeout(() => {
             modal.classList.add('show');
             isModalTransitioning = false;
@@ -213,6 +536,11 @@ const modalManager = {
         isModalTransitioning = true;
         
         const modal = document.getElementById(modalId);
+        if (!modal) {
+            isModalTransitioning = false;
+            return;
+        }
+        
         modal.classList.remove('show');
         
         setTimeout(() => {
@@ -220,9 +548,9 @@ const modalManager = {
             document.body.style.overflow = 'auto';
             document.body.style.paddingRight = '0';
             
-            // Clear modal content to prevent glitches
             if (modalId === 'serviceModal') {
-                document.getElementById('serviceModalContent').innerHTML = '';
+                const modalContent = document.getElementById('serviceModalContent');
+                if (modalContent) modalContent.innerHTML = '';
             }
             isModalTransitioning = false;
         }, 300);
@@ -239,9 +567,9 @@ const modalManager = {
             setTimeout(() => {
                 modal.style.display = 'none';
                 
-                // Clear service modal content
                 if (modal.id === 'serviceModal') {
-                    document.getElementById('serviceModalContent').innerHTML = '';
+                    const modalContent = document.getElementById('serviceModalContent');
+                    if (modalContent) modalContent.innerHTML = '';
                 }
             }, 300);
         });
@@ -260,10 +588,18 @@ function showServiceDetail(serviceId) {
     if (isModalTransitioning) return;
     
     const service = serviceDetails[serviceId];
-    if (!service) return;
+    if (!service) {
+        console.error(`Service dengan ID ${serviceId} tidak ditemukan`);
+        showNotification('❌ Layanan tidak ditemukan', 'error');
+        return;
+    }
 
-    // Show loading state immediately
     const modalContent = document.getElementById('serviceModalContent');
+    if (!modalContent) {
+        console.error('Element serviceModalContent tidak ditemukan');
+        return;
+    }
+
     modalContent.innerHTML = `
         <div class="loading-state">
             <div class="loading-icon">⏳</div>
@@ -275,7 +611,6 @@ function showServiceDetail(serviceId) {
     modalManager.openModal('serviceModal');
 
     if (service.type === "checkbox") {
-        // Buat array promises untuk mendeteksi semua orientasi gambar
         const orientationPromises = service.options.map(option => {
             return new Promise((resolve) => {
                 detectImageOrientation(option.image, (orientation) => {
@@ -287,7 +622,6 @@ function showServiceDetail(serviceId) {
             });
         });
 
-        // Tunggu semua gambar selesai di-deteksi
         Promise.all(orientationPromises)
             .then(results => {
                 renderServiceOptions(serviceId, service, results);
@@ -360,8 +694,9 @@ function renderServiceOptions(serviceId, service, results) {
         </div>
     `;
 
-    // Smooth transition for content update
     const modalContent = document.getElementById('serviceModalContent');
+    if (!modalContent) return;
+
     modalContent.style.opacity = '0';
     
     setTimeout(() => {
@@ -372,13 +707,14 @@ function renderServiceOptions(serviceId, service, results) {
             attachCheckboxListeners(serviceId);
         }
         
-        // Initial update untuk tombol booking
         updateSelectionSummary(serviceId);
     }, 200);
 }
 
 function showErrorState(service) {
     const modalContent = document.getElementById('serviceModalContent');
+    if (!modalContent) return;
+
     modalContent.innerHTML = `
         <div class="error-state">
             <div style="font-size: 3rem; margin-bottom: 1rem;">❌</div>
@@ -393,24 +729,24 @@ function showErrorState(service) {
 
 function toggleOptionSelection(optionId) {
     const checkbox = document.getElementById(optionId);
-    if (checkbox) {
-        checkbox.checked = !checkbox.checked;
-        
-        // Add/remove selected class for visual feedback
-        const optionCard = checkbox.closest('.option-card');
+    if (!checkbox) return;
+
+    checkbox.checked = !checkbox.checked;
+    
+    const optionCard = checkbox.closest('.option-card');
+    if (optionCard) {
         if (checkbox.checked) {
             optionCard.classList.add('selected');
         } else {
             optionCard.classList.remove('selected');
         }
-        
-        // Cari serviceId dari checkbox yang di-click
-        const serviceId = Object.keys(serviceDetails).find(id => 
-            serviceDetails[id].options.some(opt => opt.id === optionId)
-        );
-        if (serviceId) {
-            updateSelectionSummary(serviceId);
-        }
+    }
+    
+    const serviceId = Object.keys(serviceDetails).find(id => 
+        serviceDetails[id].options.some(opt => opt.id === optionId)
+    );
+    if (serviceId) {
+        updateSelectionSummary(serviceId);
     }
 }
 
@@ -420,10 +756,12 @@ function attachCheckboxListeners(serviceId) {
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', function() {
             const optionCard = this.closest('.option-card');
-            if (this.checked) {
-                optionCard.classList.add('selected');
-            } else {
-                optionCard.classList.remove('selected');
+            if (optionCard) {
+                if (this.checked) {
+                    optionCard.classList.add('selected');
+                } else {
+                    optionCard.classList.remove('selected');
+                }
             }
             updateSelectionSummary(serviceId);
         });
@@ -432,13 +770,14 @@ function attachCheckboxListeners(serviceId) {
 
 function updateSelectionSummary(serviceId) {
     const service = serviceDetails[serviceId];
+    if (!service) return;
+
     const selectedCheckboxes = document.querySelectorAll('input[name="service-option"]:checked');
     const bookingBtn = document.getElementById('bookingBtn');
     const selectionSummary = document.getElementById('selectionSummary');
     const selectedOptionsList = document.getElementById('selectedOptionsList');
     const totalPriceElement = document.getElementById('totalPrice');
 
-    // Update tombol booking
     if (bookingBtn) {
         bookingBtn.disabled = selectedCheckboxes.length === 0;
         
@@ -469,17 +808,14 @@ function updateSelectionSummary(serviceId) {
                     </div>
                 `;
                 
-                // Simple price calculation (ambil harga terendah)
-                const priceMatch = option.price.match(/(\d+\.?\d*)/g);
-                if (priceMatch && priceMatch.length > 0) {
-                    const minPrice = parseInt(priceMatch[0].replace('.', ''));
-                    totalPrice += minPrice;
-                }
+                totalPrice += extractPrice(option.price);
             }
         });
         
         if (selectedOptionsList) selectedOptionsList.innerHTML = optionsHTML;
-        if (totalPriceElement) totalPriceElement.textContent = `Rp ${totalPrice.toLocaleString('id-ID')}`;
+        if (totalPriceElement) {
+            totalPriceElement.textContent = `Rp ${totalPrice.toLocaleString('id-ID')}`;
+        }
         
     } else {
         if (selectionSummary) selectionSummary.style.display = 'none';
@@ -519,7 +855,6 @@ function proceedToBooking(serviceId) {
         return;
     }
     
-    // Simpan data ke localStorage
     const bookingData = {
         serviceId: serviceId,
         serviceName: service.title,
@@ -528,15 +863,25 @@ function proceedToBooking(serviceId) {
         timestamp: new Date().toISOString()
     };
     
-    localStorage.setItem('selectedService', JSON.stringify(bookingData));
-    console.log('Data booking disimpan:', bookingData);
-    
-    showBookingForm();
+    try {
+        localStorage.setItem('selectedService', JSON.stringify(bookingData));
+        console.log('Data booking disimpan:', bookingData);
+        showBookingForm();
+    } catch (error) {
+        console.error('Error menyimpan data booking:', error);
+        showNotification('❌ Gagal menyimpan data booking.', 'error');
+    }
 }
 
 // ===== BOOKING FORM FUNCTIONS =====
 function showBookingForm() {
-    const selectedData = JSON.parse(localStorage.getItem('selectedService') || '{}');
+    let selectedData;
+    try {
+        selectedData = JSON.parse(localStorage.getItem('selectedService') || '{}');
+    } catch (error) {
+        console.error('Error parsing selectedService:', error);
+        selectedData = {};
+    }
     
     console.log('Data yang akan ditampilkan di form:', selectedData);
     
@@ -636,24 +981,28 @@ function showBookingForm() {
         </div>
     `;
 
-    document.getElementById('serviceModalContent').innerHTML = content;
+    const modalContent = document.getElementById('serviceModalContent');
+    if (!modalContent) return;
+
+    modalContent.innerHTML = content;
     
-    // Setup form validation dan event listener
     setDefaultAppointmentDate();
     setupFormValidation();
     
-    document.getElementById('patientBookingForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        submitBookingForm();
-    });
+    const form = document.getElementById('patientBookingForm');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitBookingForm();
+        });
+    }
 }
 
 function generateTimeOptions() {
     let options = '';
-    // Generate time slots from 08:00 to 17:00 every 30 minutes
     for (let hour = 8; hour <= 17; hour++) {
         for (let minute = 0; minute < 60; minute += 30) {
-            if (hour === 17 && minute > 0) break; // Stop at 17:00
+            if (hour === 17 && minute > 0) break;
             const time = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
             options += `<option value="${time}">${time}</option>`;
         }
@@ -701,7 +1050,6 @@ function setupFormValidation() {
         });
     }
 
-    // Real-time validation feedback
     const inputs = document.querySelectorAll('input, textarea, select');
     inputs.forEach(input => {
         input.addEventListener('blur', function() {
@@ -715,7 +1063,13 @@ function setupFormValidation() {
 }
 
 function goBackToServiceSelection() {
-    const selectedData = JSON.parse(localStorage.getItem('selectedService') || '{}');
+    let selectedData;
+    try {
+        selectedData = JSON.parse(localStorage.getItem('selectedService') || '{}');
+    } catch (error) {
+        selectedData = {};
+    }
+    
     if (selectedData.serviceId) {
         showServiceDetail(selectedData.serviceId);
     } else {
@@ -724,8 +1078,17 @@ function goBackToServiceSelection() {
 }
 
 function submitBookingForm() {
-    const formData = new FormData(document.getElementById('patientBookingForm'));
-    const selectedData = JSON.parse(localStorage.getItem('selectedService') || '{}');
+    const form = document.getElementById('patientBookingForm');
+    if (!form) return;
+
+    const formData = new FormData(form);
+    let selectedData;
+    
+    try {
+        selectedData = JSON.parse(localStorage.getItem('selectedService') || '{}');
+    } catch (error) {
+        selectedData = {};
+    }
     
     if (!validateBookingForm(formData)) {
         return;
@@ -794,7 +1157,6 @@ function validateBookingForm(formData) {
 // ===== DATA MANAGEMENT =====
 function saveBookingToStorage(bookingData) {
     try {
-        // Simpan ke localStorage (sementara)
         const existingBookings = JSON.parse(localStorage.getItem('klinikBookings') || '[]');
         
         const isDuplicate = existingBookings.some(booking => 
@@ -889,11 +1251,20 @@ function showBookingConfirmation(bookingData) {
         </div>
     `;
 
-    document.getElementById('serviceModalContent').innerHTML = content;
+    const modalContent = document.getElementById('serviceModalContent');
+    if (modalContent) {
+        modalContent.innerHTML = content;
+    }
 }
 
 function printBookingDetails(bookingId) {
-    const bookings = JSON.parse(localStorage.getItem('klinikBookings') || '[]');
+    let bookings = [];
+    try {
+        bookings = JSON.parse(localStorage.getItem('klinikBookings') || '[]');
+    } catch (error) {
+        console.error('Error parsing bookings:', error);
+    }
+    
     const booking = bookings.find(b => b.bookingId === bookingId);
     
     if (booking) {
@@ -954,9 +1325,11 @@ function printBookingDetails(bookingId) {
             </html>
         `;
         
-        printWindow.document.write(printContent);
-        printWindow.document.close();
-        printWindow.print();
+        if (printWindow) {
+            printWindow.document.write(printContent);
+            printWindow.document.close();
+            printWindow.print();
+        }
     }
 }
 
@@ -971,10 +1344,7 @@ function initializeServiceCards() {
                 const container = img.parentElement;
                 const containerClass = getImageContainerClass(orientation);
                 
-                // Hapus class ratio lama jika ada
                 container.classList.remove('ratio-1-1', 'ratio-16-9', 'ratio-9-16');
-                
-                // Tambah class untuk natural ratio
                 container.classList.add('natural-ratio', containerClass);
             });
         }
@@ -1013,13 +1383,22 @@ function showNotification(message, type = 'info') {
 
 // ===== NAVIGATION FUNCTIONS =====
 function scrollToServices() {
-    document.getElementById('services').scrollIntoView({
-        behavior: 'smooth'
-    });
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
+        servicesSection.scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
 }
 
 function showBookingModal() {
-    const selectedData = JSON.parse(localStorage.getItem('selectedService') || '{}');
+    let selectedData;
+    try {
+        selectedData = JSON.parse(localStorage.getItem('selectedService') || '{}');
+    } catch (error) {
+        selectedData = {};
+    }
+    
     if (selectedData.serviceId) {
         showBookingForm();
     } else {
@@ -1045,7 +1424,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     block: 'start'
                 });
                 
-                // Close mobile menu
                 const hamburger = document.querySelector('.hamburger');
                 const navMenu = document.querySelector('.nav-menu');
                 if (hamburger && navMenu) {
@@ -1066,7 +1444,6 @@ document.addEventListener('DOMContentLoaded', function() {
             navMenu.classList.toggle('active');
         });
 
-        // Close mobile menu when clicking on links
         document.querySelectorAll('.nav-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 if (hamburger && navMenu) {
