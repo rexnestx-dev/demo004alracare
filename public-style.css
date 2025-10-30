@@ -386,8 +386,8 @@ section:nth-child(even) {
     box-shadow: var(--shadow-hover);
 }
 
-/* Container untuk gambar dengan aspect ratio 16:9 */
-.gallery-image {
+/* Container untuk gambar dengan aspect ratio 16:9 - HANYA DI GALLERY */
+#gallery .gallery-image {
     width: 100%;
     height: 0;
     padding-bottom: 56.25%; /* 16:9 aspect ratio (9/16 = 0.5625) */
@@ -396,8 +396,8 @@ section:nth-child(even) {
     background: var(--bg-light);
 }
 
-/* Style untuk gambar */
-.gallery-item img {
+/* Style untuk gambar - HANYA DI GALLERY */
+#gallery .gallery-item img {
     position: absolute;
     top: 0;
     left: 0;
@@ -407,12 +407,12 @@ section:nth-child(even) {
     transition: var(--transition);
 }
 
-.gallery-item:hover img {
+#gallery .gallery-item:hover img {
     transform: scale(1.05);
 }
 
-/* Style untuk fallback icon */
-.gallery-fallback {
+/* Style untuk fallback icon - HANYA DI GALLERY */
+#gallery .gallery-fallback {
     position: absolute;
     top: 0;
     left: 0;
@@ -425,13 +425,13 @@ section:nth-child(even) {
     color: var(--text-white);
 }
 
-.gallery-fallback i {
+#gallery .gallery-fallback i {
     font-size: 3rem;
     opacity: 0.8;
 }
 
-/* Style untuk item yang hanya menggunakan icon (tanpa gambar) */
-.gallery-item .gallery-image:has(i:only-child) {
+/* Style untuk item yang hanya menggunakan icon (tanpa gambar) - HANYA DI GALLERY */
+#gallery .gallery-item .gallery-image:has(i:only-child) {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -439,7 +439,7 @@ section:nth-child(even) {
     color: var(--text-white);
 }
 
-.gallery-item .gallery-image:has(i:only-child) i {
+#gallery .gallery-item .gallery-image:has(i:only-child) i {
     font-size: 3rem;
     opacity: 0.9;
     position: absolute;
@@ -448,7 +448,7 @@ section:nth-child(even) {
     transform: translate(-50%, -50%);
 }
 
-.gallery-item p {
+#gallery .gallery-item p {
     padding: 1.5rem 1rem;
     margin: 0;
     font-weight: 600;
@@ -1377,13 +1377,13 @@ footer {
         gap: 1.5rem;
     }
     
-    .gallery-item p {
+    #gallery .gallery-item p {
         padding: 1rem 0.8rem;
         font-size: 0.95rem;
     }
     
-    .gallery-fallback i,
-    .gallery-item .gallery-image:has(i:only-child) i {
+    #gallery .gallery-fallback i,
+    #gallery .gallery-item .gallery-image:has(i:only-child) i {
         font-size: 2.5rem;
     }
 }
@@ -1478,13 +1478,13 @@ footer {
         gap: 1rem;
     }
     
-    .gallery-item p {
+    #gallery .gallery-item p {
         padding: 0.8rem 0.5rem;
         font-size: 0.9rem;
     }
     
-    .gallery-fallback i,
-    .gallery-item .gallery-image:has(i:only-child) i {
+    #gallery .gallery-fallback i,
+    #gallery .gallery-item .gallery-image:has(i:only-child) i {
         font-size: 2rem;
     }
 }
