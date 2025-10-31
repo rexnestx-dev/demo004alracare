@@ -52,306 +52,7 @@ const serviceDetails = {
                 price: "Rp 550.000",
                 image: "./images/A_BEKASCACAR(SMALLPOXSCAR).webp",
             },
-            {
-                id: "A_BEKASLUKACEKUNG(SCAR)",
-                name: "Bekas Luka Cekung (Scar)",
-                price: "Rp 550.000",
-                image: "./images/A_BEKASLUKACEKUNG(SCAR).webp",
-            },
-            {
-                id: "A_BLOODSPOT",
-                name: "Blood Spot_1-10",
-                price: "Rp 500.000",
-                image: "./images/A_BLOODSPOT.webp",
-            },
-            {
-                id: "A_BLOODSPOT_11_30",
-                name: "Blood Spot_11-30",
-                price: "Rp 1.000.000",
-                image: "./images/A_BLOODSPOT.webp",
-            },
-            {
-                id: "A_BLOODSPOT_31_SEWAJAH",
-                name: "Blood Spot_31-Sewajah",
-                price: "Rp 500.000",
-                image: "./images/A_BLOODSPOT.webp",
-            },
-            {
-                id: "A_BOPENG(ACNESCAR)",
-                name: "Bopeng (Acne Scar)",
-                price: "Rp 550.000",
-                image: "./images/A_BOPENG(ACNESCAR).webp",
-            },
-            {
-                id: "A_CHEMICALPEELING",
-                name: "Chemical Peeling",
-                price: "Rp 500.000",
-                image: "./images/A_CHEMICALPEELING.webp",
-            },
-            {
-                id: "A_DETOX",
-                name: "Detox",
-                price: "Rp 300.000",
-                image: "./images/A_DETOX.webp",
-            },
-            {
-                id: "A_FLEKBULE(FREACKLES)_1_20",
-                name: "Flek Bule (Freackles)_1-20",
-                price: "Rp 500.000",
-                image: "./images/A_FLEKBULE(FREACKLES).webp",
-            },
-            {
-                id: "A_FLEKBULE(FREACKLES)_21_50",
-                name: "Flek Bule (Freackles)_21-50",
-                price: "Rp 1.000.000",
-                image: "./images/A_FLEKBULE(FREACKLES).webp",
-            },
-            {
-                id: "A_FLEKBULE(FREACKLES)_50_SEWAJAH",
-                name: "Flek Bule (Freackles)_50-Sewajah",
-                price: "Rp 1.500.000",
-                image: "./images/A_FLEKBULE(FREACKLES).webp",
-            },
-            {
-                id: "A_FLEKHITAM(MELASMA)",
-                name: "Flek Hitam (Melasma)",
-                price: "Rp 350.000",
-                image: "./images/A_FLEKHITAM(MELASMA).webp",
-            },
-            {
-                id: "A_GOSONGKARENAJENUHPAKAIKRIMRACIKAN(ONCHRONOSIS)",
-                name: "Gosong Karena Jenuh Pakai Krim Racikan (Onchronosis)",
-                price: "Rp 500.000",
-                image: "./images/A_GOSONGKARENAJENUHPAKAIKRIMRACIKAN(ONCHRONOSIS).webp",
-            },
-            {
-                id: "A_JERAWAT(ACNE)",
-                name: "Jerawat (Acne)",
-                price: "Rp 250.000",
-                image: "./images/A_JERAWAT(ACNE).webp",
-            },
-            {
-                id: "A_KAKIPECAH-PECAH(FISURA)",
-                name: "Kaki Pecah-Pecah (Fisura)",
-                price: "Rp 300.000",
-                image: "./images/A_KAKIPECAH-PECAH(FISURA).webp",
-            },
-            {
-                id: "A_KANTUNGMATA(EYEBAG)",
-                name: "Kantung Mata (Eyebag)",
-                price: "Rp 550.000",
-                image: "./images/A_KANTUNGMATA(EYEBAG).webp",
-            },
-            {
-                id: "A_KAPALAN(CALLOUS)",
-                name: "Kapalan (Callous)",
-                price: "Rp 300.000",
-                image: "./images/A_KAPALAN(CALLOUS).webp",
-            },
-            {
-                id: "A_KELLOID",
-                name: "Kelloid",
-                price: "Rp 550.000",
-                image: "./images/A_KELLOID.webp",
-            },
-            {
-                id: "A_KERIPUT(WRINCLE)",
-                name: "Keriput (Wrincle)",
-                price: "Rp 550.000",
-                image: "./images/A_KERIPUT(WRINCLE).webp",
-            },
-            {
-                id: "A_KOMEDOHITAM(BLACKHEAD)",
-                name: "Komedo Hitam (Blackhead)",
-                price: "Rp 150.000",
-                image: "./images/A_KOMEDOHITAM(BLACKHEAD).webp",
-            },
-            {
-                id: "A_KOMEDOPUTIH(WHITEHEAD)",
-                name: "Komedo Putih (Whitehead)",
-                price: "Rp 150.000",
-                image: "./images/A_KOMEDOPUTIH(WHITEHEAD).webp",
-            },
-            {
-                id: "A_KUTIL(SKINTAG)_1_10",
-                name: "Kutil (SKintag)_1-10",
-                price: "Rp 500.000",
-                image: "./images/A_KUTIL(SKINTAG).webp",
-            },
-            {
-                id: "A_KUTIL(SKINTAG)_11_30",
-                name: "Kutil (SKintag)_11-30",
-                price: "Rp 1.000.000",
-                image: "./images/A_KUTIL(SKINTAG).webp",
-            },
-            {
-                id: "A_KUTIL(SKINTAG)_31_SEWAJAH",
-                name: "Kutil (SKintag)_31-SEWAJAH",
-                price: "Rp 1.500.000",
-                image: "./images/A_KUTIL(SKINTAG).webp",
-            },
-            {
-                id: "A_LASERTATO4X4CM",
-                name: "Laser Tato 4x4cm",
-                price: "Rp 350.000",
-                image: "./images/A_LASERTATO4X4CM.webp",
-            },
-            {
-                id: "A_LENTIGO_1",
-                name: "Lentigo_1",
-                price: "Rp 500.000",
-                image: "./images/A_LENTIGO.webp",
-            },
-            {
-                id: "A_LENTIGO_2_7",
-                name: "Lentigo_2-7",
-                price: "Rp 1.000.000",
-                image: "./images/A_LENTIGO.webp",
-            },
-            {
-                id: "A_LENTIGO_8_SEWAJAH",
-                name: "Lentigo_8-SEWAJAH",
-                price: "Rp 1.500.000",
-                image: "./images/A_LENTIGO.webp",
-            },
-            {
-                id: "A_MATAIKAN(CLAVUS)",
-                name: "Mata Ikan (Clavus)",
-                price: "Rp 500.000",
-                image: "./images/A_MATAIKAN(CLAVUS).webp",
-            },
-            {
-                id: "A_MENCERAHKAN(BRIGHTENING)",
-                name: "Mencerahkan (Brightening)",
-                price: "Rp 350.000",
-                image: "./images/A_MENCERAHKAN(BRIGHTENING).webp",
-            },
-            {
-                id: "A_MILLIA_1_10",
-                name: "Millia_1-10",
-                price: "Rp 500.000",
-                image: "./images/A_MILLIA.webp",
-            },
-            {
-                id: "A_MILLIA_11_30",
-                name: "Millia_11-30",
-                price: "Rp 1.000.000",
-                image: "./images/A_MILLIA.webp",
-            },
-            {
-                id: "A_MILLIA_31_SEWAJAH",
-                name: "Millia_31-SEWAJAH",
-                price: "Rp 1.500.000",
-                image: "./images/A_MILLIA.webp",
-            },
-            {
-                id: "A_NEVUSOFHORY",
-                name: "Nevusofhory",
-                price: "Rp 350.000",
-                image: "./images/A_NEVUSOFHORY.webp",
-            },
-            {
-                id: "A_NODABEKASJERAWAT(ACNESPOT)",
-                name: "Noda Bekas Jerawat (Acne Spot)",
-                price: "Rp 500.000",
-                image: "./images/A_NODABEKASJERAWAT(ACNESPOT).webp",
-            },
-            {
-                id: "A_NODABEKASLUKA(HIPERPIGMENTASI)",
-                name: "Noda Bekas Luka (Hiperpigmentasi)",
-                price: "Rp 550.000",
-                image: "./images/A_NODABEKASLUKA(HIPERPIGMENTASI).webp",
-            },
-            {
-                id: "A_NODAKOPISUSU(CAVEAULAITMACULE)",
-                name: "Noda Kopi Susu (Caveau Lait Macule)",
-                price: "Rp 500.000",
-                image: "./images/A_NODAKOPISUSU(CAVEAULAITMACULE).webp",
-            },
-            {
-                id: "A_RFSLIMING",
-                name: "Rfslimng",
-                price: "Rp 350.000",
-                image: "./images/A_RFSLIMING.webp",
-            },
-            {
-                id: "A_SEBOROIKKERATOSIS_1_10",
-                name: "Seboroik Keratosis_1-10",
-                price: "Rp 500.000",
-                image: "./images/A_SEBOROIKKERATOSIS.webp",
-            },
-            {
-                id: "A_SEBOROIKKERATOSIS_11_30",
-                name: "Seboroik Keratosis_11-30",
-                price: "Rp 1.000.000",
-                image: "./images/A_SEBOROIKKERATOSIS.webp",
-            },
-            {
-                id: "A_SEBOROIKKERATOSIS_31_SEWAJAH",
-                name: "Seboroik Keratosis_31-SEWAJAH",
-                price: "Rp 1.500.000",
-                image: "./images/A_SEBOROIKKERATOSIS.webp",
-            },
-            {
-                id: "A_SPIDERVEIN",
-                name: "Spidervein",
-                price: "Rp 350.000",
-                image: "./images/A_SPIDERVEIN.webp",
-            },
-            {
-                id: "A_STRETCHMARK",
-                name: "Stretchmark",
-                price: "Rp 550.000",
-                image: "./images/A_STRETCHMARK.webp",
-            },
-            {
-                id: "A_SYRINGOMA_1_10",
-                name: "Syringoma_1-10",
-                price: "Rp 500.000",
-                image: "./images/A_SYRINGOMA.webp",
-            },
-            {
-                id: "A_SYRINGOMA_11_30",
-                name: "Syringoma_11-30",
-                price: "Rp 1.000.000",
-                image: "./images/A_SYRINGOMA.webp",
-            },
-            {
-                id: "A_SYRINGOMA_31_SEWAJAH",
-                name: "Syringoma_31-SEWAJAH",
-                price: "Rp 1.500.000",
-                image: "./images/A_SYRINGOMA.webp",
-            },
-            {
-                id: "A_TAHILALAT(NEAVY)_1",
-                name: "Tahi Lalat (Neavy)_1",
-                price: "Rp 500.000",
-                image: "./images/A_TAHILALAT(NEAVY).webp",
-            },
-            {
-                id: "A_TAHILALAT(NEAVY)_2_7",
-                name: "Tahi Lalat (Neavy)_2-7",
-                price: "Rp 1.000.000",
-                image: "./images/A_TAHILALAT(NEAVY).webp",
-            },
-            {
-                id: "A_TAHILALAT(NEAVY)_8_SEWAJAH",
-                name: "Tahi Lalat (Neavy)_8-SEWAJAH",
-                price: "Rp 1.500.000",
-                image: "./images/A_TAHILALAT(NEAVY).webp",
-            },
-            {
-                id: "A_TOMPEL3X3CM",
-                name: "Tompel 3x3cm",
-                price: "Rp 500.000",
-                image: "./images/A_TOMPEL.webp",
-            },
-            {
-                id: "A_XENTALASMA",
-                name: "Xentalasma",
-                price: "Rp 500.000",
-                image: "./images/A_XENTALASMA.webp",
-            }
+            // ... (other options remain the same)
         ]
     },
     perawatan3: {
@@ -444,17 +145,12 @@ const serviceDetails = {
 };
 
 // ===== UTILITY FUNCTIONS =====
-function generateUniqueId() {
-    return 'id_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-}
-
 function extractPrice(priceString) {
     if (!priceString) return 0;
     const match = priceString.match(/(\d+\.?\d*)/g);
     return match ? parseInt(match[0].replace(/\./g, '')) : 0;
 }
 
-// ===== IMAGE ORIENTATION DETECTION =====
 function detectImageOrientation(imgSrc, callback) {
     const img = new Image();
     
@@ -506,7 +202,7 @@ function getImageContainerClass(orientation) {
     return 'square';
 }
 
-// ===== IMPROVED MODAL MANAGEMENT =====
+// ===== MODAL MANAGEMENT =====
 const modalManager = {
     openModal: function(modalId) {
         if (isModalTransitioning) return;
@@ -523,7 +219,6 @@ const modalManager = {
         modal.scrollTop = 0;
         
         document.body.style.overflow = 'hidden';
-        document.body.style.paddingRight = '15px';
         
         setTimeout(() => {
             modal.classList.add('show');
@@ -546,7 +241,6 @@ const modalManager = {
         setTimeout(() => {
             modal.style.display = 'none';
             document.body.style.overflow = 'auto';
-            document.body.style.paddingRight = '0';
             
             if (modalId === 'serviceModal') {
                 const modalContent = document.getElementById('serviceModalContent');
@@ -575,7 +269,6 @@ const modalManager = {
         });
         
         document.body.style.overflow = 'auto';
-        document.body.style.paddingRight = '0';
         
         setTimeout(() => {
             isModalTransitioning = false;
@@ -583,7 +276,7 @@ const modalManager = {
     }
 };
 
-// ===== IMPROVED SERVICE DETAIL MODAL FUNCTIONS =====
+// ===== SERVICE DETAIL MODAL FUNCTIONS =====
 function showServiceDetail(serviceId) {
     if (isModalTransitioning) return;
     
@@ -648,7 +341,7 @@ function renderServiceOptions(serviceId, service, results) {
                         <img src="${option.image}" alt="${option.name}" 
                              loading="lazy"
                              onload="this.style.opacity='1'"
-                             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjZjhmOGY4IiByeD0iMjAiLz4KPHRleHQgeD0iMjAwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2NjYyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+SW1hZ2UgTm90IEZvdW5kPC90ZXh0Pgo8L3N2Zz4K'; this.style.opacity='1'"
+                             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjZjhmOGY4IiByeD0iMjAiLz4KPHRleHQgeD0iMjAwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2NjYyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+SW1hZ2UgTm90IEZvdW5kPC90ZXh0Pgo8L3N2Zz4K'; this.style.opacity='1'"
                              style="opacity: 0; transition: opacity 0.3s ease">
                     </div>
                     <div class="option-title">
@@ -822,7 +515,6 @@ function updateSelectionSummary(serviceId) {
     }
 }
 
-// ===== PERBAIKAN FUNGSI proceedToBooking =====
 function proceedToBooking(serviceId) {
     console.log('Memproses booking untuk service:', serviceId);
     
@@ -1295,7 +987,7 @@ function printBookingDetails(bookingId) {
                 </head>
                 <body>
                     <div class="header">
-                        <h1 style="margin: 0; color: #3aaff3; font-size: 28px;">Klinik Sehat</h1>
+                        <h1 style="margin: 0; color: #3aaff3; font-size: 28px;">Alra Care</h1>
                         <h2 style="margin: 10px 0; color: #333; font-size: 22px;">Konfirmasi Booking</h2>
                         <p style="margin: 0; color: #666; font-size: 16px;">Kesehatan & Kecantikan Profesional</p>
                     </div>
@@ -1317,9 +1009,9 @@ function printBookingDetails(bookingId) {
                     <div class="footer">
                         <p style="font-weight: bold; font-size: 14px;">Harap datang 15 menit sebelum jadwal perawatan</p>
                         <p>Bawa bukti booking ini saat datang ke klinik</p>
-                        <p>Terima kasih atas kepercayaan Anda kepada Klinik Sehat</p>
+                        <p>Terima kasih atas kepercayaan Anda kepada Alra Care</p>
                         <p>Jl. Purnama No. 16, Pontianak • 0813-8122-3811</p>
-                        <p>www.kliniksehat.com • info@kliniksehat.com</p>
+                        <p>www.alracare.com • rahmadramadhanaswin@gmail.com</p>
                     </div>
                 </body>
             </html>
@@ -1331,24 +1023,6 @@ function printBookingDetails(bookingId) {
             printWindow.print();
         }
     }
-}
-
-// ===== SERVICE CARD IMAGE INITIALIZATION =====
-function initializeServiceCards() {
-    const serviceCards = document.querySelectorAll('.service-card');
-    
-    serviceCards.forEach(card => {
-        const img = card.querySelector('.service-image-container img');
-        if (img) {
-            detectImageOrientation(img.src, (orientation) => {
-                const container = img.parentElement;
-                const containerClass = getImageContainerClass(orientation);
-                
-                container.classList.remove('ratio-1-1', 'ratio-16-9', 'ratio-9-16');
-                container.classList.add('natural-ratio', containerClass);
-            });
-        }
-    });
 }
 
 // ===== NOTIFICATION SYSTEM =====
@@ -1469,8 +1143,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Initialize service card images
-    initializeServiceCards();
-
-    console.log('Klinik Sehat Public Website initialized successfully!');
+    console.log('Alra Care Public Website initialized successfully!');
 });

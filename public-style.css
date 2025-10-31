@@ -41,7 +41,6 @@ body {
     margin: 0 auto;
     padding: 0 20px;
     width: 100%;
-    box-sizing: border-box;
 }
 
 /* ===== TYPOGRAPHY ===== */
@@ -51,23 +50,15 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-dark);
 }
 
-h1 {
-    font-size: 2.5rem;
+h1 { font-size: 2.5rem; }
+h2 { 
+    font-size: 2rem; 
+    text-align: center; 
+    margin-bottom: 2rem; 
 }
+h3 { font-size: 1.5rem; }
 
-h2 {
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-h3 {
-    font-size: 1.5rem;
-}
-
-p {
-    margin-bottom: 1rem;
-}
+p { margin-bottom: 1rem; }
 
 .section-subtitle {
     text-align: center;
@@ -144,7 +135,6 @@ header {
     padding: 1rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
-    width: 100%;
 }
 
 .logo {
@@ -156,7 +146,6 @@ header {
 .logo img {
     height: 50px;
     width: auto;
-    max-width: 100%;
 }
 
 .logo-text span {
@@ -218,20 +207,21 @@ header {
     padding: 150px 0 100px;
     text-align: center;
     margin-top: 80px;
-    width: 100%;
 }
 
 .hero-content img {
     height: 100px;
     width: auto;
     margin-bottom: 1.5rem;
-    max-width: 100%;
 }
 
-.hero-content p {
+.hero-tagline {
     font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.hero-features p {
     margin-bottom: 0.5rem;
-    color: var(--text-white);
 }
 
 .hero-buttons {
@@ -245,7 +235,6 @@ header {
 /* ===== SECTIONS ===== */
 section {
     padding: 80px 0;
-    width: 100%;
 }
 
 section:nth-child(even) {
@@ -257,7 +246,6 @@ section:nth-child(even) {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
-    width: 100%;
 }
 
 .service-card {
@@ -271,7 +259,6 @@ section:nth-child(even) {
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 100%;
 }
 
 .service-card:hover {
@@ -279,7 +266,6 @@ section:nth-child(even) {
     box-shadow: var(--shadow-hover);
 }
 
-/* ===== SERVICE IMAGE STYLES - VARIOUS ASPECT RATIOS ===== */
 .service-image-container {
     width: 100%;
     overflow: hidden;
@@ -289,22 +275,9 @@ section:nth-child(even) {
     background-color: var(--bg-light);
 }
 
-/* Default untuk gambar 1:1 */
 .service-image-container.ratio-1-1 {
     height: 0;
-    padding-bottom: 100%; /* Rasio 1:1 */
-}
-
-/* Untuk gambar 16:9 */
-.service-image-container.ratio-16-9 {
-    height: 0;
-    padding-bottom: 56.25%; /* 9/16 = 0.5625 = 56.25% */
-}
-
-/* Untuk gambar 9:16 (portrait) */
-.service-image-container.ratio-9-16 {
-    height: 0;
-    padding-bottom: 177.78%; /* 16/9 = 1.7778 = 177.78% */
+    padding-bottom: 100%;
 }
 
 .service-image-container img {
@@ -344,26 +317,34 @@ section:nth-child(even) {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
-    width: 100%;
 }
 
 .gallery-item {
     text-align: center;
     transition: var(--transition);
-    width: 100%;
 }
 
 .gallery-item:hover {
     transform: translateY(-5px);
 }
 
-.gallery-image {
-    font-size: 3rem;
-    background: var(--bg-light);
-    padding: 2rem;
-    border-radius: var(--border-radius);
-    margin-bottom: 1rem;
+.gallery-item img {
     width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
+
+.gallery-fallback {
+    width: 100%;
+    height: 200px;
+    background: var(--bg-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius);
+    font-size: 3rem;
+    color: var(--text-light);
 }
 
 /* ===== FOOTER ===== */
@@ -371,7 +352,6 @@ footer {
     background: var(--text-dark);
     color: var(--text-white);
     padding: 3rem 0 1rem;
-    width: 100%;
 }
 
 .footer-content {
@@ -379,10 +359,8 @@ footer {
     grid-template-columns: 2fr 1fr 1fr;
     gap: 2rem;
     margin-bottom: 2rem;
-    width: 100%;
 }
 
-.footer-section h3,
 .footer-section h4 {
     color: var(--text-white);
     margin-bottom: 1rem;
@@ -393,11 +371,10 @@ footer {
     margin-bottom: 0.5rem;
 }
 
-.footer-section img {
+.footer-logo img {
     height: 60px;
     width: auto;
     margin-bottom: 1rem;
-    max-width: 100%;
 }
 
 /* ===== SOCIAL MEDIA STYLES ===== */
@@ -464,62 +441,48 @@ footer {
     color: white;
 }
 
-.account-info {
-    flex: 1;
+/* Platform Colors */
+.social-platform.instagram .platform-title { color: #E4405F; }
+.social-platform.facebook .platform-title { color: #1877F2; }
+.social-platform.youtube .platform-title { color: #FF0000; }
+.social-platform.tiktok .platform-title { color: #000000; }
+
+.social-platform.instagram .account-icon { background-color: #E4405F; }
+.social-platform.facebook .account-icon { background-color: #1877F2; }
+.social-platform.youtube .account-icon { background-color: #FF0000; }
+.social-platform.tiktok .account-icon { background-color: #000000; }
+
+/* ===== CONTACT INFO ===== */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-.username {
-    font-weight: 500;
-    font-size: 0.85rem;
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-/* Warna platform untuk footer */
-.social-platform.instagram .platform-title { 
-    color: #E4405F; 
+.contact-icon {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
 }
 
-.social-platform.facebook .platform-title { 
-    color: #1877F2; 
+.contact-link {
+    color: #ccc;
+    text-decoration: none;
+    transition: var(--transition);
 }
 
-.social-platform.youtube .platform-title { 
-    color: #FF0000; 
-}
-
-.social-platform.tiktok .platform-title { 
-    color: #000000; 
-}
-
-.social-platform.instagram .account-icon { 
-    background-color: #E4405F; 
-}
-
-.social-platform.facebook .account-icon { 
-    background-color: #1877F2; 
-}
-
-.social-platform.youtube .account-icon { 
-    background-color: #FF0000; 
-}
-
-.social-platform.tiktok .account-icon { 
-    background-color: #000000; 
-}
-
-.social-platform.instagram .social-account:hover { 
-    border-color: #E4405F; 
-}
-
-.social-platform.facebook .social-account:hover { 
-    border-color: #1877F2; 
-}
-
-.social-platform.youtube .social-account:hover { 
-    border-color: #FF0000; 
-}
-
-.social-platform.tiktok .social-account:hover { 
-    border-color: #000000; 
+.contact-link:hover {
+    color: var(--primary-color);
 }
 
 .footer-bottom {
@@ -527,7 +490,6 @@ footer {
     padding-top: 2rem;
     border-top: 1px solid #444;
     color: #ccc;
-    width: 100%;
 }
 
 /* ===== MODALS ===== */
@@ -549,7 +511,7 @@ footer {
     padding: 2rem;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-hover);
-    max-width: 1000px; /* Diperbesar untuk gambar 400px */
+    max-width: 1000px;
     width: 95%;
     position: relative;
     animation: modalFadeIn 0.3s;
@@ -604,7 +566,7 @@ footer {
 .option-card {
     border: 2px solid var(--border-color);
     border-radius: 16px;
-    padding: 2.5rem; /* Diperbesar untuk gambar 400px */
+    padding: 2.5rem;
     margin-bottom: 2rem;
     cursor: pointer;
     transition: var(--transition);
@@ -623,7 +585,6 @@ footer {
     box-shadow: 0 8px 30px rgba(44, 120, 115, 0.15);
 }
 
-/* ===== OPTION IMAGE STYLES - UKURAN 400px ===== */
 .option-image-container {
     width: 400px;
     height: 400px;
@@ -663,7 +624,7 @@ footer {
 .option-header {
     display: flex;
     align-items: flex-start;
-    gap: 35px; /* Diperbesar untuk gambar 400px */
+    gap: 35px;
 }
 
 .option-checkbox {
@@ -719,16 +680,6 @@ footer {
     font-weight: 800;
 }
 
-.option-duration {
-    font-size: 1.1rem;
-    color: var(--text-light);
-    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-    padding: 8px 16px;
-    border-radius: 25px;
-    font-weight: 600;
-    border: 2px solid #e9ecef;
-}
-
 .selection-summary {
     background: linear-gradient(135deg, #f8fdff, #f0f9ff);
     padding: 25px;
@@ -780,224 +731,6 @@ footer {
     font-weight: 600;
 }
 
-/* Booking Form Styles */
-.booking-form-modal {
-    max-height: 85vh;
-    overflow-y: auto;
-}
-
-.booking-header {
-    text-align: center;
-    margin-bottom: 2.5rem;
-}
-
-.booking-header h2 {
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
-}
-
-.form-description {
-    color: var(--text-light);
-    font-size: 1.1rem;
-}
-
-.selected-services-summary {
-    background: linear-gradient(135deg, #f8fdff, #f0f9ff);
-    padding: 25px;
-    border-radius: 16px;
-    margin-bottom: 2.5rem;
-    border-left: 6px solid var(--primary-color);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.selected-services-summary h4 {
-    margin-bottom: 20px;
-    font-size: 1.3rem;
-    font-weight: 700;
-}
-
-.service-summary-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 0;
-    border-bottom: 2px solid #e9ecef;
-    align-items: center;
-    font-size: 1.1rem;
-}
-
-.service-summary-item:last-child {
-    border-bottom: none;
-}
-
-.booking-form {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.form-section {
-    background: var(--bg-white);
-    padding: 2rem;
-    border-radius: 16px;
-    border: 2px solid var(--border-color);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-}
-
-.form-section h4 {
-    margin-bottom: 1.5rem;
-    color: var(--primary-color);
-    border-bottom: 2px solid var(--border-color);
-    padding-bottom: 0.8rem;
-    font-size: 1.3rem;
-    font-weight: 700;
-}
-
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group.full-width {
-    grid-column: 1 / -1;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.8rem;
-    font-weight: 600;
-    color: var(--text-dark);
-    font-size: 1.1rem;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select {
-    width: 100%;
-    padding: 15px 20px;
-    border: 2px solid var(--border-color);
-    border-radius: 12px;
-    font-size: 1.1rem;
-    transition: var(--transition);
-    font-family: inherit;
-    box-sizing: border-box;
-}
-
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 4px rgba(44, 120, 115, 0.15);
-    transform: translateY(-2px);
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
-.date-note, .time-note {
-    display: block;
-    margin-top: 8px;
-    font-size: 0.9rem;
-    color: var(--text-light);
-}
-
-.form-actions {
-    display: flex;
-    justify-content: space-between;
-    gap: 1.5rem;
-    margin-top: 2.5rem;
-}
-
-.form-actions .cta-button {
-    padding: 15px 30px;
-    font-size: 1.1rem;
-    font-weight: 600;
-}
-
-/* Confirmation Modal */
-.confirmation-modal {
-    text-align: center;
-}
-
-.confirmation-icon {
-    font-size: 5rem;
-    margin-bottom: 1.5rem;
-    color: #4CAF50;
-}
-
-.confirmation-details {
-    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-    padding: 30px;
-    border-radius: 16px;
-    margin: 30px 0;
-    text-align: left;
-    border-left: 6px solid #4CAF50;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.detail-item {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid #e9ecef;
-    font-size: 1.1rem;
-}
-
-.detail-item:last-child {
-    margin-bottom: 0;
-    border-bottom: none;
-}
-
-.status-pending {
-    color: #ff9800;
-    font-weight: 700;
-    background: #fff3e0;
-    padding: 6px 15px;
-    border-radius: 25px;
-    font-size: 1rem;
-    border: 2px solid #ff9800;
-}
-
-.confirmation-message {
-    background: linear-gradient(135deg, #e8f5e8, #d4edda);
-    padding: 25px;
-    border-radius: 16px;
-    margin: 30px 0;
-    text-align: left;
-    border-left: 6px solid #4CAF50;
-}
-
-.confirmation-message p {
-    margin-bottom: 15px;
-    line-height: 1.7;
-    font-size: 1.1rem;
-}
-
-.confirmation-message p:last-child {
-    margin-bottom: 0;
-}
-
-.confirmation-actions {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 2.5rem;
-}
-
-.confirmation-actions .cta-button {
-    padding: 15px 30px;
-    font-size: 1.1rem;
-    font-weight: 600;
-}
-
 /* ===== NOTIFICATION ===== */
 .notification {
     position: fixed;
@@ -1013,12 +746,18 @@ footer {
     z-index: 10000;
     max-width: 400px;
     width: 90%;
-    box-sizing: border-box;
-    font-size: 1.1rem;
 }
 
 .notification.show {
     transform: translateX(0);
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    color: var(--text-light);
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
@@ -1059,10 +798,6 @@ footer {
     
     .option-title h3 {
         font-size: 1.4rem;
-    }
-    
-    .option-description {
-        font-size: 1rem;
     }
 }
 
@@ -1137,23 +872,10 @@ footer {
         padding: 1.5rem;
     }
 
-    .form-row {
-        grid-template-columns: 1fr;
-    }
-
     .service-modal-footer {
         flex-direction: column;
     }
 
-    .confirmation-actions {
-        flex-direction: column;
-    }
-
-    .form-actions {
-        flex-direction: column;
-    }
-
-    /* Responsive untuk option images 400px */
     .option-header {
         flex-direction: column;
         gap: 25px;
@@ -1174,33 +896,6 @@ footer {
     .option-card {
         padding: 2rem;
     }
-
-    /* Responsive untuk media sosial */
-    .social-media-section {
-        gap: 10px;
-    }
-    
-    .social-platform {
-        padding: 12px;
-    }
-    
-    .platform-title {
-        font-size: 0.9rem;
-    }
-    
-    .account-icon {
-        width: 25px;
-        height: 25px;
-        font-size: 0.8rem;
-    }
-    
-    .username {
-        font-size: 0.8rem;
-    }
-    
-    .social-account {
-        padding: 6px 10px;
-    }
 }
 
 @media (max-width: 480px) {
@@ -1208,13 +903,8 @@ footer {
         padding: 0 10px;
     }
 
-    h1 {
-        font-size: 2rem;
-    }
-
-    h2 {
-        font-size: 1.5rem;
-    }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
 
     section {
         padding: 60px 0;
@@ -1252,7 +942,6 @@ footer {
         font-size: 1.1rem;
     }
 
-    /* Mobile kecil untuk option images 400px */
     .option-image-container {
         width: 240px;
         height: 240px;
@@ -1280,7 +969,6 @@ footer {
     }
 }
 
-/* Tambahan untuk device sangat kecil */
 @media (max-width: 360px) {
     .container {
         padding: 0 8px;
