@@ -154,9 +154,10 @@ header {
 }
 
 .logo img {
+    width: 50px;
     height: 50px;
-    width: auto;
-    max-width: 100%;
+    object-fit: contain;
+    border-radius: var(--border-radius);
 }
 
 .logo-text span {
@@ -222,16 +223,25 @@ header {
 }
 
 .hero-content img {
+    width: 100px;
     height: 100px;
-    width: auto;
+    object-fit: contain;
     margin-bottom: 1.5rem;
-    max-width: 100%;
+    border-radius: var(--border-radius);
 }
 
 .hero-content p {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
     color: var(--text-white);
+}
+
+.hero-features p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 0.5rem;
 }
 
 .hero-buttons {
@@ -252,7 +262,7 @@ section:nth-child(even) {
     background-color: var(--bg-light);
 }
 
-/* ===== SERVICES SECTION - PERBAIKAN UTAMA ===== */
+/* ===== SERVICES SECTION - DENGAN RASIO 1:1 ===== */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -279,10 +289,11 @@ section:nth-child(even) {
     box-shadow: var(--shadow-hover);
 }
 
-/* PERBAIKAN: Service Image Container yang Lebih Baik */
+/* PERBAIKAN: Service Image Container dengan rasio 1:1 */
 .service-image-container {
     width: 100%;
-    height: 200px; /* Fixed height untuk konsistensi */
+    aspect-ratio: 1/1;
+    height: auto;
     overflow: hidden;
     border-radius: var(--border-radius);
     margin-bottom: 1rem;
@@ -296,7 +307,7 @@ section:nth-child(even) {
 .service-image-container img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Pastikan gambar menutupi container */
+    object-fit: cover;
     transition: var(--transition);
     display: block;
 }
@@ -334,7 +345,7 @@ section:nth-child(even) {
     color: var(--primary-color);
 }
 
-/* ===== GALLERY SECTION - PERBAIKAN ===== */
+/* ===== GALLERY SECTION - DENGAN RASIO 16:9 ===== */
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -354,7 +365,8 @@ section:nth-child(even) {
 
 .gallery-image {
     width: 100%;
-    height: 200px;
+    aspect-ratio: 16/9;
+    height: auto;
     background: var(--bg-light);
     border-radius: var(--border-radius);
     margin-bottom: 1rem;
@@ -368,7 +380,8 @@ section:nth-child(even) {
 
 .gallery-item img {
     width: 100%;
-    height: 100%;
+    aspect-ratio: 16/9;
+    height: auto;
     object-fit: cover;
     border-radius: var(--border-radius);
     transition: var(--transition);
@@ -381,12 +394,22 @@ section:nth-child(even) {
 /* Fallback untuk gallery images */
 .gallery-fallback {
     width: 100%;
-    height: 100%;
+    aspect-ratio: 16/9;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, var(--bg-light), #e9ecef);
     border-radius: var(--border-radius);
+    color: var(--primary-color);
+    font-size: 2.5rem;
+}
+
+.gallery-item p {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    font-weight: 500;
+    color: var(--text-dark);
 }
 
 /* ===== FOOTER ===== */
@@ -416,11 +439,44 @@ footer {
     margin-bottom: 0.5rem;
 }
 
-.footer-section img {
-    height: 60px;
-    width: auto;
+/* PERBAIKAN: Footer logo tanpa jarak berlebihan */
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     margin-bottom: 1rem;
-    max-width: 100%;
+}
+
+.footer-logo img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: var(--border-radius);
+}
+
+.footer-logo .logo-text span {
+    font-weight: bold;
+    font-size: 1rem;
+    color: var(--text-white);
+}
+
+/* Clinic features tanpa margin berlebihan */
+.clinic-features {
+    margin-top: 1rem;
+}
+
+.clinic-features p {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ccc;
+}
+
+.clinic-features p i {
+    width: 20px;
+    text-align: center;
+    color: var(--primary-color);
 }
 
 /* ===== SOCIAL MEDIA STYLES ===== */
@@ -494,6 +550,44 @@ footer {
 .username {
     font-weight: 500;
     font-size: 0.85rem;
+}
+
+/* Contact Info Styles */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.contact-icon {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: var(--primary-color);
+}
+
+.contact-text {
+    flex: 1;
+}
+
+.contact-link {
+    color: #ccc;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.contact-link:hover {
+    color: var(--primary-color);
 }
 
 /* Warna platform untuk footer */
@@ -624,8 +718,21 @@ footer {
     transform: translateX(0);
 }
 
+.notification-close {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    padding: 0;
+    margin-left: 10px;
+    float: right;
+}
+
+.notification-close:hover {
+    color: var(--text-dark);
+}
+
 /* ===== DEBUGGING STYLES ===== */
-/* Style untuk membantu debugging gambar */
 .img-debug {
     border: 2px solid #ff4444;
     background: #ffcccc;
@@ -736,9 +843,16 @@ footer {
         padding: 1.5rem;
     }
 
-    /* Responsive untuk service images */
-    .service-image-container {
-        height: 180px;
+    /* Responsive untuk logo footer */
+    .footer-logo {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+    
+    .footer-logo img {
+        width: 50px;
+        height: 50px;
     }
 }
 
@@ -783,10 +897,6 @@ footer {
         padding: 1rem;
     }
     
-    .service-image-container {
-        height: 160px;
-    }
-    
     .service-content h3 {
         font-size: 1.3rem;
     }
@@ -795,9 +905,22 @@ footer {
         font-size: 1.1rem;
     }
 
-    .gallery-image {
-        height: 180px;
-        font-size: 2.5rem;
+    .gallery-fallback {
+        font-size: 2rem;
+    }
+
+    /* Mobile adjustments untuk footer */
+    .footer-logo img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .footer-logo .logo-text span {
+        font-size: 0.9rem;
+    }
+    
+    .clinic-features p {
+        font-size: 0.9rem;
     }
 }
 
@@ -811,11 +934,8 @@ footer {
         padding: 0.8rem;
     }
     
-    .service-image-container {
-        height: 140px;
-    }
-    
     .hero-content img {
+        width: 80px;
         height: 80px;
     }
     
@@ -823,8 +943,7 @@ footer {
         font-size: 0.9rem;
     }
 
-    .gallery-image {
-        height: 150px;
-        font-size: 2rem;
+    .gallery-fallback {
+        font-size: 1.8rem;
     }
 }
