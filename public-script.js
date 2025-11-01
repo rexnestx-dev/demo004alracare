@@ -1,8 +1,9 @@
 // ===== GLOBAL VARIABLES =====
 let currentService = null;
 let isModalTransitioning = false;
+let imageCache = new Map();
 
-// ===== SERVICE DETAILS DATA =====
+// ===== SERVICE DETAILS DATA - DIKOREKSI =====
 const serviceDetails = {
     perawatan1: {
         title: "Perawatan Luka Modern",
@@ -492,103 +493,105 @@ function extractPrice(priceString) {
     return match ? parseInt(match[0].replace(/\./g, '')) : 0;
 }
 
-function detectImageOrientation(imgSrc, callback) {
-    const img = new Image();
-    
-    const timeout = setTimeout(() => {
-        callback({
-            isPortrait: false,
-            isLandscape: true,
-            isSquare: false,
-            width: 400,
-            height: 300,
-            aspectRatio: 4/3
-        });
-    }, 3000);
-    
-    img.onload = function() {
-        clearTimeout(timeout);
-        const isPortrait = this.height > this.width;
-        const isLandscape = this.width > this.height;
-        const isSquare = this.width === this.height;
-        
-        callback({
-            isPortrait,
-            isLandscape,
-            isSquare,
-            width: this.width,
-            height: this.height,
-            aspectRatio: this.width / this.height
-        });
-    };
-    
-    img.onerror = function() {
-        clearTimeout(timeout);
-        callback({
-            isPortrait: false,
-            isLandscape: true,
-            isSquare: false,
-            width: 400,
-            height: 300,
-            aspectRatio: 4/3
-        });
-    };
-    
-    img.src = imgSrc;
+function formatPrice(price) {
+    return 'Rp ' + price.toLocaleString('id-ID');
+}
+
+function preloadImage(src) {
+    return new Promise((resolve, reject) => {
+        if (imageCache.has(src)) {
+            resolve(imageCache.get(src));
+            return;
+        }
+
+        const img = new Image();
+        img.onload = () => {
+            imageCache.set(src, {
+                width: img.width,
+                height: img.height,
+                aspectRatio: img.width / img.height
+            });
+            resolve(imageCache.get(src));
+        };
+        img.onerror = () => {
+            const fallback = {
+                width: 400,
+                height: 300,
+                aspectRatio: 4/3,
+                isFallback: true
+            };
+            imageCache.set(src, fallback);
+            resolve(fallback);
+        };
+        img.src = src;
+    });
 }
 
 function getImageContainerClass(orientation) {
-    if (orientation.isPortrait) return 'portrait';
-    if (orientation.isLandscape) return 'landscape';
+    if (orientation.aspectRatio < 0.8) return 'portrait';
+    if (orientation.aspectRatio > 1.2) return 'landscape';
     return 'square';
 }
 
 // ===== MODAL MANAGEMENT =====
 const modalManager = {
     openModal: function(modalId) {
-        if (isModalTransitioning) return;
-        isModalTransitioning = true;
-        
-        const modal = document.getElementById(modalId);
-        if (!modal) {
-            console.error(`Modal dengan ID ${modalId} tidak ditemukan`);
+        try {
+            if (isModalTransitioning) return;
+            isModalTransitioning = true;
+            
+            const modal = document.getElementById(modalId);
+            if (!modal) {
+                throw new Error(`Modal dengan ID ${modalId} tidak ditemukan`);
+            }
+            
+            modal.style.display = 'block';
+            modal.scrollTop = 0;
+            
+            document.body.style.overflow = 'hidden';
+            
+            setTimeout(() => {
+                modal.classList.add('show');
+                isModalTransitioning = false;
+            }, 10);
+        } catch (error) {
+            console.error('Modal error:', error);
+            showNotification('Terjadi error saat membuka modal', 'error');
             isModalTransitioning = false;
-            return;
         }
-        
-        modal.style.display = 'block';
-        modal.scrollTop = 0;
-        
-        document.body.style.overflow = 'hidden';
-        
-        setTimeout(() => {
-            modal.classList.add('show');
-            isModalTransitioning = false;
-        }, 10);
     },
     
     closeModal: function(modalId) {
-        if (isModalTransitioning) return;
-        isModalTransitioning = true;
-        
-        const modal = document.getElementById(modalId);
-        if (!modal) {
-            isModalTransitioning = false;
-            return;
-        }
-        
-        modal.classList.remove('show');
-        
-        setTimeout(() => {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
+        try {
+            if (isModalTransitioning) return;
+            isModalTransitioning = true;
             
-            if (modalId === 'serviceModal') {
-                const modalContent = document.getElementById('serviceModalContent');
-                if (modalContent) modalContent.innerHTML = '';
+            const modal = document.getElementById(modalId);
+            if (!modal) {
+                isModalTransitioning = false;
+                return;
             }
+            
+            modal.classList.remove('show');
+            
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                
+                if (modalId === 'serviceModal') {
+                    const modalContent = document.getElementById('serviceModalContent');
+                    if (modalContent) modalContent.innerHTML = '';
+                }
+                if (modalId === 'quickBookingModal') {
+                    const modalContent = document.getElementById('quickBookingContent');
+                    if (modalContent) modalContent.innerHTML = '';
+                }
+                isModalTransitioning = false;
+            }, 300);
+        } catch (error) {
+            console.error('Modal close error:', error);
             isModalTransitioning = false;
-        }, 300);
+        }
     },
     
     closeAll: function() {
@@ -606,6 +609,10 @@ const modalManager = {
                     const modalContent = document.getElementById('serviceModalContent');
                     if (modalContent) modalContent.innerHTML = '';
                 }
+                if (modal.id === 'quickBookingModal') {
+                    const modalContent = document.getElementById('quickBookingContent');
+                    if (modalContent) modalContent.innerHTML = '';
+                }
             }, 300);
         });
         
@@ -618,7 +625,7 @@ const modalManager = {
 };
 
 // ===== SERVICE DETAIL MODAL FUNCTIONS =====
-function showServiceDetail(serviceId) {
+async function showServiceDetail(serviceId) {
     if (isModalTransitioning) return;
     
     const service = serviceDetails[serviceId];
@@ -634,6 +641,7 @@ function showServiceDetail(serviceId) {
         return;
     }
 
+    // Show loading state
     modalContent.innerHTML = `
         <div class="loading-state">
             <div class="loading-icon">⏳</div>
@@ -644,31 +652,28 @@ function showServiceDetail(serviceId) {
 
     modalManager.openModal('serviceModal');
 
-    if (service.type === "checkbox") {
-        const orientationPromises = service.options.map(option => {
-            return new Promise((resolve) => {
-                detectImageOrientation(option.image, (orientation) => {
-                    resolve({
-                        option,
-                        orientation
-                    });
-                });
-            });
-        });
+    try {
+        // Preload images in batches for better performance
+        const batchSize = 3;
+        const imageOrientations = [];
+        
+        for (let i = 0; i < service.options.length; i += batchSize) {
+            const batch = service.options.slice(i, i + batchSize);
+            const batchPromises = batch.map(option => preloadImage(option.image));
+            const batchResults = await Promise.all(batchPromises);
+            imageOrientations.push(...batchResults);
+        }
 
-        Promise.all(orientationPromises)
-            .then(results => {
-                renderServiceOptions(serviceId, service, results);
-            })
-            .catch(error => {
-                console.error('Error loading service details:', error);
-                showErrorState(service);
-            });
+        renderServiceOptions(serviceId, service, imageOrientations);
+    } catch (error) {
+        console.error('Error loading service details:', error);
+        showErrorState(service);
     }
 }
 
-function renderServiceOptions(serviceId, service, results) {
-    const optionsHTML = results.map(({ option, orientation }) => {
+function renderServiceOptions(serviceId, service, imageOrientations) {
+    const optionsHTML = service.options.map((option, index) => {
+        const orientation = imageOrientations[index] || { aspectRatio: 1 };
         const containerClass = getImageContainerClass(orientation);
         
         return `
@@ -687,6 +692,7 @@ function renderServiceOptions(serviceId, service, results) {
                     </div>
                     <div class="option-title">
                         <h3>${option.name}</h3>
+                        ${option.category ? `<span class="option-category">${option.category}</span>` : ''}
                     </div>
                 </div>
                 
@@ -720,10 +726,10 @@ function renderServiceOptions(serviceId, service, results) {
         
         <div class="service-modal-footer">
             <button class="cta-button secondary" onclick="modalManager.closeAll()">
-                ← Kembali
+                <i class="fas fa-arrow-left"></i> Kembali
             </button>
             <button class="cta-button" id="bookingBtn" onclick="proceedToBooking('${serviceId}')" disabled style="opacity: 0.6; cursor: not-allowed;">
-                📅 Lanjut ke Booking
+                <i class="fas fa-calendar-check"></i> Lanjut ke Booking
             </button>
         </div>
     `;
@@ -755,7 +761,7 @@ function showErrorState(service) {
             <h3>Gagal Memuat Layanan</h3>
             <p>Terjadi kesalahan saat memuat detail layanan. Silakan coba lagi.</p>
             <button class="cta-button" onclick="modalManager.closeAll()" style="margin-top: 1rem;">
-                Tutup
+                <i class="fas fa-times"></i> Tutup
             </button>
         </div>
     `;
@@ -818,11 +824,11 @@ function updateSelectionSummary(serviceId) {
         if (selectedCheckboxes.length > 0) {
             bookingBtn.style.opacity = "1";
             bookingBtn.style.cursor = "pointer";
-            bookingBtn.innerHTML = `📅 Lanjut ke Booking (${selectedCheckboxes.length})`;
+            bookingBtn.innerHTML = `<i class="fas fa-calendar-check"></i> Lanjut ke Booking (${selectedCheckboxes.length})`;
         } else {
             bookingBtn.style.opacity = "0.6";
             bookingBtn.style.cursor = "not-allowed";
-            bookingBtn.innerHTML = `📅 Lanjut ke Booking`;
+            bookingBtn.innerHTML = `<i class="fas fa-calendar-check"></i> Lanjut ke Booking`;
         }
     }
     
@@ -848,7 +854,7 @@ function updateSelectionSummary(serviceId) {
         
         if (selectedOptionsList) selectedOptionsList.innerHTML = optionsHTML;
         if (totalPriceElement) {
-            totalPriceElement.textContent = `Rp ${totalPrice.toLocaleString('id-ID')}`;
+            totalPriceElement.textContent = formatPrice(totalPrice);
         }
         
     } else {
@@ -906,6 +912,61 @@ function proceedToBooking(serviceId) {
     }
 }
 
+// ===== QUICK BOOKING FUNCTION =====
+function showQuickBooking() {
+    const content = `
+        <div class="booking-form-modal">
+            <div class="booking-header">
+                <h2><i class="fas fa-calendar-plus"></i> Booking Cepat</h2>
+                <p class="form-description">Pilih layanan yang ingin Anda booking</p>
+            </div>
+            
+            <div class="quick-booking-options">
+                <div class="quick-service-grid">
+                    ${Object.entries(serviceDetails).map(([id, service]) => `
+                        <div class="quick-service-card" onclick="showServiceDetail('${id}')">
+                            <div class="quick-service-icon">
+                                <i class="fas fa-${getServiceIcon(id)}"></i>
+                            </div>
+                            <h4>${service.title}</h4>
+                            <p>${service.options.length} pilihan layanan</p>
+                            <button class="cta-button secondary">
+                                <i class="fas fa-arrow-right"></i> Pilih
+                            </button>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button class="cta-button secondary" onclick="modalManager.closeAll()">
+                    <i class="fas fa-times"></i> Tutup
+                </button>
+                <button class="cta-button" onclick="scrollToServices()">
+                    <i class="fas fa-eye"></i> Lihat Semua Layanan
+                </button>
+            </div>
+        </div>
+    `;
+
+    const modalContent = document.getElementById('quickBookingContent');
+    if (modalContent) {
+        modalContent.innerHTML = content;
+        modalManager.openModal('quickBookingModal');
+    }
+}
+
+function getServiceIcon(serviceId) {
+    const icons = {
+        perawatan1: 'stethoscope',
+        perawatan2: 'spa',
+        perawatan3: 'user-md',
+        perawatan4: 'brain',
+        perawatan5: 'prescription-bottle'
+    };
+    return icons[serviceId] || 'heart';
+}
+
 // ===== BOOKING FORM FUNCTIONS =====
 function showBookingForm() {
     let selectedData;
@@ -939,29 +1000,33 @@ function showBookingForm() {
     const content = `
         <div class="booking-form-modal">
             <div class="booking-header">
-                <h2>📋 Formulir Booking Perawatan</h2>
+                <h2><i class="fas fa-calendar-check"></i> Formulir Booking</h2>
                 <p class="form-description">Lengkapi data diri Anda untuk melanjutkan booking</p>
             </div>
             
             <div class="selected-services-summary">
-                <h4>🛍️ Layanan yang Dipilih:</h4>
+                <h4><i class="fas fa-shopping-cart"></i> Layanan yang Dipilih:</h4>
                 ${servicesHTML}
             </div>
             
             <form id="patientBookingForm" class="booking-form">
                 <div class="form-section">
-                    <h4>👤 Data Diri Pasien</h4>
+                    <h4><i class="fas fa-user"></i> Data Diri Pasien</h4>
                     
                     <div class="form-row">
                         <div class="form-group">
                             <label for="patientName">Nama Lengkap *</label>
                             <input type="text" id="patientName" name="patientName" required 
-                                   placeholder="Masukkan nama lengkap">
+                                   placeholder="Masukkan nama lengkap"
+                                   pattern="[a-zA-Z\\s]{3,}">
+                            <div class="validation-message" id="nameValidation"></div>
                         </div>
                         <div class="form-group">
                             <label for="patientPhone">Nomor Telepon *</label>
                             <input type="tel" id="patientPhone" name="patientPhone" required 
-                                   placeholder="Contoh: 081234567890">
+                                   placeholder="Contoh: 081234567890"
+                                   pattern="[0-9]{10,13}">
+                            <div class="validation-message" id="phoneValidation"></div>
                         </div>
                     </div>
                     
@@ -969,11 +1034,12 @@ function showBookingForm() {
                         <label for="patientAddress">Alamat Lengkap *</label>
                         <textarea id="patientAddress" name="patientAddress" rows="4" required 
                                   placeholder="Masukkan alamat lengkap (jalan, RT/RW, kelurahan, kecamatan, kota)"></textarea>
+                        <div class="validation-message" id="addressValidation"></div>
                     </div>
                 </div>
                 
                 <div class="form-section">
-                    <h4>📅 Jadwal Perawatan</h4>
+                    <h4><i class="fas fa-calendar-alt"></i> Jadwal Perawatan</h4>
                     
                     <div class="form-row">
                         <div class="form-group">
@@ -981,6 +1047,7 @@ function showBookingForm() {
                             <input type="date" id="appointmentDate" name="appointmentDate" 
                                    min="${today}" required>
                             <small class="date-note">Pilih tanggal mulai hari ini</small>
+                            <div class="validation-message" id="dateValidation"></div>
                         </div>
                         <div class="form-group">
                             <label for="appointmentTime">Jam Perawatan *</label>
@@ -989,12 +1056,13 @@ function showBookingForm() {
                                 ${timeOptions}
                             </select>
                             <small class="time-note">Jam praktik: 08:00 - 17:00</small>
+                            <div class="validation-message" id="timeValidation"></div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="form-section">
-                    <h4>📝 Informasi Tambahan</h4>
+                    <h4><i class="fas fa-notes-medical"></i> Informasi Tambahan</h4>
                     <div class="form-group full-width">
                         <label for="patientNotes">Catatan Tambahan (opsional)</label>
                         <textarea id="patientNotes" name="patientNotes" rows="4" 
@@ -1004,10 +1072,10 @@ function showBookingForm() {
                 
                 <div class="form-actions">
                     <button type="button" class="cta-button secondary" onclick="goBackToServiceSelection()">
-                        ← Kembali ke Pilihan Layanan
+                        <i class="fas fa-arrow-left"></i> Kembali ke Pilihan Layanan
                     </button>
                     <button type="submit" class="cta-button">
-                        📅 Konfirmasi Booking
+                        <i class="fas fa-paper-plane"></i> Konfirmasi Booking
                     </button>
                 </div>
             </form>
@@ -1020,7 +1088,7 @@ function showBookingForm() {
     modalContent.innerHTML = content;
     
     setDefaultAppointmentDate();
-    setupFormValidation();
+    setupEnhancedFormValidation();
     
     const form = document.getElementById('patientBookingForm');
     if (form) {
@@ -1054,42 +1122,91 @@ function setDefaultAppointmentDate() {
     }
 }
 
-function setupFormValidation() {
+function setupEnhancedFormValidation() {
     const phoneInput = document.getElementById('patientPhone');
+    const nameInput = document.getElementById('patientName');
+    const addressInput = document.getElementById('patientAddress');
+    const dateInput = document.getElementById('appointmentDate');
+    const timeInput = document.getElementById('appointmentTime');
+
+    // Real-time phone validation
     if (phoneInput) {
         phoneInput.addEventListener('input', function(e) {
-            this.value = this.value.replace(/[^0-9]/g, '');
+            const value = this.value.replace(/[^0-9]/g, '');
+            this.value = value;
             
-            if (this.value.length < 10 || this.value.length > 13) {
-                this.setCustomValidity('Nomor telepon harus 10-13 digit');
+            const validationElement = document.getElementById('phoneValidation');
+            if (value.length >= 10 && value.length <= 13) {
+                this.style.borderColor = 'var(--success-color)';
+                if (validationElement) {
+                    validationElement.textContent = '✓ Nomor telepon valid';
+                    validationElement.style.color = 'var(--success-color)';
+                }
             } else {
-                this.setCustomValidity('');
+                this.style.borderColor = 'var(--error-color)';
+                if (validationElement) {
+                    validationElement.textContent = 'Nomor telepon harus 10-13 digit';
+                    validationElement.style.color = 'var(--error-color)';
+                }
             }
         });
     }
 
-    const dateInput = document.getElementById('appointmentDate');
+    // Name validation
+    if (nameInput) {
+        nameInput.addEventListener('input', function(e) {
+            const value = this.value.trim();
+            const words = value.split(/\s+/).filter(word => word.length > 0);
+            const validationElement = document.getElementById('nameValidation');
+            
+            if (words.length >= 2) {
+                this.style.borderColor = 'var(--success-color)';
+                if (validationElement) {
+                    validationElement.textContent = '✓ Nama lengkap valid';
+                    validationElement.style.color = 'var(--success-color)';
+                }
+            } else {
+                this.style.borderColor = 'var(--error-color)';
+                if (validationElement) {
+                    validationElement.textContent = 'Minimal 2 kata (nama lengkap)';
+                    validationElement.style.color = 'var(--error-color)';
+                }
+            }
+        });
+    }
+
+    // Date validation
     if (dateInput) {
         dateInput.addEventListener('change', function(e) {
             const selectedDate = new Date(this.value);
             const today = new Date();
             today.setHours(0, 0, 0, 0);
+            const validationElement = document.getElementById('dateValidation');
             
             if (selectedDate < today) {
-                this.setCustomValidity('Tidak bisa memilih tanggal yang sudah lewat');
+                this.style.borderColor = 'var(--error-color)';
+                if (validationElement) {
+                    validationElement.textContent = 'Tidak bisa memilih tanggal yang sudah lewat';
+                    validationElement.style.color = 'var(--error-color)';
+                }
             } else {
-                this.setCustomValidity('');
+                this.style.borderColor = 'var(--success-color)';
+                if (validationElement) {
+                    validationElement.textContent = '✓ Tanggal valid';
+                    validationElement.style.color = 'var(--success-color)';
+                }
             }
         });
     }
 
+    // Real-time validation for all fields
     const inputs = document.querySelectorAll('input, textarea, select');
     inputs.forEach(input => {
         input.addEventListener('blur', function() {
             if (this.value.trim() !== '' && this.checkValidity()) {
-                this.style.borderColor = '#4CAF50';
+                this.style.borderColor = 'var(--success-color)';
             } else if (this.checkValidity() === false) {
-                this.style.borderColor = '#ff6b6b';
+                this.style.borderColor = 'var(--error-color)';
             }
         });
     });
@@ -1275,10 +1392,10 @@ function showBookingConfirmation(bookingData) {
             
             <div class="confirmation-actions">
                 <button class="cta-button secondary" onclick="printBookingDetails('${bookingData.bookingId}')">
-                    🖨️ Cetak Detail Booking
+                    <i class="fas fa-print"></i> Cetak Detail Booking
                 </button>
                 <button class="cta-button" onclick="modalManager.closeAll(); showNotification('Terima kasih telah membooking layanan kami!', 'success')">
-                    👍 Tutup & Selesai
+                    <i class="fas fa-check"></i> Tutup & Selesai
                 </button>
             </div>
         </div>
@@ -1374,17 +1491,18 @@ function showNotification(message, type = 'info') {
     if (notification && notificationText) {
         notificationText.textContent = message;
         
+        // Set styles based on type
         if (type === 'error') {
-            notification.style.borderLeftColor = '#ff6b6b';
+            notification.style.borderLeftColor = 'var(--error-color)';
             notification.style.background = '#ffeaea';
         } else if (type === 'success') {
-            notification.style.borderLeftColor = '#4CAF50';
+            notification.style.borderLeftColor = 'var(--success-color)';
             notification.style.background = '#f0f9f0';
         } else if (type === 'warning') {
-            notification.style.borderLeftColor = '#ff9800';
+            notification.style.borderLeftColor = 'var(--warning-color)';
             notification.style.background = '#fff3e0';
         } else {
-            notification.style.borderLeftColor = '#2c7873';
+            notification.style.borderLeftColor = 'var(--primary-color)';
             notification.style.background = '#f0f9f0';
         }
         
@@ -1404,25 +1522,13 @@ function scrollToServices() {
             behavior: 'smooth'
         });
     }
-}
-
-function showBookingModal() {
-    let selectedData;
-    try {
-        selectedData = JSON.parse(localStorage.getItem('selectedService') || '{}');
-    } catch (error) {
-        selectedData = {};
-    }
-    
-    if (selectedData.serviceId) {
-        showBookingForm();
-    } else {
-        showNotification('Silakan pilih layanan terlebih dahulu', 'warning');
-    }
+    modalManager.closeAll();
 }
 
 // ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('Alra Care Public Website initialized successfully!');
+    
     // Smooth scroll untuk anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -1439,6 +1545,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     block: 'start'
                 });
                 
+                // Close mobile menu if open
                 const hamburger = document.querySelector('.hamburger');
                 const navMenu = document.querySelector('.nav-menu');
                 if (hamburger && navMenu) {
@@ -1471,10 +1578,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Close modal when clicking outside
     window.addEventListener('click', function(event) {
-        const modal = document.getElementById('serviceModal');
-        if (event.target === modal) {
-            modalManager.closeAll();
-        }
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach(modal => {
+            if (event.target === modal) {
+                modalManager.closeAll();
+            }
+        });
     });
 
     // Escape key to close modal
@@ -1484,5 +1593,58 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    console.log('Alra Care Public Website initialized successfully!');
+    // Add CSS for validation messages
+    const style = document.createElement('style');
+    style.textContent = `
+        .validation-message {
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            min-height: 1.25rem;
+        }
+        .option-category {
+            display: inline-block;
+            background: var(--primary-light);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+        .quick-booking-options {
+            margin: 2rem 0;
+        }
+        .quick-service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .quick-service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .quick-service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        .quick-service-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .quick-service-card h4 {
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+        .quick-service-card p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+    `;
+    document.head.appendChild(style);
 });

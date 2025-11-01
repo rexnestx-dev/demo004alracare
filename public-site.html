@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alra Care - Kesehatan & Kecantikan Profesional</title>
+    <meta name="description" content="Klinik Alra Care - Pusat Perawatan Luka Modern, Kecantikan, Sunat Modern, dan Hipnoterapi di Pontianak">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="public-style.css">
 </head>
@@ -39,6 +40,7 @@
             <div class="hero-content">
                 <img src="./images/image_logo.webp" alt="Alra Care Logo" class="hero-logo" 
                      onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjM2FhZmYzIi8+Cjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+QUw8L3RleHQ+Cjwvc3ZnPgo='">
+                <h1 class="hero-title">Alra Care</h1>
                 <p class="hero-tagline">Kesehatan & Kecantikan Profesional</p>
                 <div class="hero-features">
                     <p><i class="fas fa-stethoscope"></i> Pusat Perawatan Luka Modern</p>
@@ -50,7 +52,7 @@
                     <button class="cta-button primary" onclick="scrollToServices()">
                         <i class="fas fa-eye"></i> Lihat Layanan
                     </button>
-                    <button class="cta-button secondary" onclick="showBookingModal()">
+                    <button class="cta-button secondary" onclick="showQuickBooking()">
                         <i class="fas fa-calendar-check"></i> Booking Sekarang
                     </button>
                 </div>
@@ -399,6 +401,14 @@
         <div class="modal-content">
             <span class="modal-close" onclick="modalManager.closeAll()">&times;</span>
             <div id="serviceModalContent"></div>
+        </div>
+    </div>
+
+    <!-- Quick Booking Modal -->
+    <div id="quickBookingModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="modalManager.closeAll()">&times;</span>
+            <div id="quickBookingContent"></div>
         </div>
     </div>
 

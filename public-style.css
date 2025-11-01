@@ -15,6 +15,9 @@
     --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.15);
     --border-radius: 8px;
     --transition: all 0.3s ease;
+    --success-color: #4CAF50;
+    --error-color: #ff6b6b;
+    --warning-color: #ff9800;
 }
 
 /* ===== RESET & BASE STYLES ===== */
@@ -69,7 +72,9 @@ p { margin-bottom: 1rem; }
 
 /* ===== BUTTONS ===== */
 .cta-button {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     padding: 12px 24px;
     background-color: var(--primary-color);
     color: var(--text-white);
@@ -110,6 +115,10 @@ p { margin-bottom: 1rem; }
     transition: var(--transition);
     width: 100%;
     margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 .service-btn:hover {
@@ -215,6 +224,12 @@ header {
     margin-bottom: 1.5rem;
 }
 
+.hero-title {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-white);
+}
+
 .hero-tagline {
     font-size: 1.2rem;
     margin-bottom: 2rem;
@@ -222,6 +237,10 @@ header {
 
 .hero-features p {
     margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 .hero-buttons {
@@ -731,6 +750,216 @@ footer {
     font-weight: 600;
 }
 
+/* ===== BOOKING FORM STYLES ===== */
+.booking-form-modal {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.booking-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-description {
+    color: var(--text-light);
+    margin-bottom: 2rem;
+}
+
+.selected-services-summary {
+    background: linear-gradient(135deg, #f8fdff, #f0f9ff);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--primary-color);
+}
+
+.service-summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.service-summary-item:last-child {
+    border-bottom: none;
+}
+
+.service-price {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-section {
+    background: var(--bg-white);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+}
+
+.form-section h4 {
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 12px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(58, 175, 243, 0.1);
+}
+
+.form-group input:valid {
+    border-color: var(--success-color);
+}
+
+.form-group input:invalid:not(:focus):not(:placeholder-shown) {
+    border-color: var(--error-color);
+}
+
+.date-note,
+.time-note {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    margin-top: 0.25rem;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* ===== CONFIRMATION STYLES ===== */
+.confirmation-modal {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.confirmation-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.confirmation-details {
+    background: var(--bg-light);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    margin: 2rem 0;
+    text-align: left;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.status-pending {
+    background: var(--warning-color);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.confirmation-message {
+    background: linear-gradient(135deg, #f0f9f0, #e8f5e8);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--success-color);
+    margin: 2rem 0;
+    text-align: left;
+}
+
+.confirmation-message p {
+    margin-bottom: 1rem;
+}
+
+.confirmation-message p:last-child {
+    margin-bottom: 0;
+}
+
+.confirmation-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* ===== LOADING AND ERROR STATES ===== */
+.loading-state,
+.error-state {
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+.loading-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.error-state {
+    color: var(--error-color);
+}
+
 /* ===== NOTIFICATION ===== */
 .notification {
     position: fixed;
@@ -746,6 +975,9 @@ footer {
     z-index: 10000;
     max-width: 400px;
     width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .notification.show {
@@ -758,6 +990,11 @@ footer {
     cursor: pointer;
     margin-left: 10px;
     color: var(--text-light);
+    padding: 4px;
+}
+
+.notification-close:hover {
+    color: var(--text-dark);
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
@@ -798,6 +1035,11 @@ footer {
     
     .option-title h3 {
         font-size: 1.4rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
     }
 }
 
@@ -848,6 +1090,10 @@ footer {
         margin-top: 70px;
     }
 
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
     .hero-content h1 {
         font-size: 2rem;
     }
@@ -895,6 +1141,18 @@ footer {
 
     .option-card {
         padding: 2rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .confirmation-actions {
+        flex-direction: column;
     }
 }
 
@@ -966,6 +1224,12 @@ footer {
     .option-checkbox input[type="checkbox"] {
         width: 24px;
         height: 24px;
+    }
+    
+    .notification {
+        right: 5px;
+        left: 5px;
+        width: auto;
     }
 }
 
